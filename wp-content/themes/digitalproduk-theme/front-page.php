@@ -26,13 +26,13 @@ $categories = get_terms([
     <div class="hero-glow"></div>
     <div class="container hero-content">
         <div class="hero-pill">
-            <span>✨ Koleksi Produk Digital Pilihan 2026</span>
+            <span>Koleksi Aset & Source Code Siap Pakai</span>
         </div>
         <h1 class="hero-title">
-            Tingkatkan Skill & Bisnis Digital Anda Lebih Cepat dengan <span class="highlight">Aset Siap Pakai</span>
+            Bangun Proyek Digital Lebih Cepat dengan <span class="highlight">Aset Teruji</span>
         </h1>
         <p class="hero-desc">
-            Temukan source code web apps, UI/UX figma design kits, panduan e-book, dan template produktivitas terkurasi dengan standar industri profesional.
+            Source code aplikasi web, UI/UX Figma design kits, dan panduan praktis yang siap Anda gunakan untuk proyek mandiri maupun klien.
         </p>
         <div class="hero-cta">
             <a href="#katalog" class="btn btn-primary btn-lg">Eksplorasi Katalog</a>
@@ -143,6 +143,7 @@ $categories = get_terms([
                                     <span class="price-current"><?php echo digitalproduk_price( $sale_price ); ?></span>
                                 </div>
                                 <button type="button" class="btn btn-primary btn-sm btn-buy-trigger" 
+                                    data-id="<?php the_ID(); ?>"
                                     data-title="<?php the_title_attribute(); ?>" 
                                     data-price="<?php echo esc_attr( digitalproduk_price( $sale_price ) ); ?>">
                                     Beli Sekarang
@@ -298,24 +299,56 @@ $categories = get_terms([
     </div>
 </section>
 
-<!-- 7. Quick Order Modal (Checkout Instant) -->
+<!-- 7. Checkout Modal (Midtrans Snap & Direct Order) -->
 <div class="modal-overlay" id="checkoutModal">
     <div class="modal-content">
         <button type="button" class="modal-close" id="modalClose">&times;</button>
-        <h3 style="font-family: var(--font-heading); margin-bottom: 0.5rem; font-size: 1.5rem;">Pemesanan Produk</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem;">Lanjutkan transaksi cepat melalui WhatsApp resmi kami.</p>
+        <h3 style="font-family: var(--font-heading); margin-bottom: 0.5rem; font-size: 1.4rem;">Checkout Produk</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 1.25rem; font-size: 0.925rem;">Pilih metode pembayaran instan via Midtrans (QRIS / VA / E-Wallet) atau pesan langsung.</p>
         
-        <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 1.5rem;">
-            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">Nama Produk:</div>
-            <div id="modalProductTitle" style="font-weight: 700; font-size: 1.15rem; margin-bottom: 0.75rem;">-</div>
+        <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.15rem; margin-bottom: 1.35rem;">
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.2rem;">Produk:</div>
+            <div id="modalProductTitle" style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.65rem;">-</div>
             
-            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">Total Harga Promo:</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.2rem;">Total Pembayaran:</div>
             <div id="modalProductPrice" style="font-weight: 800; font-size: 1.35rem; color: #38bdf8;">-</div>
         </div>
 
-        <a id="modalBuyBtn" href="#" target="_blank" rel="noopener" class="btn btn-success btn-lg btn-block">
-            Lanjut ke WhatsApp Admin 💬
+        <form id="midtransCheckoutForm" style="display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 1rem;">
+            <input type="hidden" id="modalProductId" name="product_id" value="" />
+            
+            <div>
+                <label for="buyerName" style="display: block; font-size: 0.825rem; color: var(--text-secondary); margin-bottom: 0.35rem; font-weight: 600;">Nama Lengkap</label>
+                <input type="text" id="buyerName" name="name" required placeholder="Contoh: Budi Santoso" 
+                    style="width: 100%; padding: 0.75rem 1rem; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: #fff; font-size: 0.95rem; font-family: inherit;" />
+            </div>
+
+            <div>
+                <label for="buyerEmail" style="display: block; font-size: 0.825rem; color: var(--text-secondary); margin-bottom: 0.35rem; font-weight: 600;">Alamat Email (Untuk Pengiriman File)</label>
+                <input type="email" id="buyerEmail" name="email" required placeholder="nama@email.com" 
+                    style="width: 100%; padding: 0.75rem 1rem; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: #fff; font-size: 0.95rem; font-family: inherit;" />
+            </div>
+
+            <div>
+                <label for="buyerPhone" style="display: block; font-size: 0.825rem; color: var(--text-secondary); margin-bottom: 0.35rem; font-weight: 600;">Nomor WhatsApp</label>
+                <input type="tel" id="buyerPhone" name="phone" placeholder="08xxxxxxxxxx" 
+                    style="width: 100%; padding: 0.75rem 1rem; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: #fff; font-size: 0.95rem; font-family: inherit;" />
+            </div>
+
+            <button type="submit" id="btnPayMidtrans" class="btn btn-primary btn-lg btn-block" style="margin-top: 0.5rem;">
+                Bayar Otomatis (Midtrans Snap) 💳
+            </button>
+        </form>
+
+        <div style="text-align: center; margin: 0.75rem 0; font-size: 0.85rem; color: var(--text-muted);">
+            <span>atau pesan konfirmasi manual</span>
+        </div>
+
+        <a id="modalBuyBtn" href="#" target="_blank" rel="noopener" class="btn btn-secondary btn-block" style="font-size: 0.9rem;">
+            Order via WhatsApp Admin
         </a>
+        
+        <div id="checkoutNotice" style="margin-top: 0.75rem; font-size: 0.85rem; text-align: center; display: none;"></div>
     </div>
 </div>
 

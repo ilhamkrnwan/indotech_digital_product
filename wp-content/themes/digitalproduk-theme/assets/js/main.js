@@ -48,30 +48,133 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Modal Instant Checkout Trigger
     const modal = document.getElementById('checkoutModal');
     const modalClose = document.getElementById('modalClose');
+    const modalProductId = document.getElementById('modalProductId');
     const modalProductTitle = document.getElementById('modalProductTitle');
     const modalProductPrice = document.getElementById('modalProductPrice');
     const modalBuyBtn = document.getElementById('modalBuyBtn');
+    const checkoutForm = document.getElementById('midtransCheckoutForm');
+    const checkoutNotice = document.getElementById('checkoutNotice');
+    const btnPayMidtrans = document.getElementById('btnPayMidtrans');
 
     const buyButtons = document.querySelectorAll('.btn-buy-trigger');
     buyButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-            const title = btn.getAttribute('data-title');
-            const price = btn.getAttribute('data-price');
+            const id = btn.getAttribute('data-id') || '';
+            const title = btn.getAttribute('data-title') || '';
+            const price = btn.getAttribute('data-price') || '';
             
+            if (modalProductId) modalProductId.value = id;
             if (modalProductTitle) modalProductTitle.textContent = title;
             if (modalProductPrice) modalProductPrice.textContent = price;
+            if (checkoutNotice) {
+                checkoutNotice.style.display = 'none';
+                checkoutNotice.textContent = '';
+            }
 
-            // WhatsApp direct link generator
+            // WhatsApp direct link fallback generator
             if (modalBuyBtn) {
-                const waPhone = '6281234567890'; // Phone number
-                const message = encodeURIComponent(`Halo DigitalProduk, saya ingin memesan:\nProduk: ${title}\nHarga: ${price}\nMohon info instruksi pembayarannya.`);
+                const waPhone = '6281234567890';
+                const message = encodeURIComponent(`Halo DigitalProduk, saya ingin memesan:\nProduk: ${title}\nHarga: ${price}\nMohon info pembayaran.`);
                 modalBuyBtn.href = `https://wa.me/${waPhone}?text=${message}`;
             }
 
             if (modal) modal.classList.add('active');
         });
     });
+
+    // 4. Midtrans Checkout Form Submit
+    if (checkoutForm) {
+        checkoutForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (typeof dpm_vars === 'undefined') {
+                alert('Midtrans Gateway plugin belum aktif.');
+                return;
+            }
+
+            const productId = modalProductId.value;
+            const buyerName = document.getElementById('buyerName').value.trim();
+            const buyerEmail = document.getElementById('buyerEmail').value.trim();
+            const buyerPhone = document.getElementById('buyerPhone').value.trim();
+
+            if (!productId || !buyerName || !buyerEmail) {
+                alert('Silakan lengkapi nama dan email Anda.');
+                return;
+            }
+
+            btnPayMidtrans.disabled = true;
+            btnPayMidtrans.textContent = 'Menyiapkan Pembayaran...';
+
+            try {
+                const formData = new URLSearchParams();
+                formData.append('action', 'dpm_create_order');
+                formData.append('nonce', dpm_vars.nonce);
+                formData.append('product_id', productId);
+                formData.append('name', buyerName);
+                formData.append('email', buyerEmail);
+                formData.append('phone', buyerPhone);
+
+                const response = await fetch(dpm_vars.ajax_url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: formData.toString()
+                });
+
+                const res = await response.json();
+
+                if (!res.success) {
+                    checkoutNotice.style.display = 'block';
+                    checkoutNotice.style.color = '#ef4444';
+                    checkoutNotice.textContent = res.data?.message || 'Gagal memproses pesanan. Periksa Server Key Midtrans di Dashboard.';
+                    btnPayMidtrans.disabled = false;
+                    btnPayMidtrans.textContent = 'Bayar Otomatis (Midtrans Snap) 💳';
+                    return;
+                }
+
+                const snapToken = res.data.snap_token;
+
+                if (typeof window.snap !== 'undefined') {
+                    window.snap.pay(snapToken, {
+                        onSuccess: function(result) {
+                            checkoutNotice.style.display = 'block';
+                            checkoutNotice.style.color = '#10b981';
+                            checkoutNotice.textContent = 'Pembayaran berhasil dikonfirmasi! Terima kasih.';
+                            setTimeout(() => { window.location.reload(); }, 2500);
+                        },
+                        onPending: function(result) {
+                            checkoutNotice.style.display = 'block';
+                            checkoutNotice.style.color = '#f59e0b';
+                            checkoutNotice.textContent = 'Menunggu pembayaran. Silakan selesaikan tagihan Anda.';
+                        },
+                        onError: function(result) {
+                            checkoutNotice.style.display = 'block';
+                            checkoutNotice.style.color = '#ef4444';
+                            checkoutNotice.textContent = 'Pembayaran gagal atau dibatalkan.';
+                        },
+                        onClose: function() {
+                            btnPayMidtrans.disabled = false;
+                            btnPayMidtrans.textContent = 'Bayar Otomatis (Midtrans Snap) 💳';
+                        }
+                    });
+                } else if (res.data.redirect) {
+                    window.location.href = res.data.redirect;
+                } else {
+                    alert('Snap SDK belum termuat atau Client Key belum diisi di Admin.');
+                    btnPayMidtrans.disabled = false;
+                    btnPayMidtrans.textContent = 'Bayar Otomatis (Midtrans Snap) 💳';
+                }
+
+            } catch (err) {
+                console.error(err);
+                checkoutNotice.style.display = 'block';
+                checkoutNotice.style.color = '#ef4444';
+                checkoutNotice.textContent = 'Terjadi kesalahan koneksi ke server.';
+                btnPayMidtrans.disabled = false;
+                btnPayMidtrans.textContent = 'Bayar Otomatis (Midtrans Snap) 💳';
+            }
+        });
+    }
 
     if (modalClose) {
         modalClose.addEventListener('click', () => {

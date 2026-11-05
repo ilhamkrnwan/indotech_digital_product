@@ -24,33 +24,116 @@ $categories = get_terms([
 <!-- 1. Hero Section -->
 <section class="hero-section">
     <div class="hero-glow"></div>
-    <div class="container hero-content">
-        <div class="hero-pill">
-            <span>Koleksi Aset & Source Code Siap Pakai</span>
-        </div>
-        <h1 class="hero-title">
-            Bangun Proyek Digital Lebih Cepat dengan <span class="highlight">Aset Teruji</span>
-        </h1>
-        <p class="hero-desc">
-            Source code aplikasi web, UI/UX Figma design kits, dan panduan praktis yang siap Anda gunakan untuk proyek mandiri maupun klien.
-        </p>
-        <div class="hero-cta">
-            <a href="#katalog" class="btn btn-primary btn-lg">Eksplorasi Katalog</a>
-            <a href="#keunggulan" class="btn btn-secondary btn-lg">Pelajari Keunggulan</a>
+    <div class="container hero-container">
+        <div class="hero-content">
+            <div class="hero-pill">
+                <span class="pill-dot">●</span>
+                <span>PAKET LENGKAP DIGITAL & AI 2026</span>
+            </div>
+            <h1 class="hero-title">
+                Siap Jualan & Naik Kelas dengan <span class="highlight-playful">Aset Digital Praktis</span>
+            </h1>
+            <p class="hero-desc">
+                Solusi lengkap source code, template bisnis, prompt marketing, dan tools otomatisasi untuk UMKM & digital creator tanpa ribet.
+            </p>
+            <div class="hero-cta">
+                <a href="#katalog" class="btn btn-primary btn-lg">Pilih Produk Sekarang ⚡</a>
+                <a href="#bonus-section" class="btn btn-secondary btn-lg">Lihat 6 Bonus Praktis 🎁</a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-emoji">🚀</span>
+                    <div>
+                        <h3>Instan</h3>
+                        <p>Akses Download Langsung</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-emoji">💎</span>
+                    <div>
+                        <h3>100%</h3>
+                        <p>Lisensi & Update Selamanya</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-emoji">🛡️</span>
+                    <div>
+                        <h3>Midtrans</h3>
+                        <p>Pembayaran Otomatis & Aman</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="hero-stats">
-            <div class="stat-item">
-                <h3>5.000+</h3>
-                <p>Digital Kreator & Dev Puas</p>
+        <div class="hero-visual">
+            <div class="hero-card-stack">
+                <div class="floating-badge badge-top-left">
+                    <span>⚡ Akses Instan</span>
+                </div>
+                <div class="floating-badge badge-bottom-right">
+                    <span>🎉 6 Bonus Praktis</span>
+                </div>
+                <div class="hero-image-frame">
+                    <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/hero-bundle.png' ); ?>" 
+                         alt="AI Business Growth Kit & 6 Bonus Praktis" 
+                         class="hero-bundle-img" />
+                </div>
             </div>
-            <div class="stat-item">
-                <h3>100%</h3>
-                <p>Akses Selamanya & Update</p>
+        </div>
+    </div>
+</section>
+
+<!-- 1.5 Playful Bonus Showcase Section (Based on Reference Design) -->
+<section id="bonus-section" class="section bonus-section">
+    <div class="container">
+        <div class="section-header">
+            <div class="playful-sticker">🎁 SPECIAL BONUS</div>
+            <h2 class="section-title">6 Bonus Praktis Tambahan</h2>
+            <p class="section-desc">Setiap pembelian paket produk digital kami menyertakan bundle bonus siap pakai berikut:</p>
+        </div>
+
+        <div class="bonus-grid">
+            <div class="bonus-card card-cyan">
+                <div class="bonus-tag">BONUS 01</div>
+                <div class="bonus-icon">🤖</div>
+                <h3>100 Marketing Prompts</h3>
+                <p>Kumpulan prompt ChatGPT & Claude siap copy-paste untuk copywriting promosi, caption sosmed, dan ide konten.</p>
             </div>
-            <div class="stat-item">
-                <h3>Instan</h3>
-                <p>Akses Download Langsung</p>
+
+            <div class="bonus-card card-pink">
+                <div class="bonus-tag">BONUS 02</div>
+                <div class="bonus-icon">🎯</div>
+                <h3>100 Hooks Viral</h3>
+                <p>Formula pembuka video Reels, TikTok, dan thread Twitter/X dengan conversion rate tinggi untuk menarik perhatian pembeli.</p>
+            </div>
+
+            <div class="bonus-card card-yellow">
+                <div class="bonus-tag">BONUS 03</div>
+                <div class="bonus-icon">💬</div>
+                <h3>50 Call-To-Action (CTA)</h3>
+                <p>Template penutup pesan penjualan dan tombol landing page yang memicu aksi beli secara psikologis.</p>
+            </div>
+
+            <div class="bonus-card card-purple">
+                <div class="bonus-tag">BONUS 04</div>
+                <div class="bonus-icon">📅</div>
+                <h3>30-Day Content Calendar</h3>
+                <p>Jadwal dan panduan konten sebulan penuh untuk menjaga konsistensi posting tanpa pusing memikirkan ide harian.</p>
+            </div>
+
+            <div class="bonus-card card-teal">
+                <div class="bonus-tag">BONUS 05</div>
+                <div class="bonus-icon">📱</div>
+                <h3>30 WhatsApp Sales Scripts</h3>
+                <p>Script obrolan closing untuk customer service dan admin penjualan guna mengatasi keberatan pelanggan.</p>
+            </div>
+
+            <div class="bonus-card card-blue">
+                <div class="bonus-tag">BONUS 06</div>
+                <div class="bonus-icon">⚙️</div>
+                <h3>AI Workflow Cheatsheet</h3>
+                <p>Diagram alur kerja praktis mengintegrasikan kecerdasan buatan ke proses operasional harian bisnis Anda.</p>
             </div>
         </div>
     </div>

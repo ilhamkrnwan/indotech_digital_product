@@ -31,7 +31,7 @@ while ( have_posts() ) :
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start;">
             <!-- Left Thumbnail -->
             <div>
-                <div style="position: relative; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-color); background: var(--bg-card); min-height: 380px; display: flex; align-items: center; justify-content: center;">
+                <div style="position: relative; border-radius: var(--radius-lg); overflow: hidden; border: 3px solid var(--border-playful); background: #ffffff; box-shadow: var(--shadow-pop); min-height: 380px; display: flex; align-items: center; justify-content: center;">
                     <?php if ( has_post_thumbnail() ) : ?>
                         <?php the_post_thumbnail( 'large', [ 'style' => 'width: 100%; height: auto;' ] ); ?>
                     <?php else : ?>
@@ -43,31 +43,33 @@ while ( have_posts() ) :
 
             <!-- Right Detail -->
             <div>
-                <span class="product-category" style="font-size: 0.9rem;"><?php echo esc_html( $cat_name ); ?></span>
-                <h1 style="font-family: var(--font-heading); font-size: 2.5rem; margin: 0.5rem 0 1rem; line-height: 1.25;"><?php the_title(); ?></h1>
+                <span class="product-category" style="font-size: 0.9rem; font-weight: 800;"><?php echo esc_html( $cat_name ); ?></span>
+                <h1 style="font-family: var(--font-heading); font-size: 2.75rem; margin: 0.5rem 0 1rem; line-height: 1.2; color: var(--color-dark-headline);"><?php the_title(); ?></h1>
                 
-                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; font-size: 0.95rem; color: var(--text-secondary);">
-                    <span style="color: #facc15; font-weight: 700;">★ <?php echo esc_html( $rating ); ?></span>
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; font-size: 0.95rem; color: var(--color-body-text);">
+                    <span style="color: #ca8a04; font-weight: 800;">★ <?php echo esc_html( $rating ); ?></span>
                     <span>•</span>
                     <span><?php echo esc_html( $sales_count ); ?> Pembeli Puas</span>
                     <span>•</span>
-                    <span style="background: rgba(255,255,255,0.08); padding: 0.2rem 0.65rem; border-radius: var(--radius-sm);"><?php echo esc_html( $file_format ); ?></span>
+                    <span style="background: #ffffff; border: 1.5px solid var(--border-playful); box-shadow: 2px 2px 0px var(--border-playful); padding: 0.2rem 0.65rem; border-radius: var(--radius-sm); font-weight: 700;"><?php echo esc_html( $file_format ); ?></span>
                 </div>
 
-                <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 2rem;">
+                <div style="background: #ffffff; border: 2.5px solid var(--border-playful); box-shadow: var(--shadow-pop); border-radius: var(--radius-md); padding: 1.75rem; margin-bottom: 2rem;">
                     <div style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 1.25rem;">
-                        <span style="font-size: 2.25rem; font-family: var(--font-heading); font-weight: 800; color: #38bdf8;"><?php echo digitalproduk_price( $sale_price ); ?></span>
-                        <span style="text-decoration: line-through; color: var(--text-muted); font-size: 1.1rem;"><?php echo digitalproduk_price( $price ); ?></span>
+                        <span style="font-size: 2.5rem; font-family: var(--font-heading); font-weight: 800; color: var(--brand-blue-deep);"><?php echo digitalproduk_price( $sale_price ); ?></span>
+                        <span style="text-decoration: line-through; color: var(--color-text-muted); font-size: 1.15rem;"><?php echo digitalproduk_price( $price ); ?></span>
                     </div>
 
-                    <a href="https://wa.me/6281234567890?text=<?php echo urlencode( 'Halo, saya ingin order: ' . get_the_title() . ' (' . digitalproduk_price( $sale_price ) . ')' ); ?>" 
-                        target="_blank" rel="noopener" 
-                        class="btn btn-primary btn-lg btn-block" style="margin-bottom: 1rem;">
-                        Beli & Download Sekarang ⚡
-                    </a>
+                    <button type="button" class="btn btn-primary btn-lg btn-block btn-buy-trigger" 
+                        data-id="<?php the_ID(); ?>"
+                        data-title="<?php the_title_attribute(); ?>"
+                        data-price="<?php echo esc_attr( digitalproduk_price( $sale_price ) ); ?>"
+                        style="margin-bottom: 1rem;">
+                        Beli & Checkout Sekarang ⚡
+                    </button>
 
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">
-                        <span>🔒 Checkout Aman • Garansi Akses Selamanya</span>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; color: var(--color-body-text); font-size: 0.85rem; font-weight: 600;">
+                        <span>🛡️ Midtrans Secured • Download Otomatis & Akses Selamanya</span>
                     </div>
                 </div>
 

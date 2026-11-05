@@ -4,9 +4,11 @@
     <div class="container footer-container">
         <div class="footer-grid">
             <div class="footer-col brand-col">
-                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-brand">
-                    <span class="brand-badge">⚡</span>
-                    <span class="brand-text">Digital<strong>Produk</strong></span>
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-brand" style="margin-bottom: 1rem;">
+                    <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo-indotech-landscape.avif' ); ?>" 
+                         alt="Indotech Digital Produk" 
+                         class="brand-logo-img" 
+                         height="38" />
                 </a>
                 <p class="footer-desc">
                     Pusat aset, template, e-book, dan source code premium terkurasi untuk mempercepat alur kerja kreatif & digital developer Indonesia.

@@ -31,7 +31,7 @@ add_action( 'after_setup_theme', 'digitalproduk_setup' );
  * Enqueue scripts and styles
  */
 function digitalproduk_scripts() {
-    wp_enqueue_style( 'digitalproduk-fonts', 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap', [], null );
+    wp_enqueue_style( 'digitalproduk-fonts', 'https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap', [], null );
     wp_enqueue_style( 'digitalproduk-main', get_template_directory_uri() . '/assets/css/main.css', [], DIGITALPRODUK_VERSION );
     wp_enqueue_script( 'digitalproduk-main', get_template_directory_uri() . '/assets/js/main.js', [], DIGITALPRODUK_VERSION, true );
 }

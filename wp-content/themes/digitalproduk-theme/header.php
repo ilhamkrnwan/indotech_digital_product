@@ -11,8 +11,11 @@
 <header class="site-header">
     <div class="container header-container">
         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-brand">
-            <span class="brand-badge">⚡</span>
-            <span class="brand-text">Digital<strong>Produk</strong></span>
+            <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo-indotech-landscape.avif' ); ?>" 
+                 alt="Indotech Digital Produk" 
+                 class="brand-logo-img" 
+                 height="42" />
+            <span class="brand-subtag">Digital Store</span>
         </a>
 
         <nav class="main-navigation" id="site-navigation" aria-label="<?php esc_attr_e( 'Main Menu', 'digitalproduk' ); ?>">

@@ -21,10 +21,10 @@ while ( have_posts() ) :
     // Value & Feature Highlights Tags
     $tech_stack = get_post_meta( $product_id, '_tech_stack', true );
     $tech_tags = ! empty( $tech_stack ) ? ( is_array( $tech_stack ) ? $tech_stack : explode( ',', $tech_stack ) ) : [
-        '⭐ Siap Pakai Langsung',
-        '📁 File Lengkap & Rapi',
-        '🔓 Lisensi Komersial Bebas',
-        '✨ Update Gratis Selamanya'
+        'Siap Pakai Langsung',
+        'File Terstruktur & Rapi',
+        'Lisensi Komersial Penuh',
+        'Update Versi Gratis'
     ];
 
     $features_meta = get_post_meta( $product_id, '_features', true );
@@ -84,7 +84,8 @@ while ( have_posts() ) :
                                  class="main-preview-img" />
                             
                             <div class="file-format-badge">
-                                📦 Format: <strong><?php echo esc_html( $file_format ); ?></strong>
+                                <?php echo digitalproduk_get_icon( 'file-text', 'mini-tag-icon', 13 ); ?>
+                                <span>Format: <strong><?php echo esc_html( $file_format ); ?></strong></span>
                             </div>
                         </div>
 
@@ -157,16 +158,24 @@ while ( have_posts() ) :
                 <!-- Right Column: Detail, Pricing & Buy Card -->
                 <div class="single-product-info">
                     <a href="<?php echo esc_url( $cat_link ); ?>" class="product-category-pill">
-                        🏷️ <?php echo esc_html( $cat_name ); ?>
+                        <?php echo digitalproduk_get_icon( 'tag', 'pill-tag-icon', 13 ); ?>
+                        <span><?php echo esc_html( $cat_name ); ?></span>
                     </a>
 
                     <h1 class="single-title"><?php the_title(); ?></h1>
 
                     <div class="single-rating-bar">
-                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-stars">
+                            <?php for ( $s = 0; $s < 5; $s++ ) : ?>
+                                <?php echo digitalproduk_get_icon( 'star', 'star-gold', 14 ); ?>
+                            <?php endfor; ?>
+                        </span>
                         <strong class="rating-num"><?php echo esc_html( $rating ); ?></strong>
-                        <span class="rating-divider">•</span>
-                        <span class="sales-text">🔥 <strong><?php echo esc_html( $sales_count ); ?>+</strong> Pembeli Puas</span>
+                        <span class="rating-divider">&bull;</span>
+                        <span class="sales-text">
+                            <?php echo digitalproduk_get_icon( 'check-circle-2', 'text-cyan', 14 ); ?>
+                            <strong><?php echo esc_html( $sales_count ); ?>+</strong> Pembeli Puas
+                        </span>
                     </div>
 
                     <!-- Tech stack tags -->
@@ -193,23 +202,33 @@ while ( have_posts() ) :
                             data-title="<?php the_title_attribute(); ?>"
                             data-price="<?php echo esc_attr( digitalproduk_price( $sale_price ) ); ?>"
                             style="font-size: 1.15rem; padding: 1.15rem;">
-                            Beli & Download Sekarang ⚡
+                            <span>Beli &amp; Akses Sekarang</span>
+                            <?php echo digitalproduk_get_icon( 'shopping-bag', 'btn-icon-right', 18 ); ?>
                         </button>
+
+                        <a href="<?php echo esc_url( home_url( '/checkout/?product_id=' . $product_id ) ); ?>" class="btn btn-secondary btn-block" style="margin-top: 8px; font-weight: 700; font-size: 0.95rem; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <?php echo digitalproduk_get_icon( 'credit-card', '', 16 ); ?>
+                            <span>Halaman Checkout Mandiri</span>
+                        </a>
 
                         <div class="buy-card-sublinks">
                             <a href="https://wa.me/6281234567890?text=<?php echo urlencode( 'Halo Indotech DigitalProduk, saya ingin tanya detail produk: ' . get_the_title() ); ?>" target="_blank" rel="noopener">
-                                💬 Tanya Admin via WhatsApp
+                                <?php echo digitalproduk_get_icon( 'message-circle', '', 15 ); ?>
+                                <span>Konsultasi Pra-Beli via WhatsApp</span>
                             </a>
                         </div>
                     </div>
 
                     <!-- What You Get Key Benefits -->
                     <div class="key-benefits-box">
-                        <h3 class="box-title">🎁 Apa yang Anda Dapatkan di Paket Ini:</h3>
+                        <h3 class="box-title">
+                            <?php echo digitalproduk_get_icon( 'gift', 'gift-title-icon', 18 ); ?>
+                            <span>Keuntungan Eksklusif Paket Ini:</span>
+                        </h3>
                         <ul class="benefits-checklist">
                             <?php foreach ( $features as $f ) : ?>
                                 <li>
-                                    <span class="check-circle">✓</span>
+                                    <span class="check-circle"><?php echo digitalproduk_get_icon( 'check', '', 12 ); ?></span>
                                     <span><?php echo esc_html( trim( $f ) ); ?></span>
                                 </li>
                             <?php endforeach; ?>
@@ -230,7 +249,7 @@ while ( have_posts() ) :
                 <!-- Main Description -->
                 <div class="main-content-column">
                     <div class="playful-box content-panel">
-                        <h2 class="panel-heading">Deskripsi & Spesifikasi Lengkap</h2>
+                        <h2 class="panel-heading">Deskripsi &amp; Spesifikasi Lengkap</h2>
                         <div class="entry-content">
                             <?php the_content(); ?>
                         </div>
@@ -240,16 +259,22 @@ while ( have_posts() ) :
                 <!-- Sidebar FAQ & Guarantee -->
                 <div class="sidebar-column">
                     <div class="playful-box sidebar-card card-yellow">
-                        <h3>🛡️ Jaminan Kepuasan 100%</h3>
+                        <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                            <?php echo digitalproduk_get_icon( 'shield-check', '', 20 ); ?>
+                            <span>Jaminan Kepuasan 100%</span>
+                        </h3>
                         <p>File terverifikasi, bebas virus/malware, dan dipastikan berjalan sesuai panduan dokumentasi resmi.</p>
                     </div>
 
                     <div class="playful-box sidebar-card card-cyan">
-                        <h3>💻 Cara Akses Produk</h3>
+                        <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                            <?php echo digitalproduk_get_icon( 'zap', '', 20 ); ?>
+                            <span>Cara Akses Produk</span>
+                        </h3>
                         <ol style="margin-left: 1.25rem; font-size: 0.95rem; line-height: 1.6;">
-                            <li>Klik tombol <strong>Beli & Download</strong>.</li>
+                            <li>Klik tombol <strong>Beli &amp; Akses Sekarang</strong>.</li>
                             <li>Lakukan pembayaran instan via Midtrans (QRIS/VA).</li>
-                            <li>Link download Google Drive langsung aktif & dikirim ke email Anda.</li>
+                            <li>Link download Google Drive langsung aktif &amp; dikirim ke email Anda.</li>
                         </ol>
                     </div>
                 </div>
@@ -292,7 +317,10 @@ while ( have_posts() ) :
         <section class="section related-products-section">
             <div class="container">
                 <div class="section-header">
-                    <div class="playful-sticker">REKOMENDASI LAIN</div>
+                    <div class="playful-sticker">
+                        <?php echo digitalproduk_get_icon( 'sparkles', '', 14 ); ?>
+                        <span>REKOMENDASI PILIHAN</span>
+                    </div>
                     <h2 class="section-title">Produk Terkait Dalam Kategori Ini</h2>
                 </div>
                 <div class="products-grid">

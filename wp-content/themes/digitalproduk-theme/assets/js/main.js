@@ -79,6 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalBuyBtn.href = `https://wa.me/${waPhone}?text=${message}`;
             }
 
+            const fullPageLink = document.getElementById('modalFullPageCheckoutLink');
+            if (fullPageLink && id) {
+                fullPageLink.href = `${window.location.origin}/digitalproduk/checkout/?product_id=${encodeURIComponent(id)}`;
+            }
+
             if (modal) modal.classList.add('active');
         });
     });
@@ -128,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     checkoutNotice.style.color = '#ef4444';
                     checkoutNotice.textContent = res.data?.message || 'Gagal memproses pesanan. Periksa Server Key Midtrans di Dashboard.';
                     btnPayMidtrans.disabled = false;
-                    btnPayMidtrans.textContent = 'Bayar Otomatis (Midtrans Snap) 💳';
+                    btnPayMidtrans.innerHTML = '<span>Bayar Otomatis (Midtrans Snap)</span>';
                     return;
                 }
 
@@ -154,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         },
                         onClose: function() {
                             btnPayMidtrans.disabled = false;
-                            btnPayMidtrans.textContent = 'Bayar Otomatis (Midtrans Snap) 💳';
+                            btnPayMidtrans.innerHTML = '<span>Bayar Otomatis (Midtrans Snap)</span>';
                         }
                     });
                 } else if (res.data.redirect) {
@@ -162,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     alert('Snap SDK belum termuat atau Client Key belum diisi di Admin.');
                     btnPayMidtrans.disabled = false;
-                    btnPayMidtrans.textContent = 'Bayar Otomatis (Midtrans Snap) 💳';
+                    btnPayMidtrans.innerHTML = '<span>Bayar Otomatis (Midtrans Snap)</span>';
                 }
 
             } catch (err) {
@@ -171,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 checkoutNotice.style.color = '#ef4444';
                 checkoutNotice.textContent = 'Terjadi kesalahan koneksi ke server.';
                 btnPayMidtrans.disabled = false;
-                btnPayMidtrans.textContent = 'Bayar Otomatis (Midtrans Snap) 💳';
+                btnPayMidtrans.innerHTML = '<span>Bayar Otomatis (Midtrans Snap)</span>';
             }
         });
     }

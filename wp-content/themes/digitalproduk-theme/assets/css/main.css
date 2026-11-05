@@ -303,18 +303,27 @@ img {
     transform: translateX(3px);
 }
 
-.cat-item-icon {
+.cat-item-icon,
+.cat-item-icon-wrap {
     font-size: 1.4rem;
     width: 36px;
     height: 36px;
     background: #f1f5f9;
     border: 1.5px solid var(--border-playful);
     border-radius: var(--radius-sm);
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    transition: transform 0.2s ease;
 }
+
+.cat-item-icon-wrap.cat-cyan { background: #cffafe; color: #0891b2; }
+.cat-item-icon-wrap.cat-purple { background: #f3e8ff; color: #7c3aed; }
+.cat-item-icon-wrap.cat-blue { background: #dbeafe; color: #2563eb; }
+.cat-item-icon-wrap.cat-yellow { background: #fef3c7; color: #d97706; }
+.cat-item-icon-wrap.cat-teal { background: #ccfbf1; color: #0d9488; }
+.cat-item-icon-wrap.cat-pink { background: #fce7f3; color: #db2777; }
 
 .cat-item-text {
     flex-grow: 1;
@@ -1237,15 +1246,33 @@ img {
 }
 
 .product-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
     font-size: 0.825rem;
     color: var(--brand-blue-deep);
     font-weight: 800;
 }
 
+.product-cat-icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .product-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
     font-size: 0.85rem;
     font-weight: 700;
     color: #ca8a04;
+}
+
+.sales-muted {
+    font-weight: 500;
+    color: var(--color-text-muted);
+    font-size: 0.775rem;
 }
 
 .product-title {
@@ -1283,9 +1310,20 @@ img {
 }
 
 .product-features-list li::before {
-    content: "✓";
-    color: #16a34a;
-    font-weight: 900;
+    display: none;
+}
+
+.feature-check-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: #dcfce7;
+    color: #15803d;
+    border: 1.5px solid #16a34a;
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
 }
 
 .product-footer {
@@ -2033,6 +2071,23 @@ img {
     text-align: left;
 }
 
+.faq-icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: #f1f5f9;
+    border: 1.5px solid var(--border-playful);
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+    transition: all 0.25s ease;
+}
+
+.faq-chevron {
+    transition: transform 0.25s ease;
+}
+
 .faq-icon {
     font-size: 1.5rem;
     transition: transform 0.3s ease;
@@ -2048,6 +2103,14 @@ img {
 
 .faq-item.active .faq-answer {
     display: block;
+}
+
+.faq-item.active .faq-chevron {
+    transform: rotate(180deg);
+}
+
+.faq-item.active .faq-icon-wrap {
+    background: var(--playful-yellow);
 }
 
 .faq-item.active .faq-icon {
@@ -2225,6 +2288,123 @@ img {
 .modal-close:hover {
     background: #fca5a5;
     transform: translate(-1px, -1px);
+}
+
+.modal-close svg {
+    stroke-width: 2.5px;
+}
+
+.modal-header-sticker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: var(--playful-yellow);
+    border: 1.5px solid var(--border-playful);
+    border-radius: var(--radius-full);
+    padding: 0.2rem 0.65rem;
+    font-size: 0.725rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.04em;
+    box-shadow: 1.5px 1.5px 0px var(--border-playful);
+}
+
+/* Lucide Vector Icons Engine */
+.lucide-icon {
+    display: inline-flex;
+    vertical-align: middle;
+    flex-shrink: 0;
+    stroke-width: 2.2px;
+}
+
+.star-gold {
+    color: #f59e0b;
+    fill: #f59e0b;
+    stroke: #d97706;
+}
+
+.testi-rating-stars {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    margin-bottom: 0.85rem;
+}
+
+.chip-count {
+    font-size: 0.75rem;
+    background: #f1f5f9;
+    border: 1.5px solid var(--border-playful);
+    border-radius: var(--radius-full);
+    padding: 0.1rem 0.45rem;
+    font-weight: 800;
+    margin-left: 0.35rem;
+}
+
+.chip-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.dropdown-caret {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.25rem;
+    transition: transform 0.2s ease;
+}
+
+.nav-item-dropdown:hover .dropdown-caret {
+    transform: rotate(180deg);
+}
+
+.thumb-bottom-badges .product-format-tag,
+.thumb-bottom-badges .gallery-count-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.file-format-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.product-breadcrumb-wrap a,
+.product-breadcrumb-wrap span {
+    display: inline-flex;
+    align-items: center;
+}
+
+.product-category-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.btn-icon-right {
+    margin-left: 0.15rem;
+    transition: transform 0.2s ease;
+}
+
+.btn:hover .btn-icon-right {
+    transform: translateX(3px);
+}
+
+.text-yellow {
+    color: #f59e0b;
+}
+
+.text-cyan {
+    color: #0891b2;
 }
 
 /* Responsive */

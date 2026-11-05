@@ -60,13 +60,27 @@ class DPM_Midtrans_Orders {
     public function ajax_create_order() {
         check_ajax_referer( 'dpm_checkout_nonce', 'nonce' );
 
+        // Proteksi Rate Limiting per IP (maksimum 10 request checkout per 5 menit)
+        $ip_address = sanitize_text_field( $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1' );
+        $transient_key = 'dpm_order_rate_' . md5( $ip_address );
+        $attempts = (int) get_transient( $transient_key );
+        if ( $attempts >= 10 ) {
+            wp_send_json_error( [ 'message' => 'Terlalu banyak permintaan pemesanan. Silakan tunggu 5 menit sebelum mencoba kembali.' ] );
+        }
+        set_transient( $transient_key, $attempts + 1, 5 * MINUTE_IN_SECONDS );
+
         $product_id = isset( $_POST['product_id'] ) ? absint( $_POST['product_id'] ) : 0;
-        $customer_name = isset( $_POST['name'] ) ? sanitize_text_field( $_POST['name'] ) : '';
-        $customer_email = isset( $_POST['email'] ) ? sanitize_email( $_POST['email'] ) : '';
-        $customer_phone = isset( $_POST['phone'] ) ? sanitize_text_field( $_POST['phone'] ) : '';
+        $customer_name = isset( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '';
+        $customer_email = isset( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '';
+        $raw_phone = isset( $_POST['phone'] ) ? sanitize_text_field( wp_unslash( $_POST['phone'] ) ) : '';
+        $customer_phone = preg_replace( '/[^0-9+\-\s]/', '', $raw_phone );
 
         if ( ! $product_id || empty( $customer_name ) || empty( $customer_email ) ) {
             wp_send_json_error( [ 'message' => 'Lengkapi nama dan email Anda.' ] );
+        }
+
+        if ( ! is_email( $customer_email ) ) {
+            wp_send_json_error( [ 'message' => 'Format alamat email tidak valid.' ] );
         }
 
         $product = get_post( $product_id );

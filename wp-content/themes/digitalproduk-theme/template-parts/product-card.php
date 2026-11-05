@@ -50,16 +50,22 @@ $slide_count = count( $slides );
                      loading="lazy" />
             <?php else : ?>
                 <div class="product-thumb-placeholder">
-                    <span class="placeholder-icon"><?php echo esc_html( $cat_icon ); ?></span>
+                    <span class="placeholder-icon">
+                        <?php echo digitalproduk_get_icon( $cat_icon, 'placeholder-svg', 40 ); ?>
+                    </span>
                 </div>
             <?php endif; ?>
         </a>
 
         <div class="thumb-bottom-badges">
-            <span class="product-format-tag"><?php echo esc_html( $file_format ); ?></span>
+            <span class="product-format-tag">
+                <?php echo digitalproduk_get_icon( 'file-text', 'mini-tag-icon', 12 ); ?>
+                <?php echo esc_html( $file_format ); ?>
+            </span>
             <?php if ( $slide_count > 1 ) : ?>
                 <span class="gallery-count-tag" title="<?php echo esc_attr( $slide_count ); ?> Preview Layar">
-                    📸 <?php echo esc_html( $slide_count ); ?> Layar
+                    <?php echo digitalproduk_get_icon( 'images', 'mini-tag-icon', 12 ); ?>
+                    <?php echo esc_html( $slide_count ); ?> Layar
                 </span>
             <?php endif; ?>
         </div>
@@ -68,20 +74,32 @@ $slide_count = count( $slides );
     <div class="product-body">
         <div class="product-meta-header">
             <a href="<?php echo esc_url( $cat_link ); ?>" class="product-category">
-                <?php echo esc_html( $cat_icon . ' ' . $cat_name ); ?>
+                <span class="product-cat-icon-wrap">
+                    <?php echo digitalproduk_get_icon( $cat_icon, 'cat-mini-icon', 14 ); ?>
+                </span>
+                <span><?php echo esc_html( $cat_name ); ?></span>
             </a>
-            <span class="product-rating">★ <?php echo esc_html( $rating ); ?> (<?php echo esc_html( $sales_count ); ?>)</span>
+            <span class="product-rating">
+                <?php echo digitalproduk_get_icon( 'star', 'star-gold', 13 ); ?>
+                <span><?php echo esc_html( $rating ); ?></span>
+                <span class="sales-muted">(<?php echo esc_html( $sales_count ); ?>)</span>
+            </span>
         </div>
 
         <h3 class="product-title">
             <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
         </h3>
 
-        <p class="product-excerpt"><?php echo wp_trim_words( get_the_excerpt() ?: get_the_content(), 14 ); ?></p>
+        <p class="product-excerpt"><?php echo wp_trim_words( get_the_excerpt() ?: get_the_content(), 13 ); ?></p>
 
         <ul class="product-features-list">
             <?php foreach ( array_slice( $features, 0, 3 ) as $feature ) : ?>
-                <li><?php echo esc_html( trim( $feature ) ); ?></li>
+                <li>
+                    <span class="feature-check-icon">
+                        <?php echo digitalproduk_get_icon( 'check', '', 12 ); ?>
+                    </span>
+                    <span><?php echo esc_html( trim( $feature ) ); ?></span>
+                </li>
             <?php endforeach; ?>
         </ul>
 
@@ -98,7 +116,8 @@ $slide_count = count( $slides );
                     data-id="<?php the_ID(); ?>"
                     data-title="<?php the_title_attribute(); ?>" 
                     data-price="<?php echo esc_attr( digitalproduk_price( $sale_price ) ); ?>">
-                    Beli ⚡
+                    <span>Beli</span>
+                    <?php echo digitalproduk_get_icon( 'shopping-bag', 'btn-icon-sm', 14 ); ?>
                 </button>
             </div>
         </div>

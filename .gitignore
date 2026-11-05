@@ -1,18 +1,63 @@
-# WordPress .gitignore
+# ============================================================
+# WORDPRESS .GITIGNORE
+# ============================================================
+
+# 1. Kredensial & Konfigurasi Sensitif
 wp-config.php
+.env
+.env.*
+*.pem
+*.key
+license.txt
+readme.html
+
+# WordPress Core Untracked Files / Updates
+wp-includes/
+
+# 2. Uploads, Media & User Content
 wp-content/uploads/
 wp-content/upgrade/
 wp-content/backup-db/
+wp-content/backups/
+wp-content/blogs.dir/
+wp-content/wflogs/
+
+# 3. Cache & Performance Plugin
+wp-content/cache/
 wp-content/advanced-cache.php
 wp-content/wp-cache-config.php
-wp-content/cache/
 
-# Logs & scratch
+# 4. Logs & Error Tracking
 *.log
-scratch/
+debug.log
+wp-content/debug.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# OS / Editor files
+# 5. Database Dumps & Arsip Backup
+*.sql
+*.sql.gz
+*.tar
+*.tar.gz
+*.zip
+*.bak
+
+# 6. Temporary & Scratch Files
+scratch/
+tmp/
+temp/
+
+# 7. OS & Editor Artifacts
 .DS_Store
 Thumbs.db
-.vscode/
+ehthumbs.db
+Desktop.ini
 .idea/
+.vscode/*
+!.vscode/extensions.json
+*.sublime-project
+*.sublime-workspace
+
+# 8. Dependency Directories (jika menggunakan build tools)
+node_modules/

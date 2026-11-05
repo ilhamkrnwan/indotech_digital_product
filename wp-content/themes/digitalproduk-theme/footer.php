@@ -14,8 +14,8 @@
                     Pusat aset, template, e-book, dan source code premium terkurasi untuk mempercepat alur kerja kreatif & digital developer Indonesia.
                 </p>
                 <div class="guarantee-badge">
-                    <span class="icon">🛡️</span>
-                    <span>Garansi Update Gratis & Akses Selamanya</span>
+                    <span class="icon"><?php echo digitalproduk_get_icon( 'shield-check', 'footer-shield-icon', 18 ); ?></span>
+                    <span>Garansi Update Gratis &amp; Akses Selamanya</span>
                 </div>
             </div>
 

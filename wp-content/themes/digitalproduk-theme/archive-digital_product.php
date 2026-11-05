@@ -5,6 +5,10 @@
  * @package DigitalProduk
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 get_header();
 
 // Semua kategori produk
@@ -20,27 +24,35 @@ $search_query = isset( $_GET['s'] ) ? sanitize_text_field( $_GET['s'] ) : ( isse
 <!-- Header Katalog -->
 <section class="archive-header-section">
     <div class="container text-center">
-        <div class="playful-sticker">⚡ KATALOG LENGKAP ASET & TEMPLATE</div>
-        <h1 class="archive-main-title">Eksplorasi Semua Produk Digital</h1>
+        <div class="playful-sticker">
+            <?php echo digitalproduk_get_icon( 'sparkles', '', 14 ); ?>
+            <span>KATALOG PILIHAN DEVELOPER &amp; KREATOR</span>
+        </div>
+        <h1 class="archive-main-title">Eksplorasi Semua Aset Digital Siap Pakai</h1>
         <p class="archive-main-desc">
-            Kumpulan source code web apps, Figma UI kit, starter stack, database schema, dan panduan praktis untuk mempercepat proyek Anda.
+            Kumpulan source code web apps, Figma UI kit, starter stack, blueprint sistem, dan panduan praktis untuk meluncurkan proyek Anda 10x lebih cepat.
         </p>
 
         <!-- Search Bar -->
         <form method="get" action="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" class="archive-search-form">
             <input type="text" name="s" value="<?php echo esc_attr( $search_query ); ?>" placeholder="Cari source code, template Figma, e-book..." class="archive-search-input" />
-            <button type="submit" class="btn btn-primary">Cari Aset 🔍</button>
+            <button type="submit" class="btn btn-primary">
+                <span>Cari Aset</span>
+                <?php echo digitalproduk_get_icon( 'search', 'btn-icon-right', 16 ); ?>
+            </button>
         </form>
 
         <!-- Category Pills -->
         <div class="archive-category-chips">
             <a href="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" class="chip-item <?php echo empty( $search_query ) ? 'active' : ''; ?>">
-                ✨ Semua Kategori
+                <?php echo digitalproduk_get_icon( 'layers', '', 14 ); ?>
+                <span>Semua Kategori</span>
             </a>
             <?php if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) : ?>
                 <?php foreach ( $categories as $cat ) : ?>
                     <a href="<?php echo esc_url( get_term_link( $cat ) ); ?>" class="chip-item">
-                        <?php echo esc_html( $cat->name ); ?> (<?php echo esc_html( $cat->count ); ?>)
+                        <span><?php echo esc_html( $cat->name ); ?></span>
+                        <span class="chip-count"><?php echo esc_html( $cat->count ); ?></span>
                     </a>
                 <?php endforeach; ?>
             <?php endif; ?>
@@ -76,8 +88,8 @@ $search_query = isset( $_GET['s'] ) ? sanitize_text_field( $_GET['s'] ) : ( isse
                 <?php
                 the_posts_pagination([
                     'mid_size'  => 2,
-                    'prev_text' => '← Sebelumnya',
-                    'next_text' => 'Selanjutnya →',
+                    'prev_text' => '&larr; Sebelumnya',
+                    'next_text' => 'Selanjutnya &rarr;',
                 ]);
                 ?>
             </div>
@@ -85,11 +97,14 @@ $search_query = isset( $_GET['s'] ) ? sanitize_text_field( $_GET['s'] ) : ( isse
         else :
             ?>
             <div class="empty-state-box">
-                <div class="empty-icon">🔍</div>
+                <div class="empty-icon">
+                    <?php echo digitalproduk_get_icon( 'search', 'empty-svg', 40 ); ?>
+                </div>
                 <h3>Tidak ada produk yang cocok</h3>
-                <p>Coba kata kunci lain atau lihat semua koleksi yang tersedia.</p>
+                <p>Coba gunakan kata kunci lain atau jelajahi koleksi lengkap yang tersedia di katalog utama kami.</p>
                 <a href="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" class="btn btn-primary" style="margin-top: 1rem;">
-                    Kembali ke Semua Produk
+                    <span>Lihat Semua Produk</span>
+                    <?php echo digitalproduk_get_icon( 'arrow-right', 'btn-icon-right', 16 ); ?>
                 </a>
             </div>
             <?php

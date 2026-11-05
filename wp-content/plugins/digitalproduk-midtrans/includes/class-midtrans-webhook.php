@@ -57,7 +57,15 @@ class DPM_Midtrans_Webhook {
         $order_post = $orders[0];
         $order_post_id = $order_post->ID;
 
-        // 3. Update Status Pembayaran
+        // 3. Validasi Nominal Pembayaran (Mencegah Manipulasi/Tampering Harga)
+        $stored_amount = (int) get_post_meta( $order_post_id, '_amount', true );
+        $received_amount = (int) round( (float) $gross_amount );
+
+        if ( $stored_amount <= 0 || $received_amount !== $stored_amount ) {
+            return new WP_REST_Response( [ 'status' => 'error', 'message' => 'Gross amount mismatch' ], 400 );
+        }
+
+        // 4. Update Status Pembayaran
         $new_status = 'pending';
 
         if ( $transaction_status === 'capture' ) {
@@ -68,6 +76,12 @@ class DPM_Midtrans_Webhook {
             $new_status = 'failed';
         } elseif ( $transaction_status === 'pending' ) {
             $new_status = 'pending';
+        }
+
+        // Cegah downgrade status jika order sudah berstatus success
+        $current_status = get_post_meta( $order_post_id, '_payment_status', true );
+        if ( $current_status === 'success' && $new_status !== 'success' ) {
+            return new WP_REST_Response( [ 'status' => 'ok', 'message' => 'Order already settled' ], 200 );
         }
 
         update_post_meta( $order_post_id, '_payment_status', $new_status );

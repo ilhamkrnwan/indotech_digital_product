@@ -20,22 +20,25 @@
             </div>
 
             <div class="footer-col">
-                <h4 class="footer-heading">Navigasi Cepat</h4>
+                <h4 class="footer-heading">Navigasi Toko</h4>
                 <ul class="footer-links">
-                    <li><a href="#katalog">Semua Produk</a></li>
-                    <li><a href="#keunggulan">Fitur Unggulan</a></li>
-                    <li><a href="#faq">Tanya Jawab (FAQ)</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Beranda Toko</a></li>
+                    <li><a href="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>">Semua Produk (Katalog)</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/#bonus-section' ) ); ?>">Bonus Tambahan</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/#keunggulan' ) ); ?>">Keunggulan Toko</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/#faq' ) ); ?>">Tanya Jawab (FAQ)</a></li>
                     <li><a href="https://wa.me/6281234567890" target="_blank" rel="noopener">Bantuan CS (WhatsApp)</a></li>
                 </ul>
             </div>
 
             <div class="footer-col">
-                <h4 class="footer-heading">Kategori Populer</h4>
+                <h4 class="footer-heading">Kategori Produk</h4>
                 <ul class="footer-links">
-                    <li><a href="#katalog">UI/UX Kits & Figma</a></li>
-                    <li><a href="#katalog">Source Code & Web Apps</a></li>
-                    <li><a href="#katalog">E-Book & Panduan Bisnis</a></li>
-                    <li><a href="#katalog">Template Desain & Preset</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/kategori-produk/source-code/' ) ); ?>">Source Code &amp; Web Apps</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/kategori-produk/ui-ux-figma/' ) ); ?>">UI/UX &amp; Figma Template</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/kategori-produk/template-notion/' ) ); ?>">Template &amp; Notion OS</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/kategori-produk/e-book/' ) ); ?>">E-Book &amp; Panduan Bisnis</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/kategori-produk/saas-tools/' ) ); ?>">SaaS &amp; Otomasi Tools</a></li>
                 </ul>
             </div>
 

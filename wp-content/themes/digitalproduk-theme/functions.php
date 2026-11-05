@@ -106,3 +106,119 @@ add_action( 'init', 'digitalproduk_register_cpt' );
 function digitalproduk_price( $amount ) {
     return 'Rp ' . number_format( (float) $amount, 0, ',', '.' );
 }
+
+/**
+ * Retrieve all preview slides/images for a product
+ */
+function digitalproduk_get_product_slides( $product_id ) {
+    $slides = [];
+    $slug = get_post_field( 'post_name', $product_id );
+
+    // Check if theme SVG mockup slides exist in assets/images/products/{slug}/
+    $theme_dir = get_template_directory();
+    $theme_uri = get_template_directory_uri();
+    $prod_dir  = $theme_dir . '/assets/images/products/' . $slug;
+
+    if ( is_dir( $prod_dir ) ) {
+        $labels = [
+            1 => [ 'title' => 'Tampilan Utama & Storefront Mockup', 'tag' => 'Cover' ],
+            2 => [ 'title' => 'Dashboard & Realtime Metrics', 'tag' => 'Dashboard' ],
+            3 => [ 'title' => 'Arsitektur, Komponen & Struktur File', 'tag' => 'Fitur' ],
+            4 => [ 'title' => 'Bonus, Dokumentasi & Panduan', 'tag' => 'Bonus' ],
+        ];
+
+        for ( $i = 1; $i <= 4; $i++ ) {
+            $file = $prod_dir . '/slide-' . $i . '.svg';
+            if ( file_exists( $file ) ) {
+                $slides[] = [
+                    'url'   => $theme_uri . '/assets/images/products/' . $slug . '/slide-' . $i . '.svg',
+                    'title' => $labels[$i]['title'] ?? ( 'Preview ' . $i ),
+                    'tag'   => $labels[$i]['tag'] ?? ( 'Slide ' . $i ),
+                ];
+            }
+        }
+    }
+
+    // If featured image exists, prepend it
+    if ( has_post_thumbnail( $product_id ) ) {
+        $thumb_url = get_the_post_thumbnail_url( $product_id, 'large' );
+        array_unshift( $slides, [
+            'url'   => $thumb_url,
+            'title' => get_the_title( $product_id ),
+            'tag'   => 'Featured',
+        ]);
+    }
+
+    // Fallback if no images found
+    if ( empty( $slides ) ) {
+        $slides[] = [
+            'url'   => $theme_uri . '/assets/images/hero-bundle.png',
+            'title' => get_the_title( $product_id ),
+            'tag'   => 'Mockup',
+        ];
+    }
+
+    return $slides;
+}
+
+/**
+ * Get primary cover image URL for a product
+ */
+function digitalproduk_get_product_cover( $product_id ) {
+    if ( has_post_thumbnail( $product_id ) ) {
+        return get_the_post_thumbnail_url( $product_id, 'large' );
+    }
+    $slides = digitalproduk_get_product_slides( $product_id );
+    return ! empty( $slides ) ? $slides[0]['url'] : '';
+}
+
+/**
+ * Friendly Category Meta Helper (icons, descriptions, colors)
+ */
+function digitalproduk_get_category_meta( $slug ) {
+    $meta = [
+        'source-code' => [
+            'icon'        => '💻',
+            'title'       => 'Source Code & Web Apps',
+            'desc'        => 'Aplikasi fullstack, starter kit SaaS, dan script siap rilis',
+            'badge'       => 'KODE BERSIH',
+            'color_class' => 'cat-cyan',
+        ],
+        'ui-ux-figma' => [
+            'icon'        => '🎨',
+            'title'       => 'UI/UX & Figma Template',
+            'desc'        => 'Design system modular, UI kit dashboard, dan wireframe',
+            'badge'       => 'PIXEL PERFECT',
+            'color_class' => 'cat-purple',
+        ],
+        'template-notion' => [
+            'icon'        => '📋',
+            'title'       => 'Template & Notion OS',
+            'desc'        => 'Sistem manajemen freelance, CRM proyek, dan tracker',
+            'badge'       => 'ONE-CLICK DUPLICATE',
+            'color_class' => 'cat-blue',
+        ],
+        'e-book' => [
+            'icon'        => '📚',
+            'title'       => 'E-Book & Panduan Digital',
+            'desc'        => 'Playbook bisnis praktis, strategi AI, dan funnel penjualan',
+            'badge'       => 'PRAKTIK NYATA',
+            'color_class' => 'cat-yellow',
+        ],
+        'saas-tools' => [
+            'icon'        => '⚡',
+            'title'       => 'SaaS & Otomasi Tools',
+            'desc'        => 'Script automasi, prompt vault, dan bot pendukung bisnis',
+            'badge'       => 'HEMAT WAKTU',
+            'color_class' => 'cat-teal',
+        ],
+    ];
+
+    return $meta[$slug] ?? [
+        'icon'        => '📦',
+        'title'       => 'Produk Digital',
+        'desc'        => 'Aset digital berkualitas siap pakai',
+        'badge'       => 'TERVERIFIKASI',
+        'color_class' => 'cat-pink',
+    ];
+}

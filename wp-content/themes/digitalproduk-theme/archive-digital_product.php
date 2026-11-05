@@ -14,7 +14,7 @@ $categories = get_terms([
 ]);
 
 // Search query
-$search_query = isset( $_GET['q'] ) ? sanitize_text_field( $_GET['q'] ) : '';
+$search_query = isset( $_GET['s'] ) ? sanitize_text_field( $_GET['s'] ) : ( isset( $_GET['q'] ) ? sanitize_text_field( $_GET['q'] ) : '' );
 ?>
 
 <!-- Header Katalog -->
@@ -28,7 +28,7 @@ $search_query = isset( $_GET['q'] ) ? sanitize_text_field( $_GET['q'] ) : '';
 
         <!-- Search Bar -->
         <form method="get" action="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" class="archive-search-form">
-            <input type="text" name="q" value="<?php echo esc_attr( $search_query ); ?>" placeholder="Cari source code, template Figma, e-book..." class="archive-search-input" />
+            <input type="text" name="s" value="<?php echo esc_attr( $search_query ); ?>" placeholder="Cari source code, template Figma, e-book..." class="archive-search-input" />
             <button type="submit" class="btn btn-primary">Cari Aset 🔍</button>
         </form>
 

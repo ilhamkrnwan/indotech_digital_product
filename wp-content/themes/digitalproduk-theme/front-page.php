@@ -28,17 +28,24 @@ $categories = get_terms([
         <div class="hero-content">
             <div class="hero-pill">
                 <span class="pill-dot">●</span>
-                <span>PAKET LENGKAP DIGITAL & AI 2026</span>
+                <span>INDOTECH DIGITAL STORE • PUSAT ASET &amp; PRODUK DIGITAL</span>
             </div>
             <h1 class="hero-title">
-                Siap Jualan & Naik Kelas dengan <span class="highlight-playful">Aset Digital Praktis</span>
+                Koleksi Aset &amp; Produk Digital untuk <span class="highlight-playful">Bisnis &amp; Kreator</span>
             </h1>
             <p class="hero-desc">
-                Solusi lengkap source code, template bisnis, prompt marketing, dan tools otomatisasi untuk UMKM & digital creator tanpa ribet.
+                Temukan source code web apps, UI/UX Figma template, Notion workspace, dan e-book strategi bisnis teruji dengan akses instan &amp; pembayaran aman Midtrans.
             </p>
+
+            <!-- Store Quick Search -->
+            <form action="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" method="get" class="hero-store-search">
+                <input type="text" name="s" placeholder="Cari source code, template Figma, Notion OS, e-book..." class="hero-search-input" />
+                <button type="submit" class="btn btn-primary">Cari Aset 🔍</button>
+            </form>
+
             <div class="hero-cta">
-                <a href="#katalog" class="btn btn-primary btn-lg">Pilih Produk Sekarang ⚡</a>
-                <a href="#bonus-section" class="btn btn-secondary btn-lg">Lihat 6 Bonus Praktis 🎁</a>
+                <a href="#katalog" class="btn btn-primary btn-lg">Jelajahi Semua Produk ⚡</a>
+                <a href="#kategori-section" class="btn btn-secondary btn-lg">Pilih Kategori 🗂️</a>
             </div>
 
             <div class="hero-stats">
@@ -53,14 +60,14 @@ $categories = get_terms([
                     <span class="stat-emoji">💎</span>
                     <div>
                         <h3>100%</h3>
-                        <p>Lisensi & Update Selamanya</p>
+                        <p>Lisensi &amp; Update Selamanya</p>
                     </div>
                 </div>
                 <div class="stat-item">
                     <span class="stat-emoji">🛡️</span>
                     <div>
                         <h3>Midtrans</h3>
-                        <p>Pembayaran Otomatis & Aman</p>
+                        <p>Pembayaran Otomatis &amp; Aman</p>
                     </div>
                 </div>
             </div>
@@ -77,22 +84,56 @@ $categories = get_terms([
 
                 <!-- Floating Badges with Wobble Animation -->
                 <div class="floating-badge badge-top-left float-anim-1">
-                    <span>⚡ Akses Instan</span>
+                    <span>⚡ Akses Instan 24 Jam</span>
                 </div>
                 <div class="floating-badge badge-bottom-right float-anim-2">
                     <span>🎉 6 Bonus Praktis</span>
                 </div>
                 <div class="floating-mini-sticker sticker-umkm float-anim-3">
-                    <span>🔥 Best Seller</span>
+                    <span>🔥 Katalog Lengkap</span>
                 </div>
 
                 <div class="hero-image-frame tilt-card">
                     <div class="frame-pin-top"></div>
                     <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/hero-bundle.png' ); ?>" 
-                         alt="AI Business Growth Kit & 6 Bonus Praktis" 
+                         alt="Indotech Digital Store Products" 
                          class="hero-bundle-img" />
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- 1.2 Categories Shelves Section (Multi-Category Portal) -->
+<section id="kategori-section" class="section categories-shelf-section">
+    <div class="container">
+        <div class="section-header">
+            <div class="playful-sticker">🗂️ JELAJAHI KOLEKSI</div>
+            <h2 class="section-title">Pilih Kategori Produk</h2>
+            <p class="section-desc">Pilih kategori aset digital yang sesuai dengan skala proyek dan kebutuhan bisnis Anda.</p>
+        </div>
+
+        <div class="categories-shelf-grid">
+            <?php if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) : ?>
+                <?php foreach ( $categories as $idx => $cat ) : 
+                    $meta = digitalproduk_get_category_meta( $cat->slug );
+                    $tilt_class = ( $idx % 2 === 0 ) ? 'tilt-left' : 'tilt-right';
+                ?>
+                    <a href="<?php echo esc_url( get_term_link( $cat ) ); ?>" class="cat-shelf-card <?php echo esc_attr( $meta['color_class'] . ' ' . $tilt_class ); ?>">
+                        <div class="card-tape"></div>
+                        <div class="cat-shelf-header">
+                            <span class="cat-shelf-icon"><?php echo esc_html( $meta['icon'] ); ?></span>
+                            <span class="cat-shelf-badge"><?php echo esc_html( $meta['badge'] ); ?></span>
+                        </div>
+                        <h3 class="cat-shelf-title"><?php echo esc_html( $cat->name ); ?></h3>
+                        <p class="cat-shelf-desc"><?php echo esc_html( $meta['desc'] ); ?></p>
+                        <div class="cat-shelf-footer">
+                            <span class="cat-shelf-count"><?php echo esc_html( $cat->count ); ?> Produk Tersedia</span>
+                            <span class="cat-shelf-btn">Buka Kategori &rarr;</span>
+                        </div>
+                    </a>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 </section>

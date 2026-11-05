@@ -18,22 +18,22 @@ while ( have_posts() ) :
     $file_format = get_post_meta( $product_id, '_file_format', true ) ?: 'Source Code / Aset Digital';
     $badge = get_post_meta( $product_id, '_badge', true ) ?: 'BEST SELLER';
     
-    // Tech Stack / Tools Tags (misal: Laravel, Vue, Figma, React, AI)
+    // Value & Feature Highlights Tags
     $tech_stack = get_post_meta( $product_id, '_tech_stack', true );
     $tech_tags = ! empty( $tech_stack ) ? ( is_array( $tech_stack ) ? $tech_stack : explode( ',', $tech_stack ) ) : [
-        'Production Ready',
-        'Commercial License',
-        'Documentation Included',
-        'Lifetime Updates'
+        '⭐ Siap Pakai Langsung',
+        '📁 File Lengkap & Rapi',
+        '🔓 Lisensi Komersial Bebas',
+        '✨ Update Gratis Selamanya'
     ];
 
     $features_meta = get_post_meta( $product_id, '_features', true );
     $features = ! empty( $features_meta ) ? ( is_array( $features_meta ) ? $features_meta : explode( "\n", $features_meta ) ) : [
-        'Lisensi Komersial (Boleh untuk proyek klien & unlimited domain)',
-        'Dokumentasi Instalasi & Panduan Konfigurasi Lengkap',
-        'Update Gratis Selamanya ke Versi Berikutnya',
-        'Source File Bersih Tanpa Obfuscation',
-        'Dukungan Teknis Direct Chat'
+        'Lisensi Komersial Penuh (Bebas untuk proyek pribadi, klien, & bisnis)',
+        'Panduan Instalasi & Tutorial Lengkap Langkah demi Langkah',
+        'Update Versi Terbaru Gratis Selamanya Tanpa Biaya Tambahan',
+        'File Mentah Lengkap, Rapi, & Mudah Dikustomisasi',
+        'Dukungan Tanya Jawab & Bantuan Langsung via WhatsApp'
     ];
 
     $item_cats = get_the_terms( $product_id, 'product_category' );
@@ -62,59 +62,93 @@ while ( have_posts() ) :
         <div class="container">
             <div class="single-product-grid">
                 
-                <!-- Left Column: Visual Showcase -->
+                <!-- Left Column: Visual Showcase (Multi-Image Gallery) -->
                 <div class="single-product-visual">
-                    <div class="single-thumb-frame tilt-left">
+                    <?php $slides = digitalproduk_get_product_slides( $product_id ); ?>
+                    
+                    <div class="single-gallery-card tilt-left">
+                        <!-- Playful Washi Tape (Never Clipped) -->
                         <div class="card-tape"></div>
+
                         <?php if ( $badge ) : ?>
                             <span class="product-badge <?php echo $badge === 'BARU' ? 'badge-new' : ''; ?>">
                                 <?php echo esc_html( $badge ); ?>
                             </span>
                         <?php endif; ?>
 
-                        <?php if ( has_post_thumbnail() ) : ?>
-                            <?php the_post_thumbnail( 'large', [ 'class' => 'single-product-img' ] ); ?>
-                        <?php else : ?>
-                            <div class="single-placeholder-banner">
-                                <span class="placeholder-emoji">💎</span>
-                                <h3 class="placeholder-title"><?php the_title(); ?></h3>
-                                <p class="placeholder-sub"><?php echo esc_html( $file_format ); ?></p>
+                        <!-- Main Gallery Viewport -->
+                        <div class="gallery-main-frame">
+                            <img id="mainProductPreview" 
+                                 src="<?php echo esc_url( $slides[0]['url'] ); ?>" 
+                                 alt="<?php the_title_attribute(); ?>" 
+                                 class="main-preview-img" />
+                            
+                            <div class="file-format-badge">
+                                📦 Format: <strong><?php echo esc_html( $file_format ); ?></strong>
                             </div>
-                        <?php endif; ?>
+                        </div>
 
-                        <div class="file-format-badge">
-                            📦 Format: <strong><?php echo esc_html( $file_format ); ?></strong>
+                        <!-- Thumbnails Strip (Multiple Images Showcase) -->
+                        <div class="gallery-thumbs-grid">
+                            <?php foreach ( $slides as $i => $slide ) : ?>
+                                <button type="button" 
+                                        class="gallery-thumb-item <?php echo $i === 0 ? 'active' : ''; ?>"
+                                        data-preview="<?php echo esc_url( $slide['url'] ); ?>"
+                                        data-title="<?php echo esc_attr( $slide['title'] ); ?>"
+                                        title="<?php echo esc_attr( $slide['title'] ); ?>">
+                                    <img src="<?php echo esc_url( $slide['url'] ); ?>" alt="Slide <?php echo $i + 1; ?>" />
+                                    <span class="thumb-badge"><?php echo esc_html( $slide['tag'] ); ?></span>
+                                </button>
+                            <?php endforeach; ?>
                         </div>
                     </div>
 
-                    <!-- Trust Cards Under Image -->
+                    <!-- Trust Cards Under Image (Friendly Commercial Store Vibe) -->
                     <div class="trust-mini-grid">
                         <div class="trust-mini-item">
-                            <span class="icon">⚡</span>
+                            <div class="trust-icon-box bg-yellow">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                </svg>
+                            </div>
                             <div>
-                                <strong>Instant Delivery</strong>
-                                <p>File dikirim langsung setelah bayar</p>
+                                <strong>Akses Instan 24 Jam</strong>
+                                <p>File &amp; link Google Drive terkirim otomatis</p>
                             </div>
                         </div>
                         <div class="trust-mini-item">
-                            <span class="icon">🛡️</span>
+                            <div class="trust-icon-box bg-cyan">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    <path d="M9 12l2 2 4-4"></path>
+                                </svg>
+                            </div>
                             <div>
-                                <strong>Midtrans Verified</strong>
-                                <p>QRIS, VA Bank & E-Wallet Aman</p>
+                                <strong>Midtrans Resmi</strong>
+                                <p>QRIS, VA Bank &amp; E-Wallet 100% aman</p>
                             </div>
                         </div>
                         <div class="trust-mini-item">
-                            <span class="icon">🔄</span>
+                            <div class="trust-icon-box bg-pink">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+                                </svg>
+                            </div>
                             <div>
-                                <strong>Free Updates</strong>
-                                <p>Dapatkan revisi & versi terbaru gratis</p>
+                                <strong>Update Gratis Selamanya</strong>
+                                <p>Dapatkan pembaruan versi baru tanpa biaya</p>
                             </div>
                         </div>
                         <div class="trust-mini-item">
-                            <span class="icon">💼</span>
+                            <div class="trust-icon-box bg-green">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                                </svg>
+                            </div>
                             <div>
-                                <strong>Commercial License</strong>
-                                <p>Bebas pakai untuk proyek klien</p>
+                                <strong>Lisensi Komersial</strong>
+                                <p>Bebas untuk proyek pribadi &amp; klien bisnis</p>
                             </div>
                         </div>
                     </div>

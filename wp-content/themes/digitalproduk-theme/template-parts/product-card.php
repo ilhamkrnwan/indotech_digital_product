@@ -27,15 +27,12 @@ $cat_slug = ! empty( $item_cats ) && ! is_wp_error( $item_cats ) ? $item_cats[0]
 $cat_name = ! empty( $item_cats ) && ! is_wp_error( $item_cats ) ? $item_cats[0]->name : 'Produk Digital';
 $cat_link = ! empty( $item_cats ) && ! is_wp_error( $item_cats ) ? get_term_link( $item_cats[0] ) : '#';
 
-// Icon per category
-$category_icons = [
-    'source-code'     => '💻',
-    'ui-ux-figma'     => '🎨',
-    'template-notion' => '📋',
-    'e-book'          => '📚',
-    'saas-tools'      => '⚡',
-];
-$cat_icon = $category_icons[$cat_slug] ?? '📦';
+$cat_meta = digitalproduk_get_category_meta( $cat_slug );
+$cat_icon = $cat_meta['icon'];
+
+$cover_img = digitalproduk_get_product_cover( get_the_ID() );
+$slides = digitalproduk_get_product_slides( get_the_ID() );
+$slide_count = count( $slides );
 ?>
 <div class="product-card" data-category="<?php echo esc_attr( $cat_slug ); ?>">
     <div class="product-thumb-wrap">
@@ -46,8 +43,11 @@ $cat_icon = $category_icons[$cat_slug] ?? '📦';
         <?php endif; ?>
 
         <a href="<?php the_permalink(); ?>" class="product-thumb-link" aria-label="<?php the_title_attribute(); ?>">
-            <?php if ( has_post_thumbnail() ) : ?>
-                <?php the_post_thumbnail( 'large', [ 'class' => 'product-thumb' ] ); ?>
+            <?php if ( ! empty( $cover_img ) ) : ?>
+                <img src="<?php echo esc_url( $cover_img ); ?>" 
+                     alt="<?php the_title_attribute(); ?>" 
+                     class="product-thumb-img" 
+                     loading="lazy" />
             <?php else : ?>
                 <div class="product-thumb-placeholder">
                     <span class="placeholder-icon"><?php echo esc_html( $cat_icon ); ?></span>
@@ -55,7 +55,14 @@ $cat_icon = $category_icons[$cat_slug] ?? '📦';
             <?php endif; ?>
         </a>
 
-        <span class="product-format-tag"><?php echo esc_html( $file_format ); ?></span>
+        <div class="thumb-bottom-badges">
+            <span class="product-format-tag"><?php echo esc_html( $file_format ); ?></span>
+            <?php if ( $slide_count > 1 ) : ?>
+                <span class="gallery-count-tag" title="<?php echo esc_attr( $slide_count ); ?> Preview Layar">
+                    📸 <?php echo esc_html( $slide_count ); ?> Layar
+                </span>
+            <?php endif; ?>
+        </div>
     </div>
 
     <div class="product-body">

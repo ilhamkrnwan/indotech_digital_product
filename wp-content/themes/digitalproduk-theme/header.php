@@ -20,15 +20,15 @@
 
         <nav class="main-navigation" id="site-navigation" aria-label="<?php esc_attr_e( 'Main Menu', 'digitalproduk' ); ?>">
             <ul class="nav-menu">
-                <li><a href="#katalog">Katalog Produk</a></li>
-                <li><a href="#keunggulan">Keunggulan</a></li>
-                <li><a href="#testimoni">Testimoni</a></li>
-                <li><a href="#faq">FAQ</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Beranda</a></li>
+                <li><a href="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>">Semua Produk</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/#bonus-section' ) ); ?>">Bonus Praktis</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/#faq' ) ); ?>">FAQ</a></li>
             </ul>
         </nav>
 
         <div class="header-actions">
-            <a href="#katalog" class="btn btn-primary btn-sm">Jelajahi Produk</a>
+            <a href="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" class="btn btn-primary btn-sm">Katalog Lengkap ⚡</a>
         </div>
     </div>
 </header>

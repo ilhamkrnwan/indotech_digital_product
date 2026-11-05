@@ -165,76 +165,7 @@ $categories = get_terms([
             if ( $products_query->have_posts() ) :
                 while ( $products_query->have_posts() ) :
                     $products_query->the_post();
-                    
-                    $price = get_post_meta( get_the_ID(), '_price', true ) ?: 199000;
-                    $sale_price = get_post_meta( get_the_ID(), '_sale_price', true ) ?: 99000;
-                    $rating = get_post_meta( get_the_ID(), '_rating', true ) ?: '4.9';
-                    $sales_count = get_post_meta( get_the_ID(), '_sales_count', true ) ?: '250';
-                    $file_format = get_post_meta( get_the_ID(), '_file_format', true ) ?: 'ZIP + Dokumentasi';
-                    $badge = get_post_meta( get_the_ID(), '_badge', true ) ?: 'BEST SELLER';
-                    $features_meta = get_post_meta( get_the_ID(), '_features', true );
-                    $features = ! empty( $features_meta ) ? ( is_array( $features_meta ) ? $features_meta : explode( "\n", $features_meta ) ) : [
-                        'Lisensi Komersial Lengkap',
-                        'Dokumentasi Panduan Instalasi',
-                        'Update Gratis Selamanya'
-                    ];
-
-                    $item_cats = get_the_terms( get_the_ID(), 'product_category' );
-                    $cat_slug = ! empty( $item_cats ) && ! is_wp_error( $item_cats ) ? $item_cats[0]->slug : 'general';
-                    $cat_name = ! empty( $item_cats ) && ! is_wp_error( $item_cats ) ? $item_cats[0]->name : 'Produk';
-                    ?>
-                    <div class="product-card" data-category="<?php echo esc_attr( $cat_slug ); ?>">
-                        <div class="product-thumb-wrap">
-                            <?php if ( $badge ) : ?>
-                                <span class="product-badge <?php echo $badge === 'BARU' ? 'badge-new' : ''; ?>">
-                                    <?php echo esc_html( $badge ); ?>
-                                </span>
-                            <?php endif; ?>
-
-                            <?php if ( has_post_thumbnail() ) : ?>
-                                <?php the_post_thumbnail( 'large', [ 'class' => 'product-thumb' ] ); ?>
-                            <?php else : ?>
-                                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1e293b, #0f172a); font-size: 3rem;">
-                                    💎
-                                </div>
-                            <?php endif; ?>
-
-                            <span class="product-format-tag"><?php echo esc_html( $file_format ); ?></span>
-                        </div>
-
-                        <div class="product-body">
-                            <div class="product-meta-header">
-                                <span class="product-category"><?php echo esc_html( $cat_name ); ?></span>
-                                <span class="product-rating">★ <?php echo esc_html( $rating ); ?> (<?php echo esc_html( $sales_count ); ?> terjual)</span>
-                            </div>
-
-                            <h3 class="product-title">
-                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                            </h3>
-
-                            <p class="product-excerpt"><?php echo wp_trim_words( get_the_excerpt() ?: get_the_content(), 15 ); ?></p>
-
-                            <ul class="product-features-list">
-                                <?php foreach ( array_slice( $features, 0, 3 ) as $feature ) : ?>
-                                    <li><?php echo esc_html( trim( $feature ) ); ?></li>
-                                <?php endforeach; ?>
-                            </ul>
-
-                            <div class="product-footer">
-                                <div class="price-wrap">
-                                    <span class="price-original"><?php echo digitalproduk_price( $price ); ?></span>
-                                    <span class="price-current"><?php echo digitalproduk_price( $sale_price ); ?></span>
-                                </div>
-                                <button type="button" class="btn btn-primary btn-sm btn-buy-trigger" 
-                                    data-id="<?php the_ID(); ?>"
-                                    data-title="<?php the_title_attribute(); ?>" 
-                                    data-price="<?php echo esc_attr( digitalproduk_price( $sale_price ) ); ?>">
-                                    Beli Sekarang
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <?php
+                    get_template_part( 'template-parts/product-card' );
                 endwhile;
                 wp_reset_postdata();
             else :
@@ -382,58 +313,8 @@ $categories = get_terms([
     </div>
 </section>
 
-<!-- 7. Checkout Modal (Midtrans Snap & Direct Order) -->
-<div class="modal-overlay" id="checkoutModal">
-    <div class="modal-content">
-        <button type="button" class="modal-close" id="modalClose">&times;</button>
-        <h3 style="font-family: var(--font-heading); margin-bottom: 0.5rem; font-size: 1.4rem;">Checkout Produk</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 1.25rem; font-size: 0.925rem;">Pilih metode pembayaran instan via Midtrans (QRIS / VA / E-Wallet) atau pesan langsung.</p>
-        
-        <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1.15rem; margin-bottom: 1.35rem;">
-            <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.2rem;">Produk:</div>
-            <div id="modalProductTitle" style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.65rem;">-</div>
-            
-            <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.2rem;">Total Pembayaran:</div>
-            <div id="modalProductPrice" style="font-weight: 800; font-size: 1.35rem; color: #38bdf8;">-</div>
-        </div>
-
-        <form id="midtransCheckoutForm" style="display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 1rem;">
-            <input type="hidden" id="modalProductId" name="product_id" value="" />
-            
-            <div>
-                <label for="buyerName" style="display: block; font-size: 0.825rem; color: var(--text-secondary); margin-bottom: 0.35rem; font-weight: 600;">Nama Lengkap</label>
-                <input type="text" id="buyerName" name="name" required placeholder="Contoh: Budi Santoso" 
-                    style="width: 100%; padding: 0.75rem 1rem; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: #fff; font-size: 0.95rem; font-family: inherit;" />
-            </div>
-
-            <div>
-                <label for="buyerEmail" style="display: block; font-size: 0.825rem; color: var(--text-secondary); margin-bottom: 0.35rem; font-weight: 600;">Alamat Email (Untuk Pengiriman File)</label>
-                <input type="email" id="buyerEmail" name="email" required placeholder="nama@email.com" 
-                    style="width: 100%; padding: 0.75rem 1rem; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: #fff; font-size: 0.95rem; font-family: inherit;" />
-            </div>
-
-            <div>
-                <label for="buyerPhone" style="display: block; font-size: 0.825rem; color: var(--text-secondary); margin-bottom: 0.35rem; font-weight: 600;">Nomor WhatsApp</label>
-                <input type="tel" id="buyerPhone" name="phone" placeholder="08xxxxxxxxxx" 
-                    style="width: 100%; padding: 0.75rem 1rem; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: #fff; font-size: 0.95rem; font-family: inherit;" />
-            </div>
-
-            <button type="submit" id="btnPayMidtrans" class="btn btn-primary btn-lg btn-block" style="margin-top: 0.5rem;">
-                Bayar Otomatis (Midtrans Snap) 💳
-            </button>
-        </form>
-
-        <div style="text-align: center; margin: 0.75rem 0; font-size: 0.85rem; color: var(--text-muted);">
-            <span>atau pesan konfirmasi manual</span>
-        </div>
-
-        <a id="modalBuyBtn" href="#" target="_blank" rel="noopener" class="btn btn-secondary btn-block" style="font-size: 0.9rem;">
-            Order via WhatsApp Admin
-        </a>
-        
-        <div id="checkoutNotice" style="margin-top: 0.75rem; font-size: 0.85rem; text-align: center; display: none;"></div>
-    </div>
-</div>
+<!-- 7. Checkout Modal -->
+<?php get_template_part( 'template-parts/checkout-modal' ); ?>
 
 <?php
 get_footer();

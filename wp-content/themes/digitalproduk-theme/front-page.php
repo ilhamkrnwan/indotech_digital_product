@@ -68,13 +68,26 @@ $categories = get_terms([
 
         <div class="hero-visual">
             <div class="hero-card-stack">
-                <div class="floating-badge badge-top-left">
+                <!-- Playful Decorative Sunburst & Rays -->
+                <div class="hero-sunburst"></div>
+                <div class="spark-doodle spark-1">✨</div>
+                <div class="spark-doodle spark-2">⚡</div>
+                <div class="spark-doodle spark-3">💫</div>
+                <div class="spark-doodle spark-4">⭐</div>
+
+                <!-- Floating Badges with Wobble Animation -->
+                <div class="floating-badge badge-top-left float-anim-1">
                     <span>⚡ Akses Instan</span>
                 </div>
-                <div class="floating-badge badge-bottom-right">
+                <div class="floating-badge badge-bottom-right float-anim-2">
                     <span>🎉 6 Bonus Praktis</span>
                 </div>
-                <div class="hero-image-frame">
+                <div class="floating-mini-sticker sticker-umkm float-anim-3">
+                    <span>🔥 Best Seller</span>
+                </div>
+
+                <div class="hero-image-frame tilt-card">
+                    <div class="frame-pin-top"></div>
                     <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/hero-bundle.png' ); ?>" 
                          alt="AI Business Growth Kit & 6 Bonus Praktis" 
                          class="hero-bundle-img" />
@@ -94,46 +107,95 @@ $categories = get_terms([
         </div>
 
         <div class="bonus-grid">
-            <div class="bonus-card card-cyan">
-                <div class="bonus-tag">BONUS 01</div>
-                <div class="bonus-icon">🤖</div>
+            <div class="bonus-card card-cyan tilt-left">
+                <div class="card-tape"></div>
+                <div class="bonus-header-flex">
+                    <span class="bonus-tag">BONUS 01</span>
+                    <span class="bonus-icon">🤖</span>
+                </div>
                 <h3>100 Marketing Prompts</h3>
-                <p>Kumpulan prompt ChatGPT & Claude siap copy-paste untuk copywriting promosi, caption sosmed, dan ide konten.</p>
+                <p>Formula prompt ChatGPT & Claude siap pakai untuk promosi, copywriting, & ide konten harian.</p>
+                <div class="mini-worksheet-preview preview-cyan">
+                    <div class="mockup-row"><span class="mockup-line long"></span><span class="mockup-check">✓</span></div>
+                    <div class="mockup-row"><span class="mockup-line med"></span><span class="mockup-check">✓</span></div>
+                    <div class="mockup-row"><span class="mockup-line short"></span><span class="mockup-check">✓</span></div>
+                </div>
             </div>
 
-            <div class="bonus-card card-pink">
-                <div class="bonus-tag">BONUS 02</div>
-                <div class="bonus-icon">🎯</div>
+            <div class="bonus-card card-pink tilt-right">
+                <div class="card-tape"></div>
+                <div class="bonus-header-flex">
+                    <span class="bonus-tag">BONUS 02</span>
+                    <span class="bonus-icon">🎯</span>
+                </div>
                 <h3>100 Hooks Viral</h3>
-                <p>Formula pembuka video Reels, TikTok, dan thread Twitter/X dengan conversion rate tinggi untuk menarik perhatian pembeli.</p>
+                <p>Formula kalimat pembuka video Reels & TikTok dengan conversion rate tinggi untuk UMKM.</p>
+                <div class="mini-worksheet-preview preview-pink">
+                    <div class="mockup-row"><span class="mockup-line long"></span><span class="mockup-check">✓</span></div>
+                    <div class="mockup-row"><span class="mockup-line med"></span><span class="mockup-check">✓</span></div>
+                    <div class="mockup-row"><span class="mockup-line short"></span><span class="mockup-check">✓</span></div>
+                </div>
             </div>
 
-            <div class="bonus-card card-yellow">
-                <div class="bonus-tag">BONUS 03</div>
-                <div class="bonus-icon">💬</div>
+            <div class="bonus-card card-yellow tilt-left">
+                <div class="card-tape"></div>
+                <div class="bonus-header-flex">
+                    <span class="bonus-tag">BONUS 03</span>
+                    <span class="bonus-icon">💬</span>
+                </div>
                 <h3>50 Call-To-Action (CTA)</h3>
-                <p>Template penutup pesan penjualan dan tombol landing page yang memicu aksi beli secara psikologis.</p>
+                <p>Template penutup penawaran dan tombol landing page yang memicu aksi beli spontan.</p>
+                <div class="mini-worksheet-preview preview-yellow">
+                    <div class="mockup-row"><span class="mockup-line long"></span><span class="mockup-check">✓</span></div>
+                    <div class="mockup-row"><span class="mockup-line med"></span><span class="mockup-check">✓</span></div>
+                    <div class="mockup-row"><span class="mockup-line short"></span><span class="mockup-check">✓</span></div>
+                </div>
             </div>
 
-            <div class="bonus-card card-purple">
-                <div class="bonus-tag">BONUS 04</div>
-                <div class="bonus-icon">📅</div>
+            <div class="bonus-card card-purple tilt-right">
+                <div class="card-tape"></div>
+                <div class="bonus-header-flex">
+                    <span class="bonus-tag">BONUS 04</span>
+                    <span class="bonus-icon">📅</span>
+                </div>
                 <h3>30-Day Content Calendar</h3>
-                <p>Jadwal dan panduan konten sebulan penuh untuk menjaga konsistensi posting tanpa pusing memikirkan ide harian.</p>
+                <p>Jadwal dan panduan konten 30 hari penuh agar konsisten posting tanpa pusing ide.</p>
+                <div class="mini-worksheet-preview preview-purple">
+                    <div class="mockup-calendar-grid">
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
             </div>
 
-            <div class="bonus-card card-teal">
-                <div class="bonus-tag">BONUS 05</div>
-                <div class="bonus-icon">📱</div>
+            <div class="bonus-card card-teal tilt-left">
+                <div class="card-tape"></div>
+                <div class="bonus-header-flex">
+                    <span class="bonus-tag">BONUS 05</span>
+                    <span class="bonus-icon">📱</span>
+                </div>
                 <h3>30 WhatsApp Sales Scripts</h3>
-                <p>Script obrolan closing untuk customer service dan admin penjualan guna mengatasi keberatan pelanggan.</p>
+                <p>Script obrolan closing untuk customer service mengatasi ragu pembeli & follow up.</p>
+                <div class="mini-worksheet-preview preview-teal">
+                    <div class="mockup-row"><span class="mockup-line long"></span><span class="mockup-check">✓</span></div>
+                    <div class="mockup-row"><span class="mockup-line med"></span><span class="mockup-check">✓</span></div>
+                    <div class="mockup-row"><span class="mockup-line short"></span><span class="mockup-check">✓</span></div>
+                </div>
             </div>
 
-            <div class="bonus-card card-blue">
-                <div class="bonus-tag">BONUS 06</div>
-                <div class="bonus-icon">⚙️</div>
+            <div class="bonus-card card-blue tilt-right">
+                <div class="card-tape"></div>
+                <div class="bonus-header-flex">
+                    <span class="bonus-tag">BONUS 06</span>
+                    <span class="bonus-icon">⚙️</span>
+                </div>
                 <h3>AI Workflow Cheatsheet</h3>
-                <p>Diagram alur kerja praktis mengintegrasikan kecerdasan buatan ke proses operasional harian bisnis Anda.</p>
+                <p>Diagram alur kerja praktis mengintegrasikan AI ke operasional harian bisnis Anda.</p>
+                <div class="mini-worksheet-preview preview-blue">
+                    <div class="mockup-flow-chart">
+                        <span class="flow-box">IDE</span> → <span class="flow-box">AI</span> → <span class="flow-box">HASIL</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

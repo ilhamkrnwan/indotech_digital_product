@@ -64,7 +64,8 @@ while ( have_posts() ) :
                 
                 <!-- Left Column: Visual Showcase -->
                 <div class="single-product-visual">
-                    <div class="single-thumb-frame">
+                    <div class="single-thumb-frame tilt-left">
+                        <div class="card-tape"></div>
                         <?php if ( $badge ) : ?>
                             <span class="product-badge <?php echo $badge === 'BARU' ? 'badge-new' : ''; ?>">
                                 <?php echo esc_html( $badge ); ?>
@@ -142,7 +143,8 @@ while ( have_posts() ) :
                     </div>
 
                     <!-- Buy Box Card -->
-                    <div class="buy-action-card">
+                    <div class="buy-action-card tilt-right">
+                        <div class="card-tape"></div>
                         <div class="price-header-row">
                             <div class="price-display">
                                 <span class="current-price-big"><?php echo digitalproduk_price( $sale_price ); ?></span>

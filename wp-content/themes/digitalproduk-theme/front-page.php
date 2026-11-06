@@ -535,8 +535,5 @@ $categories = get_terms([
     </div>
 </section>
 
-<!-- 7. Checkout Modal -->
-<?php get_template_part( 'template-parts/checkout-modal' ); ?>
-
 <?php
 get_footer();

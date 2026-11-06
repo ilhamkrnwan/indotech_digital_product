@@ -290,3 +290,103 @@ function digitalproduk_get_category_meta( $slug ) {
         'color_class' => 'cat-pink',
     ];
 }
+
+/**
+ * Helper: Convert any Google Drive view/share link into an instant direct download URL
+ */
+function digitalproduk_format_download_url( $raw_url ) {
+    $raw_url = trim( (string) $raw_url );
+    if ( empty( $raw_url ) ) {
+        return '';
+    }
+
+    // Cek jika Google Drive URL
+    if ( preg_match( '/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?id=)([a-zA-Z0-9_-]+)/', $raw_url, $matches ) ) {
+        $file_id = $matches[1];
+        // Format direct download Google Drive
+        return 'https://drive.google.com/uc?export=download&id=' . $file_id;
+    }
+
+    return $raw_url;
+}
+
+/**
+ * Add Meta Box for Digital Product File Delivery Settings
+ */
+function digitalproduk_add_delivery_meta_box() {
+    add_meta_box(
+        'digitalproduk_delivery_box',
+        '📦 Pengiriman File Digital (Akses Download)',
+        'digitalproduk_render_delivery_meta_box',
+        'digitalproduk',
+        'normal',
+        'high'
+    );
+}
+add_action( 'add_meta_boxes', 'digitalproduk_add_delivery_meta_box' );
+
+function digitalproduk_render_delivery_meta_box( $post ) {
+    wp_nonce_field( 'digitalproduk_delivery_nonce_action', 'digitalproduk_delivery_nonce' );
+    $download_url = get_post_meta( $post->ID, '_download_url', true );
+    $file_format  = get_post_meta( $post->ID, '_file_format', true ) ?: 'ZIP Archive / Source Code';
+    $access_note  = get_post_meta( $post->ID, '_access_note', true );
+    ?>
+    <div style="padding: 12px 4px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+        <table class="form-table" style="margin-top: 0;">
+            <tr>
+                <th scope="row" style="width: 220px; font-weight: 700;">
+                    <label for="digitalproduk_download_url">Link File Download (.zip / Google Drive)</label>
+                </th>
+                <td>
+                    <input type="text" name="_download_url" id="digitalproduk_download_url" value="<?php echo esc_attr( $download_url ); ?>" class="large-text" placeholder="https://drive.google.com/file/d/... atau https://domain.com/file.zip" style="padding: 8px 12px; font-size: 14px;" />
+                    <p class="description" style="margin-top: 6px; color: #475569;">
+                        💡 <strong>Trik Google Drive:</strong> Cukup paste link share Google Drive biasa (pastikan hak akses <em>"Siapa saja yang memiliki link"</em>). Sistem akan otomatis mengonversinya menjadi <strong>Direct Download Link</strong> agar saat diklik di web pembeli langsung mendownload file tanpa membuka Google Drive!
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" style="font-weight: 700;">
+                    <label for="digitalproduk_file_format">Format / Tipe File</label>
+                </th>
+                <td>
+                    <input type="text" name="_file_format" id="digitalproduk_file_format" value="<?php echo esc_attr( $file_format ); ?>" class="regular-text" placeholder="ZIP Archive / NPM Module / Notion Link" style="padding: 8px 12px;" />
+                    <p class="description">Contoh: <code>ZIP (Source Code & Assets)</code>, <code>Notion Template Link</code>, <code>PDF & Video HD</code></p>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" style="font-weight: 700;">
+                    <label for="digitalproduk_access_note">Catatan Tambahan untuk Pembeli (Opsional)</label>
+                </th>
+                <td>
+                    <textarea name="_access_note" id="digitalproduk_access_note" rows="3" class="large-text" placeholder="Contoh: Password ekstrak file zip: indotech2026 atau ekstrak menggunakan WinRAR / 7-Zip terbaru." style="padding: 8px 12px;"><?php echo esc_textarea( $access_note ); ?></textarea>
+                    <p class="description">Catatan ini akan tampil di Halaman Sukses dan di email pembeli.</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <?php
+}
+
+function digitalproduk_save_delivery_meta_box( $post_id ) {
+    if ( ! isset( $_POST['digitalproduk_delivery_nonce'] ) || ! wp_verify_nonce( $_POST['digitalproduk_delivery_nonce'], 'digitalproduk_delivery_nonce_action' ) ) {
+        return;
+    }
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+    }
+    if ( ! current_user_can( 'edit_post', $post_id ) ) {
+        return;
+    }
+
+    if ( isset( $_POST['_download_url'] ) ) {
+        update_post_meta( $post_id, '_download_url', esc_url_raw( trim( $_POST['_download_url'] ) ) );
+    }
+    if ( isset( $_POST['_file_format'] ) ) {
+        update_post_meta( $post_id, '_file_format', sanitize_text_field( $_POST['_file_format'] ) );
+    }
+    if ( isset( $_POST['_access_note'] ) ) {
+        update_post_meta( $post_id, '_access_note', sanitize_textarea_field( $_POST['_access_note'] ) );
+    }
+}
+add_action( 'save_post_digital_product', 'digitalproduk_save_delivery_meta_box' );
+

@@ -348,16 +348,41 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const snapToken = res.data.snap_token;
                 const redirectUrl = res.data.redirect;
+                const createdOrderId = res.data.order_id;
 
                 if (typeof window.snap !== 'undefined') {
                     window.snap.pay(snapToken, {
-                        onSuccess: function(result) {
+                        onSuccess: async function(result) {
                             notice.style.display = 'block';
                             notice.style.background = '#f0fdf4';
                             notice.style.color = '#15803d';
-                            notice.textContent = 'Pembayaran berhasil dikonfirmasi! Akses file Anda telah dikirimkan ke email.';
+                            notice.textContent = 'Pembayaran berhasil! Mengalihkan ke halaman download file Anda...';
                             btnPay.disabled = true;
-                            btnPay.innerHTML = '<span>Pembayaran Berhasil!</span>';
+                            btnPay.innerHTML = '<span>Menyiapkan Akses Download...</span>';
+
+                            // Konfirmasi ke server WordPress untuk update status & kirim email otomatis
+                            try {
+                                const confirmData = new URLSearchParams();
+                                confirmData.append('action', 'dpm_confirm_payment');
+                                confirmData.append('nonce', dpm_vars.nonce);
+                                confirmData.append('order_id', createdOrderId);
+
+                                const confRes = await fetch(dpm_vars.ajax_url, {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                                    body: confirmData.toString()
+                                });
+                                const confJson = await confRes.json();
+                                if (confJson.success && confJson.data?.redirect_url) {
+                                    window.location.href = confJson.data.redirect_url;
+                                    return;
+                                }
+                            } catch (e) {
+                                console.error('Konfirmasi error:', e);
+                            }
+
+                            // Fallback direct redirect
+                            window.location.href = '<?php echo esc_url( home_url( '/thank-you/' ) ); ?>?order_id=' + encodeURIComponent(createdOrderId);
                         },
                         onPending: function(result) {
                             notice.style.display = 'block';

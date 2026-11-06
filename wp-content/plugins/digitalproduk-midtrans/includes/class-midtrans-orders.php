@@ -16,6 +16,8 @@ class DPM_Midtrans_Orders {
         // AJAX Checkout Handlers
         add_action( 'wp_ajax_dpm_create_order', [ $this, 'ajax_create_order' ] );
         add_action( 'wp_ajax_nopriv_dpm_create_order', [ $this, 'ajax_create_order' ] );
+        add_action( 'wp_ajax_dpm_confirm_payment', [ $this, 'ajax_confirm_payment' ] );
+        add_action( 'wp_ajax_nopriv_dpm_confirm_payment', [ $this, 'ajax_confirm_payment' ] );
     }
 
     public function register_order_cpt() {
@@ -156,6 +158,44 @@ class DPM_Midtrans_Orders {
             'order_id'   => $order_id,
             'snap_token' => $snap_token,
             'redirect'   => $snap_result['redirect_url'] ?? '',
+        ]);
+    }
+
+    /**
+     * AJAX endpoint: Konfirmasi pembayaran dari Snap onSuccess (terutama untuk localhost / direct redirect)
+     */
+    public function ajax_confirm_payment() {
+        check_ajax_referer( 'dpm_checkout_nonce', 'nonce' );
+
+        $order_id = isset( $_POST['order_id'] ) ? sanitize_text_field( wp_unslash( $_POST['order_id'] ) ) : '';
+        if ( empty( $order_id ) ) {
+            wp_send_json_error( [ 'message' => 'Order ID tidak valid.' ] );
+        }
+
+        $orders = get_posts([
+            'post_type'      => 'product_order',
+            'meta_key'       => '_order_id',
+            'meta_value'     => $order_id,
+            'posts_per_page' => 1,
+            'post_status'    => 'any',
+        ]);
+
+        if ( empty( $orders ) ) {
+            wp_send_json_error( [ 'message' => 'Pesanan tidak ditemukan.' ] );
+        }
+
+        $order_post = $orders[0];
+        $order_post_id = $order_post->ID;
+
+        // Tandai sukses
+        update_post_meta( $order_post_id, '_payment_status', 'success' );
+        if ( ! get_post_meta( $order_post_id, '_paid_at', true ) ) {
+            update_post_meta( $order_post_id, '_paid_at', current_time( 'mysql' ) );
+        }
+
+        wp_send_json_success([
+            'message'      => 'Pembayaran berhasil dikonfirmasi.',
+            'redirect_url' => home_url( '/thank-you/?order_id=' . rawurlencode( $order_id ) ),
         ]);
     }
 }

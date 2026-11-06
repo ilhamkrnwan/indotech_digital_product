@@ -113,8 +113,5 @@ $search_query = isset( $_GET['s'] ) ? sanitize_text_field( $_GET['s'] ) : ( isse
     </div>
 </section>
 
-<!-- Checkout Modal -->
-<?php get_template_part( 'template-parts/checkout-modal' ); ?>
-
 <?php
 get_footer();

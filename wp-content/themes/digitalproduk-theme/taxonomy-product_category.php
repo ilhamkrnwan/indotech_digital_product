@@ -107,8 +107,5 @@ $active_color = $badge_colors[$cat_slug] ?? 'card-yellow';
     </div>
 </section>
 
-<!-- Checkout Modal -->
-<?php get_template_part( 'template-parts/checkout-modal' ); ?>
-
 <?php
 get_footer();

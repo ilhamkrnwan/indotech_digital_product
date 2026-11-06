@@ -196,19 +196,10 @@ while ( have_posts() ) :
                             <span class="discount-pill">Hemat <?php echo round( ( ( $price - $sale_price ) / $price ) * 100 ); ?>%</span>
                         </div>
 
-                        <!-- Midtrans Snap Button -->
-                        <button type="button" class="btn btn-primary btn-lg btn-block btn-buy-trigger"
-                            data-id="<?php echo esc_attr( $product_id ); ?>"
-                            data-title="<?php the_title_attribute(); ?>"
-                            data-price="<?php echo esc_attr( digitalproduk_price( $sale_price ) ); ?>"
-                            style="font-size: 1.15rem; padding: 1.15rem;">
+                        <!-- Tombol Checkout Langsung -->
+                        <a href="<?php echo esc_url( home_url( '/checkout/?product_id=' . $product_id ) ); ?>" class="btn btn-primary btn-lg btn-block" style="font-size: 1.15rem; padding: 1.15rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
                             <span>Beli &amp; Akses Sekarang</span>
                             <?php echo digitalproduk_get_icon( 'shopping-bag', 'btn-icon-right', 18 ); ?>
-                        </button>
-
-                        <a href="<?php echo esc_url( home_url( '/checkout/?product_id=' . $product_id ) ); ?>" class="btn btn-secondary btn-block" style="margin-top: 8px; font-weight: 700; font-size: 0.95rem; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                            <?php echo digitalproduk_get_icon( 'credit-card', '', 16 ); ?>
-                            <span>Halaman Checkout Mandiri</span>
                         </a>
 
                         <div class="buy-card-sublinks">
@@ -337,9 +328,6 @@ while ( have_posts() ) :
         <?php
     endif;
     ?>
-
-    <!-- Checkout Modal Included -->
-    <?php get_template_part( 'template-parts/checkout-modal' ); ?>
 
     <?php
 endwhile;

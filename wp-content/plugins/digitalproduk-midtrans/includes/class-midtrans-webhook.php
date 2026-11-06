@@ -87,7 +87,7 @@ class DPM_Midtrans_Webhook {
         update_post_meta( $order_post_id, '_payment_status', $new_status );
         update_post_meta( $order_post_id, '_midtrans_response', wp_json_encode( $body ) );
 
-        // Jika status sukses, bisa kirim link download via email atau WhatsApp
+        // Jika status sukses
         if ( $new_status === 'success' ) {
             update_post_meta( $order_post_id, '_paid_at', current_time( 'mysql' ) );
         }

@@ -14,13 +14,7 @@ $sale_price = get_post_meta( get_the_ID(), '_sale_price', true ) ?: 99000;
 $rating = get_post_meta( get_the_ID(), '_rating', true ) ?: '4.9';
 $sales_count = get_post_meta( get_the_ID(), '_sales_count', true ) ?: '250';
 $file_format = get_post_meta( get_the_ID(), '_file_format', true ) ?: 'Aset Siap Pakai';
-$badge = get_post_meta( get_the_ID(), '_badge', true ) ?: 'POPULER';
-$features_meta = get_post_meta( get_the_ID(), '_features', true );
-$features = ! empty( $features_meta ) ? ( is_array( $features_meta ) ? $features_meta : explode( "\n", $features_meta ) ) : [
-    'Lisensi Komersial Lengkap',
-    'Panduan & Dokumentasi',
-    'Update Gratis Selamanya'
-];
+$badge = get_post_meta( get_the_ID(), '_badge', true );
 
 $item_cats = get_the_terms( get_the_ID(), 'product_category' );
 $cat_slug = ! empty( $item_cats ) && ! is_wp_error( $item_cats ) ? $item_cats[0]->slug : 'general';
@@ -31,12 +25,10 @@ $cat_meta = digitalproduk_get_category_meta( $cat_slug );
 $cat_icon = $cat_meta['icon'];
 
 $cover_img = digitalproduk_get_product_cover( get_the_ID() );
-$slides = digitalproduk_get_product_slides( get_the_ID() );
-$slide_count = count( $slides );
 ?>
 <div class="product-card" data-category="<?php echo esc_attr( $cat_slug ); ?>">
     <div class="product-thumb-wrap">
-        <?php if ( $badge ) : ?>
+        <?php if ( ! empty( $badge ) && in_array( strtoupper( $badge ), [ 'BEST SELLER', 'PROMO', 'DISKON' ], true ) ) : ?>
             <span class="product-badge <?php echo $badge === 'BARU' ? 'badge-new' : ''; ?>">
                 <?php echo esc_html( $badge ); ?>
             </span>
@@ -56,19 +48,6 @@ $slide_count = count( $slides );
                 </div>
             <?php endif; ?>
         </a>
-
-        <div class="thumb-bottom-badges">
-            <span class="product-format-tag">
-                <?php echo digitalproduk_get_icon( 'file-text', 'mini-tag-icon', 12 ); ?>
-                <?php echo esc_html( $file_format ); ?>
-            </span>
-            <?php if ( $slide_count > 1 ) : ?>
-                <span class="gallery-count-tag" title="<?php echo esc_attr( $slide_count ); ?> Preview Layar">
-                    <?php echo digitalproduk_get_icon( 'images', 'mini-tag-icon', 12 ); ?>
-                    <?php echo esc_html( $slide_count ); ?> Layar
-                </span>
-            <?php endif; ?>
-        </div>
     </div>
 
     <div class="product-body">
@@ -90,18 +69,7 @@ $slide_count = count( $slides );
             <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
         </h3>
 
-        <p class="product-excerpt"><?php echo wp_trim_words( get_the_excerpt() ?: get_the_content(), 13 ); ?></p>
-
-        <ul class="product-features-list">
-            <?php foreach ( array_slice( $features, 0, 3 ) as $feature ) : ?>
-                <li>
-                    <span class="feature-check-icon">
-                        <?php echo digitalproduk_get_icon( 'check', '', 12 ); ?>
-                    </span>
-                    <span><?php echo esc_html( trim( $feature ) ); ?></span>
-                </li>
-            <?php endforeach; ?>
-        </ul>
+        <p class="product-excerpt"><?php echo wp_trim_words( get_the_excerpt() ?: get_the_content(), 10 ); ?></p>
 
         <div class="product-footer">
             <div class="price-wrap">
@@ -112,13 +80,10 @@ $slide_count = count( $slides );
                 <a href="<?php the_permalink(); ?>" class="btn btn-secondary btn-sm" title="Lihat Detail Produk">
                     Detail
                 </a>
-                <button type="button" class="btn btn-primary btn-sm btn-buy-trigger" 
-                    data-id="<?php the_ID(); ?>"
-                    data-title="<?php the_title_attribute(); ?>" 
-                    data-price="<?php echo esc_attr( digitalproduk_price( $sale_price ) ); ?>">
+                <a href="<?php echo esc_url( home_url( '/checkout/?product_id=' . get_the_ID() ) ); ?>" class="btn btn-primary btn-sm">
                     <span>Beli</span>
                     <?php echo digitalproduk_get_icon( 'shopping-bag', 'btn-icon-sm', 14 ); ?>
-                </button>
+                </a>
             </div>
         </div>
     </div>

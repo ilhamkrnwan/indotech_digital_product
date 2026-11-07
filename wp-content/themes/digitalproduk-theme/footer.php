@@ -33,7 +33,7 @@
                     </span>
                 </a>
                 <p class="footer-desc">
-                    Source code web apps, plugin WordPress, dan template desain siap pakai. Akses download langsung aktif setelah pembayaran via Midtrans.
+                    Source code web apps, plugin WordPress, dan template desain siap pakai. Akses download langsung aktif setelah pembayaran terverifikasi otomatis.
                 </p>
             </div>
 
@@ -61,7 +61,7 @@
             <div class="footer-col">
                 <h4 class="footer-heading">Pembayaran</h4>
                 <p class="footer-desc" style="margin-top: 0; font-size: 0.825rem;">
-                    Mendukung QRIS (GoPay, OVO, ShopeePay) dan Virtual Account (BCA, Mandiri, BNI, BRI) via Midtrans.
+                    Mendukung QRIS (GoPay, OVO, ShopeePay) dan Virtual Account (BCA, Mandiri, BNI, BRI).
                 </p>
                 <div class="payment-badges">
                     <span class="badge-item">QRIS</span>

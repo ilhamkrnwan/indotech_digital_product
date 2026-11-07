@@ -145,7 +145,7 @@ $categories = get_terms([
             <div class="hero-trust-row" style="display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 0.85rem; color: var(--text-secondary);">
                 <span><strong style="color: var(--brand-cobalt);">&#10003;</strong> Download instan via Google Drive</span>
                 <span><strong style="color: var(--brand-cobalt);">&#10003;</strong> Lisensi komersial bebas</span>
-                <span><strong style="color: var(--brand-cobalt);">&#10003;</strong> Bayar otomatis via Midtrans (QRIS &amp; VA)</span>
+                <span><strong style="color: var(--brand-cobalt);">&#10003;</strong> Bayar otomatis (QRIS &amp; Virtual Account)</span>
             </div>
         </div>
     </div>
@@ -215,7 +215,7 @@ $categories = get_terms([
             </div>
             <div class="step-card">
                 <span style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: var(--brand-cobalt); margin-bottom: 0.5rem; display: block;">02</span>
-                <h3>Bayar via Midtrans</h3>
+                <h3>Bayar Otomatis</h3>
                 <p>Scan QRIS atau transfer lewat Virtual Account. Pembayaran dicek otomatis dalam beberapa detik.</p>
             </div>
             <div class="step-card">
@@ -238,7 +238,7 @@ $categories = get_terms([
         <div class="faq-grid">
             <div class="faq-card">
                 <h3>Bagaimana cara mengunduh file setelah bayar?</h3>
-                <p>Setelah pembayaran terkonfirmasi di popup Midtrans, halaman akan langsung menampilkan tombol download Google Drive. Link juga dikirim ke email Anda.</p>
+                <p>Setelah pembayaran terkonfirmasi, halaman akan langsung menampilkan tombol download Google Drive. Link juga dikirim ke email Anda.</p>
             </div>
             <div class="faq-card">
                 <h3>Boleh dipakai untuk proyek klien?</h3>

@@ -188,7 +188,7 @@ if ( ! empty( $order_id ) ) {
                     </span>
                 </h1>
                 <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px;">
-                    Pesanan <strong>#<?php echo esc_html( $order_id ); ?></strong> sedang menunggu konfirmasi pembayaran otomatis via Midtrans.
+                    Pesanan <strong>#<?php echo esc_html( $order_id ); ?></strong> sedang menunggu konfirmasi pembayaran otomatis.
                 </p>
 
                 <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">

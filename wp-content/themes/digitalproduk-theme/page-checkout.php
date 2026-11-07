@@ -104,7 +104,7 @@ foreach ( $all_products as $p ) {
 
             <div class="hero-badge-artisan" style="margin-bottom: 0.75rem;">
                 <div class="badge-brush-backing"></div>
-                <span class="badge-brush-text">&bull; AMAN &amp; TERVERIFIKASI MIDTRANS</span>
+                <span class="badge-brush-text">&bull; PEMBAYARAN AMAN &amp; INSTAN</span>
             </div>
 
             <h1 class="checkout-main-title" style="font-size: 2.25rem; font-weight: 900; color: var(--text-primary); margin-bottom: 0.5rem; letter-spacing: -0.03em;">
@@ -246,12 +246,12 @@ foreach ( $all_products as $p ) {
                         <div id="pageCheckoutNotice" style="display: none; padding: 10px; border-radius: var(--radius-sm); font-size: 0.85rem; margin-top: 4px;"></div>
 
                         <!-- Tombol Bayar -->
-                        <button type="submit" id="btnPagePayMidtrans" class="btn btn-primary btn-lg btn-block" style="margin-top: 6px;">
-                            <span>Bayar Sekarang (Midtrans)</span>
+                        <button type="submit" id="btnPagePay" class="btn btn-primary btn-lg btn-block" style="margin-top: 6px;">
+                            <span>Bayar Sekarang</span>
                         </button>
 
                         <a id="btnFallbackRedirect" href="#" target="_blank" class="btn btn-primary btn-block" style="display: none; text-align: center;">
-                            Buka Pembayaran Midtrans &rarr;
+                            Buka Pembayaran &rarr;
                         </a>
 
                         <div style="text-align: center; margin-top: 8px;">
@@ -336,7 +336,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const form = document.getElementById('dedicatedCheckoutForm');
-    const btnPay = document.getElementById('btnPagePayMidtrans');
+    const btnPay = document.getElementById('btnPagePay');
     const notice = document.getElementById('pageCheckoutNotice');
     const fallbackBtn = document.getElementById('btnFallbackRedirect');
 
@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
 
             if (typeof dpm_vars === 'undefined') {
-                alert('Midtrans Gateway plugin belum aktif.');
+                alert('Sistem pembayaran belum aktif.');
                 return;
             }
 
@@ -400,9 +400,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     notice.style.display = 'block';
                     notice.style.background = '#fef2f2';
                     notice.style.color = '#b91c1c';
-                    notice.textContent = res.data?.message || 'Gagal memproses pesanan. Periksa konfigurasi Midtrans.';
+                    notice.textContent = res.data?.message || 'Gagal memproses pesanan. Silakan coba kembali.';
                     btnPay.disabled = false;
-                    btnPay.innerHTML = '<span>Bayar Sekarang (Midtrans)</span>';
+                    btnPay.innerHTML = '<span>Bayar Sekarang</span>';
                     return;
                 }
 
@@ -459,7 +459,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         },
                         onClose: function() {
                             btnPay.disabled = false;
-                            btnPay.innerHTML = '<span>Bayar Sekarang (Midtrans)</span>';
+                            btnPay.innerHTML = '<span>Bayar Sekarang</span>';
                             if (redirectUrl) {
                                 fallbackBtn.href = redirectUrl;
                                 fallbackBtn.style.display = 'block';
@@ -472,9 +472,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     notice.style.display = 'block';
                     notice.style.background = '#fef2f2';
                     notice.style.color = '#b91c1c';
-                    notice.textContent = 'Midtrans Snap tidak dapat dimuat. Gunakan WhatsApp untuk bantuan.';
+                    notice.textContent = 'Popup pembayaran tidak dapat dimuat. Gunakan WhatsApp untuk bantuan.';
                     btnPay.disabled = false;
-                    btnPay.innerHTML = '<span>Bayar Sekarang (Midtrans)</span>';
+                    btnPay.innerHTML = '<span>Bayar Sekarang</span>';
                 }
 
             } catch (err) {
@@ -483,7 +483,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 notice.style.color = '#b91c1c';
                 notice.textContent = 'Terjadi kesalahan jaringan. Silakan coba kembali.';
                 btnPay.disabled = false;
-                btnPay.innerHTML = '<span>Bayar Sekarang (Midtrans)</span>';
+                btnPay.innerHTML = '<span>Bayar Sekarang</span>';
             }
         });
     }

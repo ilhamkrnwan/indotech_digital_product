@@ -61,7 +61,7 @@ class DPM_Midtrans_Client {
     public static function create_snap_transaction( $params ) {
         $server_key = self::get_server_key();
         if ( empty( $server_key ) ) {
-            return new WP_Error( 'missing_key', 'Server Key Midtrans belum dikonfigurasi di dashboard admin.' );
+            return new WP_Error( 'missing_key', 'Kunci sistem pembayaran belum dikonfigurasi di dashboard admin.' );
         }
 
         $auth = base64_encode( $server_key . ':' );
@@ -90,13 +90,13 @@ class DPM_Midtrans_Client {
         }
 
         if ( $code === 401 ) {
-            $msg = 'Midtrans Error 401 (Unauthorized): Kunci API tidak cocok dengan endpoint Sandbox / Production.';
+            $msg = 'Autentikasi pembayaran gagal (401): Kunci API tidak cocok dengan lingkungan Sandbox / Production.';
         } elseif ( ! empty( $data['error_messages'] ) && is_array( $data['error_messages'] ) ) {
             $msg = implode( ', ', $data['error_messages'] );
         } elseif ( ! empty( $data['error'] ) ) {
-            $msg = 'Midtrans Error: ' . ( is_string( $data['error'] ) ? $data['error'] : wp_json_encode( $data['error'] ) );
+            $msg = 'Kendala pembayaran: ' . ( is_string( $data['error'] ) ? $data['error'] : wp_json_encode( $data['error'] ) );
         } else {
-            $msg = 'Gagal menghubungi Midtrans Snap API (HTTP ' . $code . ').';
+            $msg = 'Gagal menghubungi server pembayaran (HTTP ' . $code . ').';
         }
 
         return new WP_Error( 'midtrans_error', $msg, $data );

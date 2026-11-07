@@ -24,6 +24,15 @@ class DPM_Midtrans_Webhook {
     public function handle_notification( WP_REST_Request $request ) {
         $body = $request->get_json_params();
 
+        // Logging untuk audit & troubleshooting webhook
+        $log_file = WP_CONTENT_DIR . '/midtrans_webhook.log';
+        $log_entry = sprintf(
+            "[%s] Midtrans Notification Received: %s\n",
+            current_time( 'mysql' ),
+            wp_json_encode( $body )
+        );
+        @file_put_contents( $log_file, $log_entry, FILE_APPEND );
+
         if ( empty( $body ) ) {
             return new WP_REST_Response( [ 'status' => 'error', 'message' => 'Empty payload' ], 400 );
         }
@@ -35,9 +44,25 @@ class DPM_Midtrans_Webhook {
         $transaction_status = $body['transaction_status'] ?? '';
         $fraud_status = $body['fraud_status'] ?? '';
 
+        // Deteksi Test Notification Ping dari Dashboard Midtrans ("Test notification URL")
+        // Midtrans mengirimkan dummy order_id atau payload test untuk memeriksa endpoint
+        $is_test_payload = (
+            ( ! empty( $order_id ) && stripos( $order_id, 'test' ) !== false ) ||
+            ( isset( $body['payment_type'] ) && stripos( $body['payment_type'], 'test' ) !== false ) ||
+            empty( $signature_key )
+        );
+
+        if ( $is_test_payload ) {
+            return new WP_REST_Response( [
+                'status'  => 'ok',
+                'message' => 'Test notification acknowledged successfully',
+            ], 200 );
+        }
+
         // 1. Validasi Signature
         $is_valid = DPM_Midtrans_Client::verify_signature( $order_id, $status_code, $gross_amount, $signature_key );
         if ( ! $is_valid ) {
+            @file_put_contents( $log_file, sprintf( "[%s] Signature verification failed for order %s\n", current_time( 'mysql' ), $order_id ), FILE_APPEND );
             return new WP_REST_Response( [ 'status' => 'error', 'message' => 'Invalid signature' ], 403 );
         }
 
@@ -51,7 +76,8 @@ class DPM_Midtrans_Webhook {
         ]);
 
         if ( empty( $orders ) ) {
-            return new WP_REST_Response( [ 'status' => 'error', 'message' => 'Order not found' ], 404 );
+            // Berikan status 200 agar Midtrans menganggap notifikasi diterima dan tidak melakukan retry loop
+            return new WP_REST_Response( [ 'status' => 'ok', 'message' => 'Order not found in database (acknowledged)' ], 200 );
         }
 
         $order_post = $orders[0];

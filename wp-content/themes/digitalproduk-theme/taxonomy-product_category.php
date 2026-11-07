@@ -1,6 +1,7 @@
 <?php
 /**
  * The template for displaying Product Category Archives
+ * Indotech Technical Commerce Design System
  *
  * @package DigitalProduk
  */
@@ -21,46 +22,40 @@ $categories = get_terms([
     'taxonomy'   => 'product_category',
     'hide_empty' => false,
 ]);
-
-// Map visual badge per category
-$badge_colors = [
-    'source-code'     => 'card-cyan',
-    'ui-ux-figma'     => 'card-pink',
-    'template-notion' => 'card-purple',
-    'e-book'          => 'card-yellow',
-    'saas-tools'      => 'card-teal',
-];
-$active_color = $badge_colors[$cat_slug] ?? 'card-yellow';
 ?>
 
 <!-- Category Header Banner -->
-<section class="category-header-section <?php echo esc_attr( $active_color ); ?>">
+<section class="section" style="padding: 3.5rem 0 2rem; background: var(--bg-canvas); border-bottom: 1px solid var(--border-main);">
     <div class="container text-center">
-        <a href="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" class="back-link">
-            <?php echo digitalproduk_get_icon( 'arrow-left', 'back-arrow', 16 ); ?>
+        <a href="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" class="btn btn-secondary btn-sm" style="margin-bottom: 1.25rem;">
+            <?php echo digitalproduk_get_icon( 'arrow-left', 'back-arrow', 14 ); ?>
             <span>Kembali ke Semua Katalog</span>
         </a>
-        <div class="playful-sticker" style="margin-top: 1.25rem;">
+
+        <div class="hero-pill" style="margin: 0 auto 1.25rem;">
             <?php echo digitalproduk_get_icon( 'tag', '', 14 ); ?>
-            <span>KATEGORI PRODUK</span>
+            <span>KATEGORI ASET</span>
         </div>
-        <h1 class="archive-main-title"><?php echo esc_html( $cat_name ); ?></h1>
-        <p class="archive-main-desc">
+
+        <h1 class="hero-title" style="margin-bottom: 0.75rem;"><?php echo esc_html( $cat_name ); ?></h1>
+        <p class="hero-desc" style="margin: 0 auto 2rem; max-width: 650px;">
             <?php echo esc_html( $cat_desc ); ?>
         </p>
 
         <!-- Category Nav Switcher -->
-        <div class="archive-category-chips">
-            <a href="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" class="chip-item">
+        <div class="category-filter-list" style="justify-content: center;">
+            <a href="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" class="filter-btn">
                 <?php echo digitalproduk_get_icon( 'layers', '', 14 ); ?>
                 <span>Semua Kategori</span>
             </a>
             <?php if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) : ?>
                 <?php foreach ( $categories as $cat ) : ?>
                     <a href="<?php echo esc_url( get_term_link( $cat ) ); ?>" 
-                       class="chip-item <?php echo $cat->term_id === $current_cat->term_id ? 'active' : ''; ?>">
+                       class="filter-btn <?php echo $cat->term_id === $current_cat->term_id ? 'active' : ''; ?>">
                         <span><?php echo esc_html( $cat->name ); ?></span>
-                        <span class="chip-count"><?php echo esc_html( $cat->count ); ?></span>
+                        <span style="font-family: var(--font-mono); font-size: 0.725rem; background: var(--border-subtle); padding: 1px 5px; border-radius: 3px; color: var(--text-muted);">
+                            <?php echo esc_html( $cat->count ); ?>
+                        </span>
                     </a>
                 <?php endforeach; ?>
             <?php endif; ?>
@@ -82,7 +77,7 @@ $active_color = $badge_colors[$cat_slug] ?? 'card-yellow';
             </div>
 
             <!-- Pagination -->
-            <div class="archive-pagination">
+            <div style="margin-top: 3rem; text-align: center;">
                 <?php
                 the_posts_pagination([
                     'mid_size'  => 2,
@@ -92,15 +87,17 @@ $active_color = $badge_colors[$cat_slug] ?? 'card-yellow';
                 ?>
             </div>
         <?php else : ?>
-            <div class="empty-state-box">
-                <div class="empty-icon">
-                    <?php echo digitalproduk_get_icon( 'package', 'empty-svg', 40 ); ?>
+            <div style="text-align: center; padding: 4rem 1.5rem; background: #ffffff; border: 1px solid var(--border-main); border-radius: var(--radius-lg); max-width: 550px; margin: 0 auto;">
+                <div style="width: 54px; height: 54px; border-radius: 50%; background: var(--bg-canvas); color: var(--text-muted); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                    <?php echo digitalproduk_get_icon( 'package', 'empty-svg', 26 ); ?>
                 </div>
-                <h3>Belum ada produk di kategori ini</h3>
-                <p>Produk baru untuk kategori ini sedang disiapkan oleh tim developer & desainer kami.</p>
-                <a href="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" class="btn btn-primary" style="margin-top: 1rem;">
+                <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem;">Belum Ada Produk di Kategori Ini</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                    Aset baru untuk kategori ini sedang disiapkan oleh tim developer dan desainer kami.
+                </p>
+                <a href="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" class="btn btn-primary">
                     <span>Jelajahi Produk Lain</span>
-                    <?php echo digitalproduk_get_icon( 'arrow-right', 'btn-icon-right', 16 ); ?>
+                    <?php echo digitalproduk_get_icon( 'arrow-right', 'btn-icon-right', 15 ); ?>
                 </a>
             </div>
         <?php endif; ?>

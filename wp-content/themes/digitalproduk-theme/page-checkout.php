@@ -2,6 +2,7 @@
 /**
  * Template Name: Checkout Pembayaran Khusus
  * Template Post Type: page
+ * Indotech Technical Commerce Design System
  *
  * @package DigitalProduk
  */
@@ -45,9 +46,9 @@ $prod_badge = $current_product ? get_post_meta( $prod_id, '_badge', true ) : 'RE
 $features_meta = $current_product ? get_post_meta( $prod_id, '_features', true ) : '';
 $prod_features = ! empty( $features_meta ) ? ( is_array( $features_meta ) ? $features_meta : explode( "\n", $features_meta ) ) : [
     'Akses Download Langsung & Lifetime',
-    'Lisensi Komersial Lengkap',
-    'Update Gratis Versi Mendatang',
-    'Dukungan Bantuan Teknis'
+    'Lisensi Komersial Lengkap (Royalti 0)',
+    'Update Versi Terbaru Gratis Selamanya',
+    'Dukungan Tanya Jawab & Bantuan Teknis'
 ];
 
 // Siapkan data JSON untuk dynamic switch produk jika user mengganti pilihan di dropdown
@@ -67,45 +68,45 @@ foreach ( $all_products as $p ) {
 }
 ?>
 
-<main class="site-main checkout-page-main" style="background: #fdfbf7; min-height: 85vh; padding: 40px 0 80px;">
+<main class="site-main checkout-page-main" style="background: var(--bg-canvas); min-height: 85vh; padding: 40px 0 80px;">
     <div class="container">
 
         <!-- Top Breadcrumb / Back Link -->
         <div style="margin-bottom: 24px;">
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 8px;">
-                <?php echo digitalproduk_get_icon( 'arrow-left', '', 16 ); ?>
+                <?php echo digitalproduk_get_icon( 'arrow-left', '', 14 ); ?>
                 <span>Kembali ke Katalog Produk</span>
             </a>
         </div>
 
-        <div class="checkout-grid" style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; align-items: start;">
+        <div class="checkout-grid">
 
             <!-- LEFT COLUMN: Rincian Produk & Garansi -->
             <div class="checkout-left-col">
-                <div class="card neo-card" style="background: #fff; border: 3px solid #1e293b; border-radius: 16px; padding: 28px; box-shadow: 6px 6px 0 #1e293b; margin-bottom: 24px;">
+                <div class="checkout-card">
                     
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; border-bottom: 2px dashed #cbd5e1; padding-bottom: 16px;">
+                    <div class="checkout-card-header">
                         <div>
-                            <span style="font-size: 0.85rem; font-weight: 800; background: #fef08a; border: 2px solid #1e293b; padding: 4px 10px; border-radius: 999px; text-transform: uppercase;">
+                            <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--brand-cobalt); background: var(--brand-cobalt-light); border: 1px solid var(--brand-cobalt-border); padding: 3px 8px; border-radius: var(--radius-sm); text-transform: uppercase;">
                                 Ringkasan Pesanan
                             </span>
-                            <h1 style="font-size: 1.6rem; font-weight: 800; margin: 10px 0 0; color: #0f172a;">Selesaikan Pembelian</h1>
+                            <h1 style="font-size: 1.5rem; font-weight: 800; margin: 10px 0 0; color: var(--text-primary); letter-spacing: -0.02em;">Selesaikan Pembelian</h1>
                         </div>
                         <div style="text-align: right;">
-                            <span style="font-size: 0.8rem; color: #64748b; font-weight: 600;">Status:</span>
-                            <div style="display: flex; align-items: center; gap: 6px; color: #16a34a; font-weight: 800; font-size: 0.9rem;">
-                                <span style="width: 8px; height: 8px; border-radius: 50%; background: #16a34a; display: inline-block;"></span>
+                            <span style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">STATUS:</span>
+                            <div style="display: flex; align-items: center; gap: 6px; color: var(--status-success); font-weight: 700; font-size: 0.85rem; font-family: var(--font-mono);">
+                                <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--status-success); display: inline-block;"></span>
                                 Ready Instant
                             </div>
                         </div>
                     </div>
 
                     <!-- Dropdown Pilih Produk (Bisa Ganti Tanpa Reload) -->
-                    <div style="margin-bottom: 24px;">
-                        <label for="checkoutProductSelector" style="display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; color: #334155;">
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="checkoutProductSelector" class="form-label">
                             Pilihan Produk Digital:
                         </label>
-                        <select id="checkoutProductSelector" style="width: 100%; padding: 12px 14px; font-size: 0.95rem; font-weight: 700; border: 2px solid #1e293b; border-radius: 10px; background: #f8fafc; cursor: pointer;">
+                        <select id="checkoutProductSelector" class="form-select">
                             <?php foreach ( $all_products as $p ) : 
                                 $is_sel = ( $p->ID === $prod_id );
                                 $p_sale = get_post_meta( $p->ID, '_sale_price', true ) ?: get_post_meta( $p->ID, '_price', true );
@@ -118,17 +119,17 @@ foreach ( $all_products as $p ) {
                     </div>
 
                     <!-- Selected Product Display Card -->
-                    <div id="productSummaryCard" style="display: flex; gap: 20px; align-items: center; background: #fffbeb; border: 2.5px solid #1e293b; border-radius: 12px; padding: 16px; margin-bottom: 24px;">
-                        <img id="summaryProductImg" src="<?php echo esc_url( $prod_cover ); ?>" alt="<?php echo esc_attr( $prod_title ); ?>" style="width: 90px; height: 90px; object-fit: cover; border: 2px solid #1e293b; border-radius: 8px; background: #fff;" />
+                    <div id="productSummaryCard" style="display: flex; gap: 16px; align-items: center; background: var(--bg-canvas); border: 1px solid var(--border-main); border-radius: var(--radius-md); padding: 14px; margin-bottom: 20px;">
+                        <img id="summaryProductImg" src="<?php echo esc_url( $prod_cover ); ?>" alt="<?php echo esc_attr( $prod_title ); ?>" style="width: 80px; height: 80px; object-fit: cover; border: 1px solid var(--border-main); border-radius: var(--radius-sm); background: #fff;" />
                         <div style="flex: 1;">
-                            <h3 id="summaryProductTitle" style="font-size: 1.15rem; font-weight: 800; margin: 0 0 6px; color: #0f172a; line-height: 1.3;">
+                            <h3 id="summaryProductTitle" style="font-size: 1.05rem; font-weight: 700; margin: 0 0 4px; color: var(--text-primary); line-height: 1.3;">
                                 <?php echo esc_html( $prod_title ); ?>
                             </h3>
-                            <div style="display: flex; align-items: baseline; gap: 10px;">
-                                <span id="summaryProductSale" style="font-size: 1.4rem; font-weight: 900; color: #0284c7;">
+                            <div style="display: flex; align-items: baseline; gap: 8px;">
+                                <span id="summaryProductSale" style="font-size: 1.3rem; font-weight: 800; color: var(--brand-cobalt); letter-spacing: -0.02em;">
                                     <?php echo digitalproduk_price( $prod_sale_price ); ?>
                                 </span>
-                                <span id="summaryProductOrig" style="font-size: 0.95rem; text-decoration: line-through; color: #94a3b8; font-weight: 600;">
+                                <span id="summaryProductOrig" style="font-size: 0.85rem; text-decoration: line-through; color: var(--text-muted); font-weight: 500;">
                                     <?php echo digitalproduk_price( $prod_price ); ?>
                                 </span>
                             </div>
@@ -136,15 +137,15 @@ foreach ( $all_products as $p ) {
                     </div>
 
                     <!-- Benefits Included -->
-                    <div style="margin-bottom: 24px;">
-                        <h4 style="font-size: 0.95rem; font-weight: 800; margin: 0 0 12px; color: #334155; display: flex; align-items: center; gap: 8px;">
-                            <?php echo digitalproduk_get_icon( 'check-circle-2', '', 18 ); ?>
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="font-size: 0.875rem; font-weight: 700; margin: 0 0 10px; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
+                            <?php echo digitalproduk_get_icon( 'check-circle-2', '', 16 ); ?>
                             <span>Yang Anda Dapatkan Dalam Paket Ini:</span>
                         </h4>
                         <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 8px;">
                             <?php foreach ( $prod_features as $feat ) : ?>
-                                <li style="display: flex; align-items: center; gap: 10px; font-size: 0.92rem; font-weight: 600; color: #334155;">
-                                    <span style="color: #16a34a; display: inline-flex;"><?php echo digitalproduk_get_icon( 'check', '', 16 ); ?></span>
+                                <li style="display: flex; align-items: center; gap: 8px; font-size: 0.875rem; color: var(--text-secondary);">
+                                    <span style="color: var(--status-success); display: inline-flex;"><?php echo digitalproduk_get_icon( 'check', '', 14 ); ?></span>
                                     <span><?php echo esc_html( trim( $feat ) ); ?></span>
                                 </li>
                             <?php endforeach; ?>
@@ -152,13 +153,13 @@ foreach ( $all_products as $p ) {
                     </div>
 
                     <!-- Trust Bar -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; background: #f1f5f9; padding: 14px; border-radius: 10px; border: 1.5px solid #cbd5e1;">
-                        <div style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 700; color: #1e293b;">
-                            <?php echo digitalproduk_get_icon( 'shield-check', '', 20 ); ?>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; background: var(--bg-canvas); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+                        <div style="display: flex; align-items: center; gap: 8px; font-size: 0.825rem; font-weight: 600; color: var(--text-secondary);">
+                            <?php echo digitalproduk_get_icon( 'shield-check', '', 18 ); ?>
                             <span>Enkripsi 256-bit SSL</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 700; color: #1e293b;">
-                            <?php echo digitalproduk_get_icon( 'zap', '', 20 ); ?>
+                        <div style="display: flex; align-items: center; gap: 8px; font-size: 0.825rem; font-weight: 600; color: var(--text-secondary);">
+                            <?php echo digitalproduk_get_icon( 'zap', '', 18 ); ?>
                             <span>Pengiriman Otomatis</span>
                         </div>
                     </div>
@@ -168,83 +169,80 @@ foreach ( $all_products as $p ) {
 
             <!-- RIGHT COLUMN: Form Checkout & Pembayaran Midtrans -->
             <div class="checkout-right-col">
-                <div class="card neo-card" style="background: #fff; border: 3px solid #1e293b; border-radius: 16px; padding: 28px; box-shadow: 6px 6px 0 #1e293b;">
+                <div class="checkout-card">
                     
                     <div style="margin-bottom: 20px;">
-                        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 800; background: #e0f2fe; color: #0284c7; border: 2px solid #1e293b; padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;">
+                        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 700; font-family: var(--font-mono); background: var(--brand-cobalt-light); color: var(--brand-cobalt); border: 1px solid var(--brand-cobalt-border); padding: 3px 8px; border-radius: var(--radius-sm); margin-bottom: 8px;">
                             <?php echo digitalproduk_get_icon( 'lock', '', 12 ); ?>
                             PEMBAYARAN RESMI MIDTRANS
                         </span>
-                        <h2 style="font-size: 1.4rem; font-weight: 800; margin: 0; color: #0f172a;">Informasi Pengiriman</h2>
-                        <p style="margin: 4px 0 0; font-size: 0.88rem; color: #64748b;">
+                        <h2 style="font-size: 1.35rem; font-weight: 800; margin: 0; color: var(--text-primary); letter-spacing: -0.02em;">Informasi Pengiriman</h2>
+                        <p style="margin: 4px 0 0; font-size: 0.85rem; color: var(--text-secondary);">
                             File dan akses digital akan dikirimkan otomatis ke email ini setelah pembayaran berhasil.
                         </p>
                     </div>
 
-                    <form id="dedicatedCheckoutForm" method="post" style="display: grid; gap: 16px;">
+                    <form id="dedicatedCheckoutForm" method="post" style="display: grid; gap: 14px;">
                         
                         <input type="hidden" id="checkoutHiddenProductId" name="product_id" value="<?php echo esc_attr( $prod_id ); ?>" />
 
                         <div>
-                            <label for="pageBuyerName" style="display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 6px; color: #1e293b;">
+                            <label for="pageBuyerName" class="form-label">
                                 Nama Lengkap <span style="color: #ef4444;">*</span>
                             </label>
-                            <input type="text" id="pageBuyerName" name="name" required placeholder="Contoh: Budi Santoso" 
-                                style="width: 100%; padding: 12px 14px; font-size: 0.95rem; font-weight: 600; border: 2px solid #1e293b; border-radius: 10px; outline: none; background: #fff;" />
+                            <input type="text" id="pageBuyerName" name="name" required placeholder="Contoh: Budi Santoso" class="form-input" />
                         </div>
 
                         <div>
-                            <label for="pageBuyerEmail" style="display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 6px; color: #1e293b;">
+                            <label for="pageBuyerEmail" class="form-label">
                                 Alamat Email Aktif <span style="color: #ef4444;">*</span>
                             </label>
-                            <input type="email" id="pageBuyerEmail" name="email" required placeholder="email.anda@gmail.com" 
-                                style="width: 100%; padding: 12px 14px; font-size: 0.95rem; font-weight: 600; border: 2px solid #1e293b; border-radius: 10px; outline: none; background: #fff;" />
-                            <small style="font-size: 0.78rem; color: #64748b; margin-top: 4px; display: block;">Pastikan email benar &amp; aktif untuk menerima file/link.</small>
+                            <input type="email" id="pageBuyerEmail" name="email" required placeholder="email.anda@gmail.com" class="form-input" />
+                            <small style="font-size: 0.775rem; color: var(--text-muted); margin-top: 4px; display: block;">Pastikan email benar &amp; aktif untuk menerima tautan file.</small>
                         </div>
 
                         <div>
-                            <label for="pageBuyerPhone" style="display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 6px; color: #1e293b;">
-                                Nomor WhatsApp <span style="font-size: 0.8rem; font-weight: normal; color: #64748b;">(Disarankan)</span>
+                            <label for="pageBuyerPhone" class="form-label">
+                                Nomor WhatsApp <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);">(Disarankan)</span>
                             </label>
-                            <input type="tel" id="pageBuyerPhone" name="phone" placeholder="08xxxxxxxxxx" 
-                                style="width: 100%; padding: 12px 14px; font-size: 0.95rem; font-weight: 600; border: 2px solid #1e293b; border-radius: 10px; outline: none; background: #fff;" />
+                            <input type="tel" id="pageBuyerPhone" name="phone" placeholder="08xxxxxxxxxx" class="form-input" />
                         </div>
 
                         <!-- Midtrans Accepted Methods Banner -->
-                        <div style="background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 10px; padding: 12px; margin-top: 4px;">
-                            <span style="font-size: 0.78rem; font-weight: 700; color: #475569; display: block; margin-bottom: 6px; text-transform: uppercase;">Metode Pembayaran Yang Didukung:</span>
-                            <div style="font-size: 0.85rem; font-weight: 700; color: #1e293b; display: flex; flex-wrap: wrap; gap: 8px;">
-                                <span style="background: #e2e8f0; padding: 3px 8px; border-radius: 6px;">QRIS (All E-Wallet)</span>
-                                <span style="background: #e2e8f0; padding: 3px 8px; border-radius: 6px;">GoPay</span>
-                                <span style="background: #e2e8f0; padding: 3px 8px; border-radius: 6px;">ShopeePay</span>
-                                <span style="background: #e2e8f0; padding: 3px 8px; border-radius: 6px;">BCA / Mandiri / BNI / BRI VA</span>
-                                <span style="background: #e2e8f0; padding: 3px 8px; border-radius: 6px;">Kartu Kredit</span>
+                        <div style="background: var(--bg-canvas); border: 1px solid var(--border-main); border-radius: var(--radius-sm); padding: 12px; margin-top: 4px;">
+                            <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px; font-family: var(--font-mono); text-transform: uppercase;">Metode Pembayaran Yang Didukung:</span>
+                            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                <span class="badge-item">QRIS</span>
+                                <span class="badge-item">GoPay</span>
+                                <span class="badge-item">ShopeePay</span>
+                                <span class="badge-item">BCA / Mandiri / BNI / BRI VA</span>
+                                <span class="badge-item">Kartu Kredit</span>
                             </div>
                         </div>
 
                         <!-- Notice Container -->
-                        <div id="pageCheckoutNotice" style="display: none; padding: 12px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; border: 2px solid currentColor; margin-top: 4px;"></div>
+                        <div id="pageCheckoutNotice" style="display: none; padding: 12px; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.85rem; border: 1px solid currentColor; margin-top: 4px;"></div>
 
                         <!-- Tombol Bayar Midtrans Utama -->
-                        <button type="submit" id="btnPagePayMidtrans" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 1.15rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; border-radius: 12px;">
+                        <button type="submit" id="btnPagePayMidtrans" class="btn btn-primary btn-lg btn-block" style="margin-top: 4px;">
                             <span>Bayar Sekarang (Midtrans Snap)</span>
-                            <?php echo digitalproduk_get_icon( 'arrow-right', '', 20 ); ?>
+                            <?php echo digitalproduk_get_icon( 'arrow-right', '', 18 ); ?>
                         </button>
 
                         <!-- Fallback Direct Payment Button (Jika Popup Terblokir) -->
-                        <a id="btnFallbackRedirect" href="#" target="_blank" style="display: none; text-align: center; padding: 12px; background: #0284c7; color: #fff; font-weight: 800; border-radius: 10px; text-decoration: none; border: 2px solid #1e293b;">
+                        <a id="btnFallbackRedirect" href="#" target="_blank" class="btn btn-primary btn-block" style="display: none; text-align: center;">
                             Buka Halaman Pembayaran Midtrans &rarr;
                         </a>
 
                         <div style="text-align: center; margin: 10px 0 0; position: relative;">
-                            <span style="background: #fff; padding: 0 10px; color: #94a3b8; font-size: 0.8rem; font-weight: 700;">ATAU PESAN MANUAL</span>
-                            <div style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #e2e8f0; z-index: -1;"></div>
+                            <span style="background: #ffffff; padding: 0 10px; color: var(--text-muted); font-size: 0.775rem; font-weight: 600; font-family: var(--font-mono);">ATAU KONSULTASI ADMIN</span>
+                            <div style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: var(--border-main); z-index: -1;"></div>
                         </div>
 
                         <!-- Fallback WhatsApp Direct -->
-                        <a id="btnPageWhatsApp" href="https://wa.me/6281234567890?text=<?php echo urlencode( 'Halo DigitalProduk, saya ingin memesan: ' . $prod_title . ' seharga ' . digitalproduk_price( $prod_sale_price ) ); ?>" 
-                           target="_blank" rel="noopener" class="btn btn-secondary" style="width: 100%; padding: 12px; font-size: 0.95rem; font-weight: 700; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; border-radius: 10px;">
-                            <?php echo digitalproduk_get_icon( 'message-circle', '', 18 ); ?>
+                        <a id="btnPageWhatsApp" href="https://wa.me/6281234567890?text=<?php echo urlencode( 'Halo Indotech, saya ingin memesan: ' . $prod_title . ' seharga ' . digitalproduk_price( $prod_sale_price ) ); ?>" 
+                           target="_blank" rel="noopener" class="btn btn-secondary btn-block">
+                            <?php echo digitalproduk_get_icon( 'message-circle', '', 16 ); ?>
                             <span>Pesan via WhatsApp Admin</span>
                         </a>
 
@@ -283,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 imgEl.alt = p.title;
 
                 const waPhone = '6281234567890';
-                const msg = encodeURIComponent(`Halo DigitalProduk, saya ingin memesan:\nProduk: ${p.title}\nHarga: ${p.price_fmt}\nMohon info pembayaran.`);
+                const msg = encodeURIComponent(`Halo Indotech, saya ingin memesan:\nProduk: ${p.title}\nHarga: ${p.price_fmt}\nMohon info pembayaran.`);
                 waBtn.href = `https://wa.me/${waPhone}?text=${msg}`;
             }
         });
@@ -410,7 +408,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     });
                 } else if (redirectUrl) {
-                    // Jika script snap.js terhalang blocker/adblock, redirect langsung ke Midtrans Hosted Payment page
                     window.location.href = redirectUrl;
                 } else {
                     notice.style.display = 'block';
@@ -436,4 +433,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <?php
 get_footer();
-

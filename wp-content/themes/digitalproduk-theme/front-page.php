@@ -1,6 +1,7 @@
 <?php
 /**
  * The template for displaying the Homepage Landing Page
+ * Indotech Technical Commerce Design System
  *
  * @package DigitalProduk
  */
@@ -27,269 +28,103 @@ $categories = get_terms([
 
 <!-- 1. Hero Section -->
 <section class="hero-section">
-    <div class="hero-glow"></div>
-    <div class="container hero-container">
-        <div class="hero-content">
-            <div class="hero-pill">
-                <span class="pill-icon-wrap"><?php echo digitalproduk_get_icon( 'sparkles', 'pill-sparkle', 14 ); ?></span>
-                <span>PLATFORM ASET DIGITAL RESMI UNTUK DEVELOPER &amp; KREATOR</span>
-            </div>
-            <h1 class="hero-title">
-                Bangun Proyek Digital &amp; Klien 10x Lebih Cepat <span class="highlight-playful">Tanpa Mulai Dari Nol</span>
-            </h1>
-            <p class="hero-desc">
-                Hemat ratusan jam kerja dengan koleksi source code web apps, UI/UX template Figma, Notion workspace, dan blueprint bisnis teruji. Siap pakai, berlisensi komersial bebas, dengan akses instan pasca bayar.
-            </p>
-
-            <!-- Store Quick Search -->
-            <form action="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" method="get" class="hero-store-search">
-                <input type="text" name="s" placeholder="Cari source code, template Figma, Notion OS, e-book..." class="hero-search-input" />
-                <button type="submit" class="btn btn-primary">
-                    <span>Temukan Aset</span>
-                    <?php echo digitalproduk_get_icon( 'search', 'btn-icon', 16 ); ?>
-                </button>
-            </form>
-
-            <div class="hero-cta">
-                <a href="#katalog" class="btn btn-primary btn-lg">
-                    <span>Jelajahi Semua Produk</span>
-                    <?php echo digitalproduk_get_icon( 'arrow-right', 'btn-icon-right', 18 ); ?>
-                </a>
-                <a href="#kategori-section" class="btn btn-secondary btn-lg">
-                    <span>Pilih Kategori Aset</span>
-                    <?php echo digitalproduk_get_icon( 'layers', 'btn-icon-right', 18 ); ?>
-                </a>
-            </div>
-
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-icon-wrap stat-cyan">
-                        <?php echo digitalproduk_get_icon( 'download', '', 20 ); ?>
-                    </span>
-                    <div>
-                        <h3>Akses Instan 24 Jam</h3>
-                        <p>Link folder Google Drive aktif otomatis</p>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-icon-wrap stat-purple">
-                        <?php echo digitalproduk_get_icon( 'briefcase', '', 20 ); ?>
-                    </span>
-                    <div>
-                        <h3>Lisensi Komersial</h3>
-                        <p>Bebas dipakai untuk proyek klien tanpa royalti</p>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-icon-wrap stat-green">
-                        <?php echo digitalproduk_get_icon( 'shield-check', '', 20 ); ?>
-                    </span>
-                    <div>
-                        <h3>Midtrans Resmi</h3>
-                        <p>QRIS, Bank Transfer, &amp; E-Wallet 100% aman</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="hero-visual">
-            <div class="hero-card-stack">
-                <!-- Playful Decorative Sunburst & Rays -->
-                <div class="hero-sunburst"></div>
-
-                <!-- Floating Badges with Lucide Icons -->
-                <div class="floating-badge badge-top-left float-anim-1">
-                    <span class="floating-badge-inner">
-                        <?php echo digitalproduk_get_icon( 'zap', 'badge-icon', 14 ); ?>
-                        <span>Akses Instan 24 Jam</span>
-                    </span>
-                </div>
-                <div class="floating-badge badge-bottom-right float-anim-2">
-                    <span class="floating-badge-inner">
-                        <?php echo digitalproduk_get_icon( 'sparkles', 'badge-icon', 14 ); ?>
-                        <span>6 Bonus Aset Gratis</span>
-                    </span>
-                </div>
-                <div class="floating-mini-sticker sticker-umkm float-anim-3">
-                    <span class="floating-badge-inner">
-                        <?php echo digitalproduk_get_icon( 'package', 'badge-icon', 14 ); ?>
-                        <span>Katalog Siap Pakai</span>
-                    </span>
-                </div>
-
-                <div class="hero-image-frame tilt-card">
-                    <div class="frame-pin-top"></div>
-                    <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/hero-bundle.png' ); ?>" 
-                         alt="Indotech Digital Store Showcase Bundle" 
-                         class="hero-bundle-img" />
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 1.2 Categories Shelves Section (Multi-Category Portal) -->
-<section id="kategori-section" class="section categories-shelf-section">
     <div class="container">
-        <div class="section-header">
-            <div class="playful-sticker">
-                <?php echo digitalproduk_get_icon( 'layers', '', 14 ); ?>
-                <span>KLASIFIKASI ASET TERSTRUKTUR</span>
-            </div>
-            <h2 class="section-title">Pilih Kategori Sesuai Kebutuhan Proyek Anda</h2>
-            <p class="section-desc">Setiap aset dikurasi dengan standar industri, arsitektur modular, dan dokumentasi lengkap agar langsung siap Anda manfaatkan.</p>
-        </div>
+        <div class="hero-grid">
+            <div class="hero-content">
+                <div class="hero-pill">
+                    <?php echo digitalproduk_get_icon( 'zap', '', 14 ); ?>
+                    <span>PLATFORM ASET DIGITAL RESMI UNTUK DEVELOPER &amp; KREATOR</span>
+                </div>
+                <h1 class="hero-title">
+                    Katalog Aset Digital Siap Pakai untuk <span>Developer dan Kreator</span>
+                </h1>
+                <p class="hero-desc">
+                    Temukan source code web apps siap produksi, plugin native WordPress, sistem desain Figma, dan Notion workspace teruji. Akses unduh langsung aktif detik itu juga pasca verifikasi otomatis Midtrans (QRIS &amp; Virtual Account).
+                </p>
 
-        <div class="categories-shelf-grid">
-            <?php if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) : ?>
-                <?php foreach ( $categories as $idx => $cat ) : 
-                    $meta = digitalproduk_get_category_meta( $cat->slug );
-                    $tilt_class = ( $idx % 2 === 0 ) ? 'tilt-left' : 'tilt-right';
-                ?>
-                    <a href="<?php echo esc_url( get_term_link( $cat ) ); ?>" class="cat-shelf-card <?php echo esc_attr( $meta['color_class'] . ' ' . $tilt_class ); ?>">
-                        <div class="card-tape"></div>
-                        <div class="cat-shelf-header">
-                            <span class="cat-shelf-icon-wrap">
-                                <?php echo digitalproduk_get_icon( $meta['icon'], 'cat-svg-icon', 22 ); ?>
-                            </span>
-                            <span class="cat-shelf-badge"><?php echo esc_html( $meta['badge'] ); ?></span>
+                <!-- Store Quick Search -->
+                <form action="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" method="get" class="hero-store-search">
+                    <input type="text" name="s" placeholder="Cari source code, template Figma, Notion OS, e-book..." class="hero-search-input" />
+                    <button type="submit" class="btn btn-primary">
+                        <span>Cari Aset</span>
+                        <?php echo digitalproduk_get_icon( 'search', 'btn-icon', 15 ); ?>
+                    </button>
+                </form>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-icon-wrap">
+                            <?php echo digitalproduk_get_icon( 'download', '', 18 ); ?>
+                        </span>
+                        <div>
+                            <h3>Akses Instan Otomatis</h3>
+                            <p>Direct download link Google Drive aktif otomatis</p>
                         </div>
-                        <h3 class="cat-shelf-title"><?php echo esc_html( $cat->name ); ?></h3>
-                        <p class="cat-shelf-desc"><?php echo esc_html( $meta['desc'] ); ?></p>
-                        <div class="cat-shelf-footer">
-                            <span class="cat-shelf-count">
-                                <?php echo digitalproduk_get_icon( 'package', 'count-icon', 13 ); ?>
-                                <span><?php echo esc_html( $cat->count ); ?> Produk Siap Pakai</span>
-                            </span>
-                            <span class="cat-shelf-btn">
-                                <span>Buka Kategori</span>
-                                <?php echo digitalproduk_get_icon( 'arrow-right', 'btn-icon-xs', 13 ); ?>
-                            </span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon-wrap">
+                            <?php echo digitalproduk_get_icon( 'briefcase', '', 18 ); ?>
+                        </span>
+                        <div>
+                            <h3>Lisensi Komersial</h3>
+                            <p>Bebas dipakai untuk proyek klien tanpa royalti tambahan</p>
                         </div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon-wrap">
+                            <?php echo digitalproduk_get_icon( 'shield-check', '', 18 ); ?>
+                        </span>
+                        <div>
+                            <h3>Midtrans Snap API</h3>
+                            <p>QRIS &amp; Virtual Account terverifikasi realtime</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Right Visual: Technical Architecture Spec Card -->
+            <div class="hero-technical-card">
+                <div class="tech-card-header">
+                    <span class="tech-card-badge">INDOTECH ARSITEKTUR</span>
+                    <span class="tech-card-status">
+                        <span class="status-dot"></span>
+                        <span>Gateway Aktif</span>
+                    </span>
+                </div>
+                <div style="margin-bottom: 1.25rem;">
+                    <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.35rem;">
+                        Spesifikasi Teknis &amp; Keamanan
+                    </h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                        Standar aset digital yang dikurasi langsung oleh engineer profesional dengan arsitektur modular.
+                    </p>
+                </div>
+                <div class="tech-spec-rows">
+                    <div class="tech-spec-row">
+                        <span class="tech-spec-label">Protokol Delivery</span>
+                        <span class="tech-spec-val">Direct HTTPS Download</span>
+                    </div>
+                    <div class="tech-spec-row">
+                        <span class="tech-spec-label">Payment Gateway</span>
+                        <span class="tech-spec-val">Midtrans Snap Webhook</span>
+                    </div>
+                    <div class="tech-spec-row">
+                        <span class="tech-spec-label">Format Source</span>
+                        <span class="tech-spec-val">100% Unencrypted / Clean</span>
+                    </div>
+                    <div class="tech-spec-row">
+                        <span class="tech-spec-label">Kompatibilitas</span>
+                        <span class="tech-spec-val">PHP 8.2+ / Node 20+ / Figma 5</span>
+                    </div>
+                    <div class="tech-spec-row">
+                        <span class="tech-spec-label">Lisensi</span>
+                        <span class="tech-spec-val" style="color: var(--status-success);">Komersial Lengkap</span>
+                    </div>
+                </div>
+                <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
+                    <a href="#katalog" class="btn btn-secondary btn-sm" style="flex: 1; text-align: center;">
+                        Buka Katalog Lengkap
                     </a>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </div>
-    </div>
-</section>
-
-<!-- 1.5 Playful Bonus Showcase Section -->
-<section id="bonus-section" class="section bonus-section">
-    <div class="container">
-        <div class="section-header">
-            <div class="playful-sticker">
-                <?php echo digitalproduk_get_icon( 'sparkles', '', 14 ); ?>
-                <span>PAKET BUNDLE EKSKLUSIF</span>
-            </div>
-            <h2 class="section-title">6 Bonus Aset Senilai Total Rp 1.500.000 Gratis</h2>
-            <p class="section-desc">Dapatkan paket amunisi akselerasi digital tambahan tanpa biaya ekstra untuk setiap pembelian paket produk kami hari ini:</p>
-        </div>
-
-        <div class="bonus-grid">
-            <div class="bonus-card card-cyan tilt-left">
-                <div class="card-tape"></div>
-                <div class="bonus-header-flex">
-                    <span class="bonus-tag">BONUS 01</span>
-                    <span class="bonus-icon-wrap bg-cyan-soft">
-                        <?php echo digitalproduk_get_icon( 'bot', 'bonus-svg', 20 ); ?>
-                    </span>
-                </div>
-                <h3>100+ Prompt AI Copywriting</h3>
-                <p>Formula prompt ChatGPT &amp; Claude teruji untuk membuat promosi produk, copywriting landing page, dan ide konten harian dengan cepat.</p>
-                <div class="mini-worksheet-preview preview-cyan">
-                    <div class="mockup-row"><span class="mockup-line long"></span><span class="mockup-check"><?php echo digitalproduk_get_icon( 'check', '', 12 ); ?></span></div>
-                    <div class="mockup-row"><span class="mockup-line med"></span><span class="mockup-check"><?php echo digitalproduk_get_icon( 'check', '', 12 ); ?></span></div>
-                    <div class="mockup-row"><span class="mockup-line short"></span><span class="mockup-check"><?php echo digitalproduk_get_icon( 'check', '', 12 ); ?></span></div>
-                </div>
-            </div>
-
-            <div class="bonus-card card-pink tilt-right">
-                <div class="card-tape"></div>
-                <div class="bonus-header-flex">
-                    <span class="bonus-tag">BONUS 02</span>
-                    <span class="bonus-icon-wrap bg-pink-soft">
-                        <?php echo digitalproduk_get_icon( 'target', 'bonus-svg', 20 ); ?>
-                    </span>
-                </div>
-                <h3>100 Hook Viral Media Sosial</h3>
-                <p>Formula kalimat pembuka video Reels dan TikTok dengan conversion rate terbukti untuk menjaring ribuan calon pembeli potensial.</p>
-                <div class="mini-worksheet-preview preview-pink">
-                    <div class="mockup-row"><span class="mockup-line long"></span><span class="mockup-check"><?php echo digitalproduk_get_icon( 'check', '', 12 ); ?></span></div>
-                    <div class="mockup-row"><span class="mockup-line med"></span><span class="mockup-check"><?php echo digitalproduk_get_icon( 'check', '', 12 ); ?></span></div>
-                    <div class="mockup-row"><span class="mockup-line short"></span><span class="mockup-check"><?php echo digitalproduk_get_icon( 'check', '', 12 ); ?></span></div>
-                </div>
-            </div>
-
-            <div class="bonus-card card-yellow tilt-left">
-                <div class="card-tape"></div>
-                <div class="bonus-header-flex">
-                    <span class="bonus-tag">BONUS 03</span>
-                    <span class="bonus-icon-wrap bg-yellow-soft">
-                        <?php echo digitalproduk_get_icon( 'message-circle', 'bonus-svg', 20 ); ?>
-                    </span>
-                </div>
-                <h3>50 Formula CTA Konversi Tinggi</h3>
-                <p>Koleksi copywriting tombol dan penutup penawaran landing page yang memicu aksi beli secara spontan tanpa kesan memaksa.</p>
-                <div class="mini-worksheet-preview preview-yellow">
-                    <div class="mockup-row"><span class="mockup-line long"></span><span class="mockup-check"><?php echo digitalproduk_get_icon( 'check', '', 12 ); ?></span></div>
-                    <div class="mockup-row"><span class="mockup-line med"></span><span class="mockup-check"><?php echo digitalproduk_get_icon( 'check', '', 12 ); ?></span></div>
-                    <div class="mockup-row"><span class="mockup-line short"></span><span class="mockup-check"><?php echo digitalproduk_get_icon( 'check', '', 12 ); ?></span></div>
-                </div>
-            </div>
-
-            <div class="bonus-card card-purple tilt-right">
-                <div class="card-tape"></div>
-                <div class="bonus-header-flex">
-                    <span class="bonus-tag">BONUS 04</span>
-                    <span class="bonus-icon-wrap bg-purple-soft">
-                        <?php echo digitalproduk_get_icon( 'calendar', 'bonus-svg', 20 ); ?>
-                    </span>
-                </div>
-                <h3>Kalender Konten 30 Hari Eksekusi</h3>
-                <p>Panduan distribusi konten 30 hari penuh agar brand Anda tetap konsisten hadir di depan audiens tanpa pusing mencari ide.</p>
-                <div class="mini-worksheet-preview preview-purple">
-                    <div class="mockup-calendar-grid">
-                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bonus-card card-teal tilt-left">
-                <div class="card-tape"></div>
-                <div class="bonus-header-flex">
-                    <span class="bonus-tag">BONUS 05</span>
-                    <span class="bonus-icon-wrap bg-teal-soft">
-                        <?php echo digitalproduk_get_icon( 'smartphone', 'bonus-svg', 20 ); ?>
-                    </span>
-                </div>
-                <h3>30 Skrip WhatsApp Closing</h3>
-                <p>Alur percakapan taktis customer service untuk menjawab pertanyaan ragu pembeli, menangani komparasi harga, dan follow up.</p>
-                <div class="mini-worksheet-preview preview-teal">
-                    <div class="mockup-row"><span class="mockup-line long"></span><span class="mockup-check"><?php echo digitalproduk_get_icon( 'check', '', 12 ); ?></span></div>
-                    <div class="mockup-row"><span class="mockup-line med"></span><span class="mockup-check"><?php echo digitalproduk_get_icon( 'check', '', 12 ); ?></span></div>
-                    <div class="mockup-row"><span class="mockup-line short"></span><span class="mockup-check"><?php echo digitalproduk_get_icon( 'check', '', 12 ); ?></span></div>
-                </div>
-            </div>
-
-            <div class="bonus-card card-blue tilt-right">
-                <div class="card-tape"></div>
-                <div class="bonus-header-flex">
-                    <span class="bonus-tag">BONUS 06</span>
-                    <span class="bonus-icon-wrap bg-blue-soft">
-                        <?php echo digitalproduk_get_icon( 'settings', 'bonus-svg', 20 ); ?>
-                    </span>
-                </div>
-                <h3>Cheatsheet Integrasi Otomasi AI</h3>
-                <p>Diagram alur kerja praktis mengawinkan tools AI ke proses operasional harian untuk memangkas jam kerja berulang hingga 80%.</p>
-                <div class="mini-worksheet-preview preview-blue">
-                    <div class="mockup-flow-chart">
-                        <span class="flow-box">RISET</span>
-                        <span class="flow-arrow">&rarr;</span>
-                        <span class="flow-box">AI TOOLS</span>
-                        <span class="flow-arrow">&rarr;</span>
-                        <span class="flow-box">HASIL</span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -300,30 +135,29 @@ $categories = get_terms([
 <section id="katalog" class="section">
     <div class="container">
         <div class="section-header">
-            <div class="playful-sticker">
-                <?php echo digitalproduk_get_icon( 'package', '', 14 ); ?>
-                <span>ASET TERBAIK SIAP AKSES</span>
-            </div>
-            <h2 class="section-title">Katalog Produk Pilihan</h2>
-            <p class="section-desc">Pilih produk digital berkualitas tinggi untuk mempercepat peluncuran proyek dan bisnis Anda.</p>
+            <span class="section-eyebrow">ASET PILIHAN SIAP AKSES</span>
+            <h2 class="section-title">Katalog Produk Digital Terbaru</h2>
+            <p class="section-desc">Pilih produk digital terverifikasi untuk mempercepat peluncuran proyek dan bisnis Anda tanpa memulai dari nol.</p>
         </div>
 
-        <!-- Filter Kategori -->
-        <div class="catalog-filters">
-            <button class="filter-btn active" data-filter="all">
-                <?php echo digitalproduk_get_icon( 'layers', 'filter-icon-svg', 14 ); ?>
-                <span>Semua Kategori</span>
-            </button>
-            <?php if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) : ?>
-                <?php foreach ( $categories as $cat ) : 
-                    $cat_meta = digitalproduk_get_category_meta( $cat->slug );
-                ?>
-                    <button class="filter-btn" data-filter="<?php echo esc_attr( $cat->slug ); ?>">
-                        <?php echo digitalproduk_get_icon( $cat_meta['icon'], 'filter-icon-svg', 14 ); ?>
-                        <span><?php echo esc_html( $cat->name ); ?></span>
-                    </button>
-                <?php endforeach; ?>
-            <?php endif; ?>
+        <!-- Catalog Controls (Search & Filters) -->
+        <div class="catalog-controls">
+            <div class="category-filter-list" role="tablist" aria-label="Filter Kategori Produk">
+                <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">
+                    <?php echo digitalproduk_get_icon( 'layers', 'filter-icon-svg', 14 ); ?>
+                    <span>Semua Kategori</span>
+                </button>
+                <?php if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) : ?>
+                    <?php foreach ( $categories as $cat ) : 
+                        $cat_meta = digitalproduk_get_category_meta( $cat->slug );
+                    ?>
+                        <button class="filter-btn" data-filter="<?php echo esc_attr( $cat->slug ); ?>" role="tab" aria-selected="false">
+                            <?php echo digitalproduk_get_icon( $cat_meta['icon'], 'filter-icon-svg', 14 ); ?>
+                            <span><?php echo esc_html( $cat->name ); ?></span>
+                        </button>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
         </div>
 
         <!-- Grid Produk -->
@@ -337,7 +171,7 @@ $categories = get_terms([
                 wp_reset_postdata();
             else :
                 ?>
-                <p style="text-align: center; grid-column: 1 / -1; color: var(--color-body-text);">Belum ada produk digital yang ditambahkan.</p>
+                <p style="text-align: center; grid-column: 1 / -1; color: var(--text-secondary); padding: 3rem 0;">Belum ada produk digital yang ditambahkan.</p>
                 <?php
             endif;
             ?>
@@ -345,192 +179,155 @@ $categories = get_terms([
     </div>
 </section>
 
-<!-- 3. Keunggulan Section -->
-<section id="keunggulan" class="section" style="background: var(--color-surface-white);">
+<!-- 3. Alur Pembelian & Pengiriman Otomatis (Workflow) -->
+<section id="cara-kerja" class="section" style="background: #ffffff; border-top: 1px solid var(--border-main); border-bottom: 1px solid var(--border-main);">
+    <div class="container">
+        <div class="workflow-header">
+            <span class="section-eyebrow">INTEGRASI TRANSAKSI RESMI</span>
+            <h2 class="section-title">Alur Pembelian &amp; Download Otomatis</h2>
+            <p class="section-desc">Proses transaksi tanpa perantara manual. Server memverifikasi pembayaran dan merilis akses secara instan 24/7.</p>
+        </div>
+
+        <div class="steps-grid">
+            <div class="step-card">
+                <span class="step-number">LANGKAH 01</span>
+                <h3>Pilih Aset &amp; Lisensi</h3>
+                <p>Telusuri katalog source code web apps, plugin, atau sistem desain Figma yang sesuai dengan kebutuhan proyek klien Anda.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-number">LANGKAH 02</span>
+                <h3>Bayar via Midtrans Snap</h3>
+                <p>Scan QRIS atau transfer via Virtual Account semua bank. Sistem Midtrans memverifikasi transaksi otomatis dalam hitungan detik.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-number">LANGKAH 03</span>
+                <h3>Download Langsung Aktif</h3>
+                <p>Tautan direct download Google Drive langsung terbuka di halaman sukses dan terkirim otomatis ke email Anda tanpa antre.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. Categories Shelf Section (Multi-Category Portal) -->
+<section id="kategori-section" class="section">
     <div class="container">
         <div class="section-header">
-            <div class="playful-sticker">
-                <?php echo digitalproduk_get_icon( 'shield-check', '', 14 ); ?>
-                <span>STANDAR KUALITAS KAMI</span>
-            </div>
-            <h2 class="section-title">Kenapa Memilih Aset Digital Kami?</h2>
-            <p class="section-desc">Kami memastikan setiap rupiah yang Anda investasikan memberikan efisiensi waktu dan hasil terbaik untuk karier maupun bisnis Anda.</p>
+            <span class="section-eyebrow">KLASIFIKASI TEKNOLOGI</span>
+            <h2 class="section-title">Kategori Aset Terstruktur</h2>
+            <p class="section-desc">Setiap aset dikurasi dengan arsitektur modular dan dokumentasi teknis lengkap agar langsung siap digunakan.</p>
+        </div>
+
+        <div class="categories-shelf-grid">
+            <?php if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) : ?>
+                <?php foreach ( $categories as $cat ) : 
+                    $meta = digitalproduk_get_category_meta( $cat->slug );
+                ?>
+                    <a href="<?php echo esc_url( get_term_link( $cat ) ); ?>" class="cat-shelf-card">
+                        <div class="cat-shelf-header">
+                            <span class="cat-shelf-icon-wrap">
+                                <?php echo digitalproduk_get_icon( $meta['icon'], 'cat-svg-icon', 20 ); ?>
+                            </span>
+                            <span class="cat-shelf-badge"><?php echo esc_html( $meta['badge'] ); ?></span>
+                        </div>
+                        <h3 class="cat-shelf-title"><?php echo esc_html( $cat->name ); ?></h3>
+                        <p class="cat-shelf-desc"><?php echo esc_html( $meta['desc'] ); ?></p>
+                        <div class="cat-shelf-footer">
+                            <span class="cat-shelf-count">
+                                <?php echo digitalproduk_get_icon( 'package', 'count-icon', 13 ); ?>
+                                <span><?php echo esc_html( $cat->count ); ?> Produk Siap Pakai</span>
+                            </span>
+                            <span class="cat-shelf-btn">
+                                <span>Buka</span>
+                                <?php echo digitalproduk_get_icon( 'arrow-right', 'btn-icon-xs', 13 ); ?>
+                            </span>
+                        </div>
+                    </a>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
+
+<!-- 5. Standar Kualitas Section -->
+<section id="keunggulan" class="section" style="background: #ffffff; border-top: 1px solid var(--border-main); border-bottom: 1px solid var(--border-main);">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-eyebrow">STANDAR REKAYASA KAMI</span>
+            <h2 class="section-title">Kenapa Memilih Aset Digital Indotech?</h2>
+            <p class="section-desc">Kami memastikan setiap baris kode dan komponen antarmuka siap produksi untuk memangkas waktu pengerjaan proyek Anda.</p>
         </div>
 
         <div class="features-grid">
             <div class="feature-box">
-                <div class="feature-icon-wrapper bg-yellow">
-                    <?php echo digitalproduk_get_icon( 'zap', 'feature-svg', 26 ); ?>
+                <div class="feature-icon-wrapper">
+                    <?php echo digitalproduk_get_icon( 'zap', 'feature-svg', 22 ); ?>
                 </div>
                 <h3>Akses Instan &amp; Otomatis</h3>
-                <p>Setelah pembayaran terkonfirmasi oleh sistem Midtrans, link download Google Drive langsung aktif detik itu juga ke email Anda tanpa antre.</p>
+                <p>Setelah pembayaran terkonfirmasi otomatis oleh Midtrans, link download Google Drive langsung aktif detik itu juga tanpa verifikasi manual.</p>
             </div>
             <div class="feature-box">
-                <div class="feature-icon-wrapper bg-cyan">
-                    <?php echo digitalproduk_get_icon( 'refresh-cw', 'feature-svg', 26 ); ?>
+                <div class="feature-icon-wrapper">
+                    <?php echo digitalproduk_get_icon( 'refresh-cw', 'feature-svg', 22 ); ?>
                 </div>
-                <h3>Pembaruan Versi Gratis Selamanya</h3>
-                <p>Dapatkan update versi terbaru, penambahan fitur anyar, serta perbaikan berkala seumur hidup tanpa pungutan biaya langganan bulanan.</p>
+                <h3>Pembaruan Versi Gratis</h3>
+                <p>Dapatkan pembaruan rilis berkala, perbaikan bug, dan adaptasi dependensi versi terbaru tanpa biaya langganan bulanan.</p>
             </div>
             <div class="feature-box">
-                <div class="feature-icon-wrapper bg-pink">
-                    <?php echo digitalproduk_get_icon( 'briefcase', 'feature-svg', 26 ); ?>
+                <div class="feature-icon-wrapper">
+                    <?php echo digitalproduk_get_icon( 'briefcase', 'feature-svg', 22 ); ?>
                 </div>
-                <h3>Lisensi Komersial Lengkap</h3>
-                <p>Bebas Anda modifikasi dan gunakan untuk proyek pribadi, startup mandiri, maupun pekerjaan klien komersial tanpa batas royalti.</p>
+                <h3>Lisensi Komersial Bebas</h3>
+                <p>Bebas Anda modifikasi dan integrasikan ke proyek klien, startup mandiri, maupun portofolio profesional tanpa batasan royalti.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon-wrapper">
+                    <?php echo digitalproduk_get_icon( 'shield-check', 'feature-svg', 22 ); ?>
+                </div>
+                <h3>Source Code 100% Bersih</h3>
+                <p>Kode sumber rapi tanpa enkripsi ionCube atau obfuscation. Mudah diaudit, disesuaikan, dan diperluas sesuai kebutuhan bisnis.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- 4. Testimoni Pelanggan -->
-<section id="testimoni" class="section">
+<!-- 6. FAQ Section -->
+<section id="faq" class="section">
     <div class="container">
         <div class="section-header">
-            <div class="playful-sticker">
-                <?php echo digitalproduk_get_icon( 'star', '', 14 ); ?>
-                <span>ULASAN PEMBELI</span>
-            </div>
-            <h2 class="section-title">Cerita Sukses Dari Pengguna Nyata</h2>
-            <p class="section-desc">Pengembang aplikasi, desainer produk, dan praktisi digital telah membuktikan efisiensi kerja mereka bersama kami.</p>
-        </div>
-
-        <div class="testimonials-grid">
-            <div class="testi-card">
-                <div>
-                    <div class="testi-rating-stars">
-                        <?php for ( $s = 0; $s < 5; $s++ ) : ?>
-                            <?php echo digitalproduk_get_icon( 'star', 'star-gold', 15 ); ?>
-                        <?php endfor; ?>
-                    </div>
-                    <p class="testi-text">&ldquo;Source code dan UI kit-nya benar-benar rapi dan modular. Struktur kodenya terstruktur dengan baik sehingga memangkas waktu pengerjaan proyek klien hingga 2 minggu penuh.&rdquo;</p>
-                </div>
-                <div class="testi-author">
-                    <div class="author-avatar bg-cyan">RD</div>
-                    <div class="author-info">
-                        <h4>Rian Darmawan</h4>
-                        <p>Senior Fullstack Developer</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testi-card">
-                <div>
-                    <div class="testi-rating-stars">
-                        <?php for ( $s = 0; $s < 5; $s++ ) : ?>
-                            <?php echo digitalproduk_get_icon( 'star', 'star-gold', 15 ); ?>
-                        <?php endfor; ?>
-                    </div>
-                    <p class="testi-text">&ldquo;E-book dan blueprint Notion-nya sangat aplikatif, tanpa banyak teori kosong. Langsung bisa dipraktikkan untuk merapikan alur kerja proyek freelance saya.&rdquo;</p>
-                </div>
-                <div class="testi-author">
-                    <div class="author-avatar bg-pink">SN</div>
-                    <div class="author-info">
-                        <h4>Siti Nurhaliza</h4>
-                        <p>Digital Creator &amp; UI Consultant</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testi-card">
-                <div>
-                    <div class="testi-rating-stars">
-                        <?php for ( $s = 0; $s < 5; $s++ ) : ?>
-                            <?php echo digitalproduk_get_icon( 'star', 'star-gold', 15 ); ?>
-                        <?php endfor; ?>
-                    </div>
-                    <p class="testi-text">&ldquo;Tim bantuan sangat responsif saat saya menanyakan dokumentasi setup environment. Dokumentasi jelas dan file langsung siap digunakan seketika.&rdquo;</p>
-                </div>
-                <div class="testi-author">
-                    <div class="author-avatar bg-yellow">BP</div>
-                    <div class="author-info">
-                        <h4>Budi Pratama</h4>
-                        <p>Agency Web Developer</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 5. FAQ Section -->
-<section id="faq" class="section" style="background: var(--color-surface-white);">
-    <div class="container">
-        <div class="section-header">
-            <div class="playful-sticker">
-                <?php echo digitalproduk_get_icon( 'help-circle', '', 14 ); ?>
-                <span>INFORMASI LENGKAP</span>
-            </div>
+            <span class="section-eyebrow">INFORMASI UMUM</span>
             <h2 class="section-title">Pertanyaan yang Sering Diajukan</h2>
-            <p class="section-desc">Jawaban transparan seputar lisensi, cara pengiriman file, dan metode pembayaran aman kami.</p>
+            <p class="section-desc">Rangkuman jawaban seputar proses pembelian, lisensi penggunaan, dan pengiriman file digital.</p>
         </div>
 
-        <div class="faq-wrap">
-            <div class="faq-item active">
-                <button type="button" class="faq-question">
-                    <span>Bagaimana cara menerima file setelah menyelesaikan pembayaran?</span>
-                    <span class="faq-icon-wrap">
-                        <?php echo digitalproduk_get_icon( 'chevron-down', 'faq-chevron', 18 ); ?>
-                    </span>
-                </button>
-                <div class="faq-answer">
-                    Setelah pembayaran Anda terverifikasi oleh gateway Midtrans secara otomatis, sistem akan langsung menampilkan link folder Google Drive dan mengirimkannya ke alamat email Anda. Akses ini aktif selamanya dan dapat Anda unduh kapan saja.
-                </div>
+        <div class="faq-grid">
+            <div class="faq-card">
+                <h3>
+                    <?php echo digitalproduk_get_icon( 'help-circle', '', 18 ); ?>
+                    <span>Bagaimana cara saya menerima file setelah membayar?</span>
+                </h3>
+                <p>Setelah pembayaran Midtrans (QRIS/VA) sukses, halaman akan otomatis memuat link unduh Google Drive langsung. Tautan tersebut juga dapat Anda simpan untuk diunduh kembali kapan saja.</p>
             </div>
-
-            <div class="faq-item">
-                <button type="button" class="faq-question">
-                    <span>Apakah saya boleh menggunakan aset ini untuk pekerjaan klien komersial?</span>
-                    <span class="faq-icon-wrap">
-                        <?php echo digitalproduk_get_icon( 'chevron-down', 'faq-chevron', 18 ); ?>
-                    </span>
-                </button>
-                <div class="faq-answer">
-                    Tentu saja. Semua produk digital kami hadir dengan lisensi komersial bebas royalti. Anda diperbolehkan menggunakan kode, template, atau sistem ini untuk proyek pribadi, startup, maupun diserahkan langsung kepada klien bisnis Anda.
-                </div>
+            <div class="faq-card">
+                <h3>
+                    <?php echo digitalproduk_get_icon( 'help-circle', '', 18 ); ?>
+                    <span>Apakah saya boleh menggunakan aset ini untuk klien?</span>
+                </h3>
+                <p>Ya. Seluruh produk kami menyertakan lisensi komersial bebas. Anda berhak menggunakannya untuk proyek pesanan klien tanpa perlu membayar biaya royalti tambahan.</p>
             </div>
-
-            <div class="faq-item">
-                <button type="button" class="faq-question">
-                    <span>Metode pembayaran apa saja yang disediakan?</span>
-                    <span class="faq-icon-wrap">
-                        <?php echo digitalproduk_get_icon( 'chevron-down', 'faq-chevron', 18 ); ?>
-                    </span>
-                </button>
-                <div class="faq-answer">
-                    Kami terintegrasi resmi dengan Midtrans Snap Payment Gateway, mendukung QRIS (BCA, GoPay, OVO, Dana, ShopeePay), transfer bank virtual account (BCA, Mandiri, BRI, BNI), serta konfirmasi manual via admin WhatsApp.
-                </div>
+            <div class="faq-card">
+                <h3>
+                    <?php echo digitalproduk_get_icon( 'help-circle', '', 18 ); ?>
+                    <span>Metode pembayaran apa saja yang didukung?</span>
+                </h3>
+                <p>Kami menggunakan payment gateway resmi Midtrans yang mendukung QRIS (GoPay, OVO, ShopeePay, Dana, LinkAja, BCA Mobile) dan Virtual Account (BCA, Mandiri, BNI, BRI, Permata).</p>
             </div>
-
-            <div class="faq-item">
-                <button type="button" class="faq-question">
-                    <span>Bagaimana jika saya memerlukan pembaruan versi di masa depan?</span>
-                    <span class="faq-icon-wrap">
-                        <?php echo digitalproduk_get_icon( 'chevron-down', 'faq-chevron', 18 ); ?>
-                    </span>
-                </button>
-                <div class="faq-answer">
-                    Semua pembeli mendapatkan hak akses pembaruan seumur hidup tanpa biaya tambahan. Ketika kami memperbarui versi kode, UI kit, atau materi e-book, link Google Drive Anda akan otomatis memuat file terbaru.
-                </div>
+            <div class="faq-card">
+                <h3>
+                    <?php echo digitalproduk_get_icon( 'help-circle', '', 18 ); ?>
+                    <span>Apakah saya mendapatkan update di masa mendatang?</span>
+                </h3>
+                <p>Ya, pembaruan versi (bug fix, kompatibilitas framework/WordPress versi baru) akan selalu diperbarui pada folder unduhan Google Drive yang sama secara gratis.</p>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- 6. Call to Action Banner -->
-<section class="section">
-    <div class="container">
-        <div class="cta-banner">
-            <div class="playful-sticker" style="display: inline-flex; margin-bottom: 1rem;">
-                <?php echo digitalproduk_get_icon( 'sparkles', '', 14 ); ?>
-                <span>AKSELERASI PROYEK ANDA</span>
-            </div>
-            <h2>Mulai Bangun &amp; Luncurkan Proyek Digital Anda Hari Ini</h2>
-            <p>Dapatkan akses instan ke seluruh file aset berkualitas tinggi dengan harga promo spesial dan lisensi komersial penuh.</p>
-            <a href="#katalog" class="btn btn-primary btn-lg">
-                <span>Pilih Produk &amp; Akses Sekarang</span>
-                <?php echo digitalproduk_get_icon( 'arrow-right', 'btn-icon-right', 18 ); ?>
-            </a>
         </div>
     </div>
 </section>

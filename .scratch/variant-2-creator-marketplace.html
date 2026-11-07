@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variant 2: Creator Marketplace (Lemon Squeezy & UI8 Style) - Indotech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-canvas: #fafbfc;
+            --bg-surface: #ffffff;
+            --border-color: #e2e8f0;
+            --border-hover: #cbd5e1;
+            
+            --text-main: #0f172a;
+            --text-body: #475569;
+            --text-muted: #94a3b8;
+            
+            --brand-primary: #0f766e;
+            --brand-primary-hover: #115e59;
+            --brand-accent: #10b981;
+            --brand-amber: #f59e0b;
+            --brand-purple: #7c3aed;
+            
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-full: 9999px;
+            
+            --shadow-subtle: 0 2px 4px rgba(15, 23, 42, 0.04), 0 8px 16px rgba(15, 23, 42, 0.04);
+            --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+            --shadow-hover: 0 16px 32px -4px rgba(15, 23, 42, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-canvas);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1220px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Top Bar */
+        .variant-banner {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .variant-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-full);
+            background: #f0fdf4;
+            color: #166534;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 1px solid #bbf7d0;
+        }
+        .back-nav a {
+            color: var(--text-body);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-nav a:hover {
+            color: var(--brand-primary);
+        }
+
+        /* Site Header */
+        .site-header {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.1rem 0;
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+        .brand-logo-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-md);
+            background: linear-gradient(135deg, #0f766e, #10b981);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
+        }
+        .brand-title {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .brand-tag {
+            font-size: 0.7rem;
+            background: #f1f5f9;
+            color: #475569;
+            padding: 2px 8px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-body);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.15s;
+        }
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--brand-primary);
+        }
+
+        .header-btns {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        /* Button System */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.35rem;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .btn-primary {
+            background: var(--brand-primary);
+            color: #ffffff;
+            box-shadow: 0 2px 8px rgba(15, 118, 110, 0.25);
+        }
+        .btn-primary:hover {
+            background: var(--brand-primary-hover);
+            box-shadow: 0 6px 16px rgba(15, 118, 110, 0.35);
+            transform: translateY(-1px);
+        }
+        .btn-outline {
+            background: #ffffff;
+            color: var(--text-main);
+            border-color: var(--border-color);
+        }
+        .btn-outline:hover {
+            border-color: var(--border-hover);
+            background: #f8fafc;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4.5rem 0 3rem;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 1rem;
+            border-radius: var(--radius-full);
+            background: #e6fffa;
+            color: #0d9488;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid #99f6e4;
+        }
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: 3.25rem;
+            font-weight: 800;
+            line-height: 1.18;
+            letter-spacing: -0.03em;
+            max-width: 820px;
+            margin: 0 auto 1.25rem;
+            color: #0f172a;
+        }
+        .hero-title span {
+            color: var(--brand-primary);
+        }
+        .hero-subtitle {
+            color: var(--text-body);
+            font-size: 1.2rem;
+            max-width: 660px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.6;
+        }
+
+        /* Search input bar */
+        .search-box {
+            max-width: 620px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            border: 1.5px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 0.45rem 0.55rem 0.45rem 1.25rem;
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.2s;
+        }
+        .search-box:focus-within {
+            border-color: var(--brand-primary);
+            box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+        }
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            color: var(--text-main);
+            font-family: var(--font-body);
+        }
+
+        /* Filter Categories */
+        .filter-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            margin-bottom: 3.5rem;
+            flex-wrap: wrap;
+        }
+        .filter-pill {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            color: var(--text-body);
+            padding: 0.5rem 1.15rem;
+            border-radius: var(--radius-full);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+        .filter-pill:hover {
+            border-color: var(--border-hover);
+            color: var(--text-main);
+            background: #f8fafc;
+        }
+        .filter-pill.active {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        /* Product Cards */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+        .product-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: #cbd5e1;
+        }
+        .card-thumb {
+            height: 220px;
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .card-visual-sample {
+            width: 90%;
+            height: 85%;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .sample-nav {
+            height: 24px;
+            background: #f1f5f9;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            gap: 4px;
+        }
+        .sample-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #cbd5e1;
+        }
+        .sample-content {
+            flex: 1;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .sample-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: #e2e8f0;
+        }
+
+        .badge-category {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #0f766e;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+
+        .card-details {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .rating-row {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+            color: var(--brand-amber);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .rating-reviews {
+            color: var(--text-muted);
+            font-weight: normal;
+        }
+        .item-title {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            line-height: 1.35;
+        }
+        .item-desc {
+            color: var(--text-body);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+        .card-action-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1.15rem;
+            border-top: 1px solid var(--border-color);
+        }
+        .price-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .price-current {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+        .price-strike {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        /* Trust Strip */
+        .trust-strip {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .trust-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-md);
+            background: #f0fdf4;
+            color: #0f766e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .trust-item h4 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .trust-item p {
+            font-size: 0.85rem;
+            color: var(--text-body);
+        }
+
+        /* Specs section */
+        .specs-section {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 4rem;
+        }
+        .specs-title {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--brand-primary);
+            margin-bottom: 1rem;
+        }
+        .palette-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .palette-box {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 0.85rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .color-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Variant Header -->
+    <div class="variant-banner">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <span class="variant-pill">VARIANT 2 // CREATOR MARKETPLACE</span>
+            <span style="color: #475569;">Arah: <strong>Lemon Squeezy & UI8 Style</strong> (E-Commerce Bersih, Ramah, High-Conversion)</span>
+        </div>
+        <div class="back-nav">
+            <a href="index.html">← Kembali ke Hub Pilihan</a>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="#" class="brand">
+                <div class="brand-logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><path d="M3 6h18"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                </div>
+                <span class="brand-title">Indotech</span>
+                <span class="brand-tag">Creator Store</span>
+            </a>
+
+            <ul class="nav-menu">
+                <li><a href="#" class="active">Eksplor Produk</a></li>
+                <li><a href="#">Template Figma</a></li>
+                <li><a href="#">Source Code</a></li>
+                <li><a href="#">Notion OS</a></li>
+                <li><a href="#">Lisensi Bisnis</a></li>
+            </ul>
+
+            <div class="header-btns">
+                <a href="#" class="btn btn-outline">Bantuan & FAQ</a>
+                <a href="#" class="btn btn-primary">
+                    <span>Mulai Belanja</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"></path></svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-badge">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path><path d="m9 12 2 2 4-4"></path></svg>
+                <span>100% GARANSI AKSES INSTAN SETELAH BAYAR</span>
+            </div>
+            <h1 class="hero-title">
+                Koleksi Aset Digital Terbaik untuk <span>Meluncurkan Ide Anda</span>
+            </h1>
+            <p class="hero-subtitle">
+                Hemat ratusan jam kerja dengan source code siap pakai, template UI/UX Figma, dan sistem kerja yang telah membantu 1.200+ kreator dan tim tech Indonesia.
+            </p>
+
+            <div class="search-box">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" style="margin-right: 0.65rem;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" class="search-input" placeholder="Cari template Figma, Notion workspace, boilerplate...">
+                <button class="btn btn-primary">Cari Produk</button>
+            </div>
+
+            <div class="filter-row">
+                <button class="filter-pill active">Semua Aset</button>
+                <button class="filter-pill">⚡ Source Code Web</button>
+                <button class="filter-pill">🎨 Figma UI Kits</button>
+                <button class="filter-pill">📋 Notion Templates</button>
+                <button class="filter-pill">🔌 WordPress Plugins</button>
+            </div>
+        </section>
+
+        <!-- Product Grid -->
+        <section class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="card-thumb">
+                    <span class="badge-category">Figma &amp; React</span>
+                    <div class="card-visual-sample">
+                        <div class="sample-nav">
+                            <span class="sample-dot"></span>
+                            <span class="sample-dot"></span>
+                            <span class="sample-dot"></span>
+                        </div>
+                        <div class="sample-content">
+                            <div class="sample-bar" style="width: 45%; background: #0f766e;"></div>
+                            <div class="sample-bar" style="width: 80%;"></div>
+                            <div class="sample-bar" style="width: 65%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-details">
+                    <div class="rating-row">
+                        <span>★★★★★</span>
+                        <span>4.9</span>
+                        <span class="rating-reviews">(84 ulasan pembeli)</span>
+                    </div>
+                    <h3 class="item-title">SaaSify Pro: Complete UI Kit &amp; Tailwind Dashboard</h3>
+                    <p class="item-desc">50+ halaman responsif siap pakai, 300+ komponen Figma auto-layout 5.0, beserta implementasi source code Tailwind CSS siap deploy.</p>
+                    <div class="card-action-bar">
+                        <div class="price-group">
+                            <span class="price-current">Rp 299.000</span>
+                            <span class="price-strike">Rp 550.000</span>
+                        </div>
+                        <a href="#" class="btn btn-primary">Beli Sekarang</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="card-thumb" style="background: linear-gradient(135deg, #fef3c7 0%, #fff1f2 100%);">
+                    <span class="badge-category" style="color: #b45309;">WordPress Standalone</span>
+                    <div class="card-visual-sample">
+                        <div class="sample-nav">
+                            <span class="sample-dot"></span>
+                            <span class="sample-dot"></span>
+                            <span class="sample-dot"></span>
+                        </div>
+                        <div class="sample-content">
+                            <div class="sample-bar" style="width: 50%; background: #f59e0b;"></div>
+                            <div class="sample-bar" style="width: 70%;"></div>
+                            <div class="sample-bar" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-details">
+                    <div class="rating-row">
+                        <span>★★★★★</span>
+                        <span>5.0</span>
+                        <span class="rating-reviews">(112 ulasan pembeli)</span>
+                    </div>
+                    <h3 class="item-title">DigitalStore WP: Plugin Checkout QRIS &amp; VA Otomatis</h3>
+                    <p class="item-desc">Solusi jual produk digital langsung di WordPress tanpa beban WooCommerce. Terintegrasi Midtrans Snap QRIS & VA dengan download instan.</p>
+                    <div class="card-action-bar">
+                        <div class="price-group">
+                            <span class="price-current">Rp 199.000</span>
+                            <span class="price-strike">Rp 399.000</span>
+                        </div>
+                        <a href="#" class="btn btn-primary">Beli Sekarang</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="card-thumb" style="background: linear-gradient(135deg, #ede9fe 0%, #fdf2f8 100%);">
+                    <span class="badge-category" style="color: #6d28d9;">Notion System</span>
+                    <div class="card-visual-sample">
+                        <div class="sample-nav">
+                            <span class="sample-dot"></span>
+                            <span class="sample-dot"></span>
+                            <span class="sample-dot"></span>
+                        </div>
+                        <div class="sample-content">
+                            <div class="sample-bar" style="width: 40%; background: #7c3aed;"></div>
+                            <div class="sample-bar" style="width: 75%;"></div>
+                            <div class="sample-bar" style="width: 55%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-details">
+                    <div class="rating-row">
+                        <span>★★★★★</span>
+                        <span>4.8</span>
+                        <span class="rating-reviews">(47 ulasan pembeli)</span>
+                    </div>
+                    <h3 class="item-title">Agency &amp; Freelancer Operating System 2.0</h3>
+                    <p class="item-desc">Workspace Notion lengkap untuk manajemen klien, invoice otomatis, pipeline penawaran kerja, dan pelacakan pembayaran terpadu.</p>
+                    <div class="card-action-bar">
+                        <div class="price-group">
+                            <span class="price-current">Rp 149.000</span>
+                            <span class="price-strike">Rp 250.000</span>
+                        </div>
+                        <a href="#" class="btn btn-primary">Beli Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Badges Strip -->
+        <section class="trust-strip">
+            <div class="trust-item">
+                <div class="trust-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                </div>
+                <div>
+                    <h4>Akses Instan &amp; Selamanya</h4>
+                    <p>Link download langsung aktif di layar & email pasca bayar.</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path><path d="m9 12 2 2 4-4"></path></svg>
+                </div>
+                <div>
+                    <h4>Lisensi Komersial Bebas</h4>
+                    <p>Gunakan untuk proyek pribadi maupun klien komersial tanpa royalti.</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                </div>
+                <div>
+                    <h4>Update Gratis Berkala</h4>
+                    <p>Dapatkan pembaruan versi dan perbaikan bug tanpa biaya tambahan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design Specs -->
+        <section class="specs-section">
+            <h4 class="specs-title">Design Token Summary // Variant 2</h4>
+            <div class="palette-row">
+                <div class="palette-box"><span class="color-dot" style="background: #fafbfc; border: 1px solid #cbd5e1;"></span> Canvas: #fafbfc</div>
+                <div class="palette-box"><span class="color-dot" style="background: #ffffff; border: 1px solid #cbd5e1;"></span> Surface: #ffffff</div>
+                <div class="palette-box"><span class="color-dot" style="background: #0f766e;"></span> Primary: #0f766e (Deep Teal)</div>
+                <div class="palette-box"><span class="color-dot" style="background: #10b981;"></span> Accent: #10b981 (Mint Emerald)</div>
+                <div class="palette-box"><span class="color-dot" style="background: #f59e0b;"></span> Rating: #f59e0b (Amber)</div>
+                <div class="palette-box">Font: Outfit (Heading) + Plus Jakarta Sans (Body)</div>
+                <div class="palette-box">Border: 1px #e2e8f0 (No heavy black outline)</div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

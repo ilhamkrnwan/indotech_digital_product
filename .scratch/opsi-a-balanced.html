@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indotech - Opsi A: Clean Architectural &amp; Brush Underline</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-canvas: #f8fafc;
+            --bg-surface: #ffffff;
+            --border-main: #e2e8f0;
+            --border-subtle: #f1f5f9;
+
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+
+            --brand-cobalt: #1d4ed8;
+            --brand-cobalt-dark: #1e3a8a;
+            --accent-yellow: #facc15;
+            --accent-amber: #f59e0b;
+
+            --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+
+            --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.05);
+            --shadow-hover: 0 10px 25px -4px rgba(15, 23, 42, 0.08);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-canvas);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+        }
+
+        /* Nav Bar */
+        .site-header {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-main);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        .brand-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .brand-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--brand-cobalt);
+            border-radius: 50%;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.75rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--brand-cobalt);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.55rem 1.2rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            min-height: 38px;
+        }
+        .btn-primary {
+            background: var(--brand-cobalt);
+            color: #ffffff;
+            border: 1px solid var(--brand-cobalt);
+        }
+        .btn-primary:hover {
+            background: var(--brand-cobalt-dark);
+        }
+        .btn-secondary {
+            background: #ffffff;
+            color: var(--text-primary);
+            border: 1px solid var(--border-main);
+        }
+        .btn-secondary:hover {
+            background: var(--bg-canvas);
+        }
+
+        /* Demo Notice Banner */
+        .option-tag-bar {
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 0.6rem 0;
+            font-size: 0.8rem;
+            border-bottom: 2px solid var(--accent-yellow);
+        }
+        .option-tag-bar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .opt-badge {
+            background: var(--brand-cobalt);
+            color: #ffffff;
+            font-family: var(--font-mono);
+            font-size: 0.725rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 4px;
+            margin-right: 8px;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            padding: 5rem 0 4.5rem;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-main);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Floating Geometric Shapes (Hanya di Ruang Kosong, TIDAK MENABRAK TEKS) */
+        .geo-element {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+        }
+        /* 1. Segitiga di pojok kiri atas */
+        .geo-tri-left {
+            top: 40px;
+            left: max(20px, calc(50% - 560px));
+            width: 32px;
+            height: 32px;
+            opacity: 0.7;
+        }
+        /* 2. Lingkaran putus-putus di kanan atas */
+        .geo-circle-right {
+            top: 45px;
+            right: max(40px, calc(50% - 540px));
+            width: 52px;
+            height: 52px;
+            opacity: 0.65;
+        }
+        /* 3. Kotak miring di kanan bawah */
+        .geo-square-bottom {
+            bottom: 40px;
+            right: max(80px, calc(50% - 500px));
+            width: 28px;
+            height: 28px;
+            border: 1.5px solid #64748b;
+            border-radius: 4px;
+            transform: rotate(20deg);
+            opacity: 0.5;
+        }
+        /* 4. Tanda plus teknis di ruang kosong */
+        .geo-plus-mark {
+            font-family: var(--font-mono);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-amber);
+            opacity: 0.7;
+            user-select: none;
+        }
+
+        .hero-content {
+            max-width: 760px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge-clean {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--brand-cobalt);
+            background: #eff6ff;
+            border: 1px solid #dbeafe;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-title {
+            font-size: 2.85rem;
+            font-weight: 800;
+            line-height: 1.25;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            margin-bottom: 1.25rem;
+        }
+
+        /* GORESAN KUAS UNDERLINE ALAMI (Murni Vektor Halus, Pas Di Bawah Teks) */
+        .brush-underline-wrapper {
+            position: relative;
+            display: inline-block;
+            white-space: nowrap;
+        }
+        .brush-underline-wrapper .text-span {
+            position: relative;
+            z-index: 2;
+        }
+        .brush-underline-wrapper .brush-svg-line {
+            position: absolute;
+            left: -2%;
+            bottom: -6px;
+            width: 104%;
+            height: 14px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            margin-bottom: 2rem;
+            max-width: 620px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 2.25rem;
+        }
+
+        .hero-trust {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-main);
+            padding-top: 1.5rem;
+        }
+        .trust-check {
+            color: var(--brand-cobalt);
+            font-weight: 700;
+            margin-right: 4px;
+        }
+
+        /* PRODUCTS SECTION */
+        .section {
+            padding: 4.5rem 0;
+            position: relative;
+        }
+        .section-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .section-title {
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            margin-bottom: 0.25rem;
+        }
+        .section-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 1.75rem;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border: 1px solid var(--border-main);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .product-card:hover {
+            border-color: #cbd5e1;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-thumb {
+            height: 185px;
+            background: #f8fafc;
+            border-bottom: 1px solid var(--border-main);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card-thumb-tag {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #475569;
+            background: #ffffff;
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: 1px solid var(--border-main);
+        }
+
+        .card-body {
+            padding: 1.35rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .card-cat {
+            font-size: 0.775rem;
+            font-weight: 600;
+            color: var(--brand-cobalt);
+            margin-bottom: 0.35rem;
+        }
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.35;
+            margin-bottom: 0.5rem;
+        }
+        .card-excerpt {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 1.25rem;
+            flex: 1;
+        }
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+        .price-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.15rem; }
+            .geo-element { display: none; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Option Bar -->
+    <div class="option-tag-bar">
+        <div class="container">
+            <div>
+                <span class="opt-badge">OPSI A</span>
+                <strong>Clean Architectural:</strong> Underline kuas cat alami di bawah judul + aksen wireframe geometris rapi di ruang kosong (tanpa tabrakan/potongan kaku).
+            </div>
+            <div>
+                <a href="opsi-b-expressive.html" style="color: var(--accent-yellow); font-weight: 600; text-decoration: underline;">Lihat Opsi B (Artisan Splatter) &rarr;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="#" class="brand-title">
+                <span class="brand-dot"></span>
+                Indotech
+            </a>
+            <nav class="nav-links">
+                <a href="#" class="active">Katalog</a>
+                <a href="#">Source Code</a>
+                <a href="#">Template</a>
+                <a href="#">Dokumentasi</a>
+                <a href="#">FAQ</a>
+            </nav>
+            <div style="display: flex; gap: 0.75rem;">
+                <a href="#katalog" class="btn btn-secondary">Semua Produk</a>
+                <a href="#" class="btn btn-primary">Beli Sekarang</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- 1. GEOMETRIC WIREFRAME ACCENTS DI RUANG KOSONG (SEGITIGA) -->
+        <svg class="geo-element geo-tri-left" viewBox="0 0 32 32" fill="none">
+            <polygon points="16,3 29,27 3,27" stroke="#1d4ed8" stroke-width="2" stroke-linejoin="round" />
+        </svg>
+
+        <!-- 2. LINGKARAN PUTUS-PUTUS & TITIK -->
+        <svg class="geo-element geo-circle-right" viewBox="0 0 52 52" fill="none">
+            <circle cx="26" cy="26" r="22" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="4 4" />
+            <circle cx="26" cy="26" r="4" fill="#1d4ed8" />
+        </svg>
+
+        <!-- 3. KOTAK MIRING -->
+        <div class="geo-element geo-square-bottom"></div>
+
+        <!-- 4. PLUS MARK DI RUANG KOSONG (MARGIN KANAN, BUKAN DI ATAS TEKS) -->
+        <div class="geo-element geo-plus-mark" style="top: 110px; right: max(160px, calc(50% - 420px));">+</div>
+        <div class="geo-element geo-plus-mark" style="bottom: 25px; left: max(180px, calc(50% - 400px)); color: #1d4ed8; opacity: 0.4;">+</div>
+
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge-clean">
+                    <span>&bull;</span> ORIGINAL SOURCE ASSETS
+                </div>
+
+                <h1 class="hero-title">
+                    Source code, template, dan aset digital 
+                    <span class="brush-underline-wrapper">
+                        <span class="text-span">siap pakai.</span>
+                        <!-- ORGANIC DRY BRUSH UNDERLINE (Sapuannya Pas Di Bawah Teks) -->
+                        <svg class="brush-svg-line" viewBox="0 0 280 18" fill="none" preserveAspectRatio="none">
+                            <!-- Sapuan dasar amber -->
+                            <path d="M4 11 C40 8 110 13 180 9 C225 7 265 11 276 8 C265 14 210 16 150 15 C90 14 35 16 8 14 C3 13 2 11 4 11 Z" fill="#f59e0b" opacity="0.75" />
+                            <!-- Sapuan utama kuning terang bertekstur bristle -->
+                            <path d="M12 7 C55 4 130 9 200 6 C245 4 270 7 278 5 C268 11 215 13 160 12 C100 11 45 13 16 10 C8 9 7 7 12 7 Z" fill="#facc15" />
+                            <!-- Titik flek kuas kecil di ujung -->
+                            <circle cx="277" cy="11" r="1.5" fill="#f59e0b" />
+                            <circle cx="272" cy="14" r="1.2" fill="#facc15" />
+                        </svg>
+                    </span>
+                </h1>
+
+                <p class="hero-desc">
+                    Arsitektur bersih, dokumentasi terstruktur, dan kode siap produksi. Download instan setelah pembayaran terverifikasi otomatis via Midtrans.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#katalog" class="btn btn-primary" style="padding: 0.75rem 1.6rem; font-size: 0.95rem;">Jelajahi Katalog</a>
+                    <a href="#" class="btn btn-secondary" style="padding: 0.75rem 1.4rem; font-size: 0.95rem;">Panduan Lisensi</a>
+                </div>
+
+                <div class="hero-trust">
+                    <span><span class="trust-check">&#10003;</span> Bebas Royalti Selamanya</span>
+                    <span><span class="trust-check">&#10003;</span> Garansi Kode Berjalan</span>
+                    <span><span class="trust-check">&#10003;</span> Update Versi Minor Gratis</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section class="section" id="katalog">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Katalog Produk Terverifikasi</h2>
+                    <p class="section-desc">Pilih produk digital siap pakai untuk kebutuhan proyek dan klien Anda.</p>
+                </div>
+                <!-- Clean Wireframe Badge -->
+                <div style="display: flex; gap: 8px; align-items: center; font-family: var(--font-mono); font-size: 11px; color: #64748b;">
+                    <div style="width: 8px; height: 8px; border: 1.5px solid #1d4ed8; transform: rotate(45deg);"></div>
+                    <span>READY TO DEPLOY</span>
+                </div>
+            </div>
+
+            <div class="products-grid">
+                <!-- Card 1 -->
+                <article class="product-card">
+                    <div class="card-thumb">
+                        <span class="card-thumb-tag">NEXT.JS + TAILWIND</span>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-cat">Source Code</span>
+                        <h3 class="card-title">SaaS Dashboard Kit v2</h3>
+                        <p class="card-excerpt">Dashboard admin lengkap dengan auth, multi-tenant database schema, dan payment billing ready.</p>
+                        <div class="card-footer">
+                            <span class="price-text">Rp 249.000</span>
+                            <a href="#" class="btn btn-primary" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Lihat Detail</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="product-card">
+                    <div class="card-thumb">
+                        <span class="card-thumb-tag">WORDPRESS THEME</span>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-cat">Template</span>
+                        <h3 class="card-title">Digital Commerce Theme</h3>
+                        <p class="card-excerpt">Tema WordPress ultra-cepat tanpa plugin bloated. Sudah terintegrasi Midtrans Snap &amp; QRIS.</p>
+                        <div class="card-footer">
+                            <span class="price-text">Rp 199.000</span>
+                            <a href="#" class="btn btn-primary" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Lihat Detail</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="product-card">
+                    <div class="card-thumb">
+                        <span class="card-thumb-tag">FIGMA UI KIT</span>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-cat">Design System</span>
+                        <h3 class="card-title">Enterprise Design System</h3>
+                        <p class="card-excerpt">600+ komponen modular, auto-layout 5.0, variable tokens, dan 45 halaman mockup siap pakai.</p>
+                        <div class="card-footer">
+                            <span class="price-text">Rp 149.000</span>
+                            <a href="#" class="btn btn-primary" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Lihat Detail</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

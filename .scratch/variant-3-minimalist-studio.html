@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variant 3: Minimalist Studio (Framer & Craftwork Style) - Indotech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #09090b;
+            --bg-elevated: #121216;
+            --border-hairline: rgba(255, 255, 255, 0.12);
+            --border-highlight: #d4ff00;
+            
+            --text-heading: #ffffff;
+            --text-body: #a1a1aa;
+            --text-dim: #71717a;
+            
+            --accent-lime: #d4ff00;
+            --accent-lime-hover: #b8e000;
+            --accent-violet: #8b5cf6;
+            
+            --font-display: 'Syne', sans-serif;
+            --font-grotesk: 'Space Grotesk', sans-serif;
+            --font-sans: 'Inter', sans-serif;
+            
+            --radius-none: 0px;
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-full: 9999px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-body);
+            font-family: var(--font-sans);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Banner */
+        .variant-banner {
+            background: #000000;
+            border-bottom: 1px solid var(--border-hairline);
+            padding: 0.65rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .variant-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.2rem 0.6rem;
+            background: rgba(212, 255, 0, 0.1);
+            color: var(--accent-lime);
+            font-family: var(--font-grotesk);
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 1px solid rgba(212, 255, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .back-nav a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-family: var(--font-grotesk);
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+        .back-nav a:hover {
+            color: var(--accent-lime);
+        }
+
+        /* Header */
+        .site-header {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-hairline);
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            text-decoration: none;
+            color: #ffffff;
+        }
+        .brand-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--accent-lime);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--accent-lime);
+        }
+        .brand-title {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+        }
+        .brand-edition {
+            font-family: var(--font-grotesk);
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            border-left: 1px solid var(--border-hairline);
+            padding-left: 0.75rem;
+        }
+
+        .nav-list {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        .nav-list a {
+            font-family: var(--font-grotesk);
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+        }
+        .nav-list a:hover, .nav-list a.active {
+            color: #ffffff;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.75rem 1.6rem;
+            font-family: var(--font-grotesk);
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .btn-lime {
+            background: var(--accent-lime);
+            color: #000000;
+        }
+        .btn-lime:hover {
+            background: var(--accent-lime-hover);
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(212, 255, 0, 0.4);
+        }
+        .btn-minimal {
+            background: transparent;
+            color: #ffffff;
+            border-color: var(--border-hairline);
+        }
+        .btn-minimal:hover {
+            border-color: #ffffff;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 6rem 0 4rem;
+        }
+        .hero-meta {
+            font-family: var(--font-grotesk);
+            color: var(--accent-lime);
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: 4.2rem;
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            color: var(--text-heading);
+            margin-bottom: 2rem;
+            max-width: 980px;
+        }
+        .hero-title .highlight {
+            color: transparent;
+            -webkit-text-stroke: 1.5px #ffffff;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: end;
+            margin-bottom: 4rem;
+        }
+        .hero-desc {
+            font-size: 1.15rem;
+            color: var(--text-body);
+            line-height: 1.6;
+            max-width: 520px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        /* Category Ticker */
+        .category-row {
+            display: flex;
+            border-top: 1px solid var(--border-hairline);
+            border-bottom: 1px solid var(--border-hairline);
+            margin-bottom: 5rem;
+        }
+        .cat-cell {
+            flex: 1;
+            padding: 1.25rem 1rem;
+            text-align: center;
+            font-family: var(--font-grotesk);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-dim);
+            border-right: 1px solid var(--border-hairline);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .cat-cell:last-child {
+            border-right: none;
+        }
+        .cat-cell:hover, .cat-cell.active {
+            color: #000000;
+            background: var(--accent-lime);
+            font-weight: 700;
+        }
+
+        /* Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 6rem;
+        }
+        .product-item {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-hairline);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.25s ease;
+        }
+        .product-item:hover {
+            border-color: var(--accent-lime);
+        }
+        .item-cover {
+            height: 240px;
+            background: #17171c;
+            border-bottom: 1px solid var(--border-hairline);
+            position: relative;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .item-index {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-family: var(--font-grotesk);
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+        .item-badge-top {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-family: var(--font-grotesk);
+            font-size: 0.7rem;
+            color: var(--accent-lime);
+            letter-spacing: 0.05em;
+            border: 1px solid rgba(212, 255, 0, 0.3);
+            padding: 2px 6px;
+        }
+        .cover-art {
+            width: 80%;
+            height: 70%;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: 0.1em;
+            color: #ffffff;
+        }
+
+        .item-info {
+            padding: 1.75rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .item-category {
+            font-family: var(--font-grotesk);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-lime);
+            margin-bottom: 0.5rem;
+        }
+        .item-name {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+            line-height: 1.25;
+        }
+        .item-summary {
+            font-size: 0.9rem;
+            color: var(--text-body);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            flex: 1;
+        }
+        .item-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border-hairline);
+        }
+        .item-price {
+            font-family: var(--font-grotesk);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        /* Specs section */
+        .specs-section {
+            background: #121216;
+            border: 1px solid var(--border-hairline);
+            padding: 2rem;
+            margin-bottom: 4rem;
+        }
+        .specs-title {
+            font-family: var(--font-grotesk);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-lime);
+            margin-bottom: 1rem;
+        }
+        .palette-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .palette-box {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #09090b;
+            border: 1px solid var(--border-hairline);
+            padding: 0.5rem 0.85rem;
+            font-family: var(--font-grotesk);
+            font-size: 0.8rem;
+        }
+        .color-dot {
+            width: 14px;
+            height: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Variant Header -->
+    <div class="variant-banner">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <span class="variant-tag">VARIANT 3 // EDITORIAL STUDIO</span>
+            <span style="color: #a1a1aa;">Arah: <strong>Framer & Craftwork Style</strong> (Monochrome Kontras Tinggi, Acid Lime, Eksklusif)</span>
+        </div>
+        <div class="back-nav">
+            <a href="index.html">← Kembali ke Hub Pilihan</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="#" class="brand">
+                <span class="brand-dot"></span>
+                <span class="brand-title">INDOTECH</span>
+                <span class="brand-edition">EDISI 2026</span>
+            </a>
+
+            <ul class="nav-list">
+                <li><a href="#" class="active">Koleksi</a></li>
+                <li><a href="#">Sistem Desain</a></li>
+                <li><a href="#">Source Code</a></li>
+                <li><a href="#">Lisensi</a></li>
+            </ul>
+
+            <div>
+                <a href="#" class="btn btn-lime">Jelajahi Aset</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-meta">
+                <span>[ 001 ]</span>
+                <span>CURATED DIGITAL ASSETS FOR BUILDERS</span>
+            </div>
+            <h1 class="hero-title">
+                ARSITEKTUR DIGITAL <span class="highlight">BERSTANDAR</span> STUDIO EKSKLUSIF
+            </h1>
+            <div class="hero-grid">
+                <p class="hero-desc">
+                    Kami merekayasa boilerplate source code, sistem antarmuka Figma, dan modul backend dengan kualitas tanpa kompromi. Tidak ada komponen murah. Tidak ada bloatware.
+                </p>
+                <div class="hero-actions">
+                    <a href="#" class="btn btn-minimal">Lihat Showcase</a>
+                    <a href="#" class="btn btn-lime">Beli Lisensi</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Row -->
+        <div class="category-row">
+            <div class="cat-cell active">[ 01 ] SEMUA RILIS</div>
+            <div class="cat-cell">[ 02 ] REACT &amp; NEXT</div>
+            <div class="cat-cell">[ 03 ] WORDPRESS PLUGINS</div>
+            <div class="cat-cell">[ 04 ] FIGMA SYSTEMS</div>
+            <div class="cat-cell">[ 05 ] NOTION OS</div>
+        </div>
+
+        <!-- Product Grid -->
+        <section class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-item">
+                <div class="item-cover">
+                    <span class="item-index">[ ART. 01 ]</span>
+                    <span class="item-badge-top">NEXT.JS 15</span>
+                    <div class="cover-art">SAAS // CORE</div>
+                </div>
+                <div class="item-info">
+                    <div class="item-category">ENGINEERING</div>
+                    <h3 class="item-name">HyperSaaS Boilerplate Turbo</h3>
+                    <p class="item-summary">Kerangka kerja produksi modern lengkap dengan integrasi Midtrans Snap, sistem autentikasi, ORM Kysely, dan optimasi core web vitals.</p>
+                    <div class="item-bar">
+                        <span class="item-price">Rp 349.000</span>
+                        <a href="#" class="btn btn-lime" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Dapatkan</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-item">
+                <div class="item-cover">
+                    <span class="item-index">[ ART. 02 ]</span>
+                    <span class="item-badge-top">WP ENGINE</span>
+                    <div class="cover-art" style="color: var(--accent-lime);">MIDTRANS // API</div>
+                </div>
+                <div class="item-info">
+                    <div class="item-category">INFRASTRUCTURE</div>
+                    <h3 class="item-name">Midtrans Digital Gateway WP</h3>
+                    <p class="item-summary">Plugin native berkinerja tinggi untuk memproses pembayaran instan QRIS dan Virtual Account tanpa overhead database WooCommerce.</p>
+                    <div class="item-bar">
+                        <span class="item-price">Rp 199.000</span>
+                        <a href="#" class="btn btn-lime" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Dapatkan</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-item">
+                <div class="item-cover">
+                    <span class="item-index">[ ART. 03 ]</span>
+                    <span class="item-badge-top">FIGMA TOKENS</span>
+                    <div class="cover-art" style="color: #a78bfa;">DESIGN // SYNC</div>
+                </div>
+                <div class="item-info">
+                    <div class="item-category">DESIGN SYSTEM</div>
+                    <h3 class="item-name">Monochrome UI Architecture</h3>
+                    <p class="item-summary">Arsitektur komponen antarmuka presisi tinggi untuk web application, dashboard analitik, dan mobile web berstandar studio internasional.</p>
+                    <div class="item-bar">
+                        <span class="item-price">Rp 249.000</span>
+                        <a href="#" class="btn btn-lime" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Dapatkan</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design Specs -->
+        <section class="specs-section">
+            <h4 class="specs-title">Design Token Summary // Variant 3</h4>
+            <div class="palette-row">
+                <div class="palette-box"><span class="color-dot" style="background: #09090b; border: 1px solid #27272a;"></span> Deep Canvas: #09090b</div>
+                <div class="palette-box"><span class="color-dot" style="background: #121216; border: 1px solid #27272a;"></span> Elevated: #121216</div>
+                <div class="palette-box"><span class="color-dot" style="background: #d4ff00;"></span> Accent: #d4ff00 (Acid Lime)</div>
+                <div class="palette-box"><span class="color-dot" style="background: #ffffff;"></span> Heading: #ffffff</div>
+                <div class="palette-box">Font: Syne (Editorial) + Space Grotesk + Inter</div>
+                <div class="palette-box">Border: 1px rgba(255,255,255,0.12)</div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

@@ -18,7 +18,7 @@ $all_products = get_posts([
     'order'          => 'DESC',
 ]);
 
-// 2. Tentukan produk yang dipilih (dari ?product_id=X atau default produk pertama)
+// 2. Tentukan produk yang dipilih (hanya jika ada ?product_id=X atau ?id=X valid)
 $selected_id = isset( $_GET['product_id'] ) ? absint( $_GET['product_id'] ) : ( isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0 );
 $current_product = null;
 
@@ -31,15 +31,11 @@ if ( $selected_id > 0 ) {
     }
 }
 
-if ( ! $current_product && ! empty( $all_products ) ) {
-    $current_product = $all_products[0];
-    $selected_id = $current_product->ID;
-}
-
+// User harus memilih sendiri jika membuka /checkout/ tanpa membawa parameter produk
 $prod_id = $current_product ? $current_product->ID : 0;
-$prod_title = $current_product ? $current_product->post_title : 'Produk Digital';
-$prod_price = $current_product ? ( get_post_meta( $prod_id, '_price', true ) ?: 199000 ) : 199000;
-$prod_sale_price = $current_product ? ( get_post_meta( $prod_id, '_sale_price', true ) ?: $prod_price ) : $prod_price;
+$prod_title = $current_product ? $current_product->post_title : '';
+$prod_price = $current_product ? ( get_post_meta( $prod_id, '_price', true ) ?: 199000 ) : 0;
+$prod_sale_price = $current_product ? ( get_post_meta( $prod_id, '_sale_price', true ) ?: $prod_price ) : 0;
 $prod_cover = $current_product ? digitalproduk_get_product_cover( $prod_id ) : '';
 
 $features_meta = $current_product ? get_post_meta( $prod_id, '_features', true ) : '';
@@ -55,13 +51,20 @@ foreach ( $all_products as $p ) {
     $p_id = $p->ID;
     $p_price = get_post_meta( $p_id, '_price', true ) ?: 199000;
     $p_sale = get_post_meta( $p_id, '_sale_price', true ) ?: $p_price;
+    $f_meta = get_post_meta( $p_id, '_features', true ) ?: '';
+    $f_list = ! empty( $f_meta ) ? ( is_array( $f_meta ) ? $f_meta : explode( "\n", $f_meta ) ) : [
+        'Akses download via Google Drive',
+        'Lisensi komersial (bebas untuk proyek klien)',
+        'Update versi gratis'
+    ];
     $products_json_map[ $p_id ] = [
         'id'          => $p_id,
         'title'       => $p->post_title,
         'price_fmt'   => digitalproduk_price( $p_sale ),
-        'orig_fmt'    => digitalproduk_price( $p_price ),
+        'orig_fmt'    => ( $p_price > $p_sale ) ? digitalproduk_price( $p_price ) : '',
         'cover'       => digitalproduk_get_product_cover( $p_id ),
         'permalink'   => get_permalink( $p_id ),
+        'features'    => array_values( array_filter( array_map( 'trim', (array) $f_list ) ) ),
     ];
 }
 ?>
@@ -131,12 +134,18 @@ foreach ( $all_products as $p ) {
 
                     <!-- Dropdown Pilih Produk -->
                     <div class="form-group" style="margin-bottom: 16px;">
-                        <label for="checkoutProductSelector" class="form-label">
-                            Produk:
+                        <label for="checkoutProductSelector" class="form-label" style="display: flex; align-items: center; justify-content: space-between;">
+                            <span>Pilih Produk Digital: <span style="color: #ef4444;">*</span></span>
+                            <?php if ( ! $current_product ) : ?>
+                                <span style="font-size: 0.75rem; color: var(--brand-cobalt); font-weight: 600;">Wajib dipilih</span>
+                            <?php endif; ?>
                         </label>
-                        <select id="checkoutProductSelector" class="form-select">
+                        <select id="checkoutProductSelector" class="form-select" style="font-weight: 500;">
+                            <option value="" disabled <?php echo ! $current_product ? 'selected' : ''; ?>>
+                                -- Pilih Produk Digital yang Ingin Dibeli --
+                            </option>
                             <?php foreach ( $all_products as $p ) : 
-                                $is_sel = ( $p->ID === $prod_id );
+                                $is_sel = ( $current_product && $p->ID === $prod_id );
                                 $p_sale = get_post_meta( $p->ID, '_sale_price', true ) ?: get_post_meta( $p->ID, '_price', true );
                             ?>
                                 <option value="<?php echo esc_attr( $p->ID ); ?>" <?php selected( $is_sel ); ?>>
@@ -146,8 +155,21 @@ foreach ( $all_products as $p ) {
                         </select>
                     </div>
 
+                    <!-- Empty State Placeholder (Tampil jika belum ada produk dipilih) -->
+                    <div id="productSummaryPlaceholder" style="<?php echo $current_product ? 'display: none;' : 'display: block;'; ?> background: var(--bg-canvas); border: 1.5px dashed var(--border-main); border-radius: var(--radius-sm); padding: 24px 16px; text-align: center; margin-bottom: 16px;">
+                        <div style="color: var(--brand-cobalt); margin-bottom: 8px; display: inline-flex;">
+                            <?php echo digitalproduk_get_icon( 'shopping-bag', '', 32 ); ?>
+                        </div>
+                        <h3 style="font-size: 0.975rem; font-weight: 700; color: var(--text-primary); margin: 0 0 4px;">
+                            Belum Ada Produk Dipilih
+                        </h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0; line-height: 1.5;">
+                            Silakan pilih produk digital pada menu dropdown di atas untuk melihat rincian pesanan dan total pembayaran.
+                        </p>
+                    </div>
+
                     <!-- Selected Product Display -->
-                    <div id="productSummaryCard" style="display: flex; gap: 14px; align-items: center; background: var(--bg-canvas); border: 1px solid var(--border-main); border-radius: var(--radius-sm); padding: 12px; margin-bottom: 16px;">
+                    <div id="productSummaryCard" style="<?php echo $current_product ? 'display: flex;' : 'display: none;'; ?> gap: 14px; align-items: center; background: var(--bg-canvas); border: 1px solid var(--border-main); border-radius: var(--radius-sm); padding: 12px; margin-bottom: 16px;">
                         <img id="summaryProductImg" src="<?php echo esc_url( $prod_cover ); ?>" alt="<?php echo esc_attr( $prod_title ); ?>" style="width: 70px; height: 70px; object-fit: cover; border-radius: var(--radius-sm); border: 1px solid var(--border-main); background: #fff;" />
                         <div style="flex: 1;">
                             <h3 id="summaryProductTitle" style="font-size: 1rem; font-weight: 700; margin: 0 0 4px; color: var(--text-primary);">
@@ -160,26 +182,24 @@ foreach ( $all_products as $p ) {
                                         <path d="M8 12 C35 6 75 14 112 10" stroke="#fef08a" stroke-width="2" stroke-linecap="round" />
                                     </svg>
                                     <span id="summaryProductSale" class="price-val-bold" style="font-size: 1.15rem;">
-                                        <?php echo digitalproduk_price( $prod_sale_price ); ?>
+                                        <?php echo $current_product ? digitalproduk_price( $prod_sale_price ) : ''; ?>
                                     </span>
                                 </div>
-                                <?php if ( $prod_price > $prod_sale_price ) : ?>
-                                    <span id="summaryProductOrig" style="font-size: 0.825rem; text-decoration: line-through; color: var(--text-muted);">
-                                        <?php echo digitalproduk_price( $prod_price ); ?>
-                                    </span>
-                                <?php endif; ?>
+                                <span id="summaryProductOrig" style="<?php echo ( $current_product && $prod_price > $prod_sale_price ) ? 'display: inline;' : 'display: none;'; ?> font-size: 0.825rem; text-decoration: line-through; color: var(--text-muted);">
+                                    <?php echo ( $current_product && $prod_price > $prod_sale_price ) ? digitalproduk_price( $prod_price ) : ''; ?>
+                                </span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Features -->
-                    <ul style="list-style: none; padding: 0; margin: 0 0 16px; display: grid; gap: 6px;">
-                        <?php foreach ( $prod_features as $feat ) : ?>
+                    <ul id="summaryProductFeatures" style="list-style: none; padding: 0; margin: 0 0 16px; display: <?php echo $current_product ? 'grid' : 'none'; ?>; gap: 6px;">
+                        <?php if ( $current_product ) : foreach ( $prod_features as $feat ) : ?>
                             <li style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-secondary);">
                                 <span style="color: var(--brand-cobalt); display: inline-flex;"><?php echo digitalproduk_get_icon( 'check', '', 14 ); ?></span>
                                 <span><?php echo esc_html( trim( $feat ) ); ?></span>
                             </li>
-                        <?php endforeach; ?>
+                        <?php endforeach; endif; ?>
                     </ul>
 
                     <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">
@@ -199,7 +219,7 @@ foreach ( $all_products as $p ) {
                     </p>
 
                     <form id="dedicatedCheckoutForm" method="post" style="display: grid; gap: 12px;">
-                        <input type="hidden" id="checkoutHiddenProductId" name="product_id" value="<?php echo esc_attr( $prod_id ); ?>" />
+                        <input type="hidden" id="checkoutHiddenProductId" name="product_id" value="<?php echo esc_attr( $prod_id ?: '' ); ?>" />
 
                         <div>
                             <label for="pageBuyerName" class="form-label">
@@ -261,6 +281,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const imgEl = document.getElementById('summaryProductImg');
     const waBtn = document.getElementById('btnPageWhatsApp');
 
+    const placeholderEl = document.getElementById('productSummaryPlaceholder');
+    const cardEl = document.getElementById('productSummaryCard');
+    const featuresEl = document.getElementById('summaryProductFeatures');
+
     if (selector) {
         selector.addEventListener('change', function() {
             const pId = this.value;
@@ -269,9 +293,40 @@ document.addEventListener('DOMContentLoaded', function() {
                 hiddenId.value = p.id;
                 titleEl.textContent = p.title;
                 saleEl.textContent = p.price_fmt;
-                if (origEl) origEl.textContent = p.orig_fmt;
+
+                if (origEl) {
+                    if (p.orig_fmt) {
+                        origEl.textContent = p.orig_fmt;
+                        origEl.style.display = 'inline';
+                    } else {
+                        origEl.textContent = '';
+                        origEl.style.display = 'none';
+                    }
+                }
+
                 imgEl.src = p.cover;
                 imgEl.alt = p.title;
+
+                // Update features list
+                if (featuresEl) {
+                    if (p.features && p.features.length > 0) {
+                        featuresEl.innerHTML = p.features.map(function(feat) {
+                            return '<li style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-secondary);">' +
+                                '<span style="color: var(--brand-cobalt); display: inline-flex;">' +
+                                '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' +
+                                '</span>' +
+                                '<span>' + feat + '</span>' +
+                                '</li>';
+                        }).join('');
+                        featuresEl.style.display = 'grid';
+                    } else {
+                        featuresEl.style.display = 'none';
+                    }
+                }
+
+                if (placeholderEl) placeholderEl.style.display = 'none';
+                if (cardEl) cardEl.style.display = 'flex';
+                if (notice) notice.style.display = 'none';
 
                 const waPhone = '6281234567890';
                 const msg = encodeURIComponent(`Halo Indotech, saya ingin pesan:\nProduk: ${p.title}\nHarga: ${p.price_fmt}`);
@@ -299,8 +354,23 @@ document.addEventListener('DOMContentLoaded', function() {
             const email = document.getElementById('pageBuyerEmail').value.trim();
             const phone = document.getElementById('pageBuyerPhone').value.trim();
 
-            if (!productId || !name || !email) {
-                alert('Harap lengkapi nama dan email Anda.');
+            if (!productId) {
+                notice.style.display = 'block';
+                notice.style.background = '#fef2f2';
+                notice.style.border = '1px solid #fecaca';
+                notice.style.color = '#b91c1c';
+                notice.textContent = 'Silakan pilih produk digital yang ingin Anda beli pada menu dropdown terlebih dahulu.';
+                selector.focus();
+                selector.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            if (!name || !email) {
+                notice.style.display = 'block';
+                notice.style.background = '#fef2f2';
+                notice.style.border = '1px solid #fecaca';
+                notice.style.color = '#b91c1c';
+                notice.textContent = 'Harap lengkapi nama lengkap dan alamat email Anda.';
                 return;
             }
 

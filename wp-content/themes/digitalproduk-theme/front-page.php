@@ -32,11 +32,19 @@ $categories = get_terms([
     <div class="hero-art-canvas" aria-hidden="true">
         <!-- 1. Big Cobalt Paint Splash (Organic Tapered, Seamless into Canvas) -->
         <svg class="art-stroke stroke-cobalt-blast" viewBox="0 0 580 420" fill="none">
-            <path d="M140 0 C190 35 240 20 300 55 C370 95 400 150 460 175 C520 200 560 270 580 320 V0 H140 Z" fill="#152cab" />
-            <path d="M220 0 C270 30 350 25 410 80 C460 130 510 160 580 185 V0 H220 Z" fill="#2563eb" opacity="0.45" />
-            <path d="M120 15 C170 45 220 30 280 65 C220 50 170 35 120 15 Z" fill="#152cab" />
-            <path d="M260 70 C330 110 380 160 430 190 C370 145 320 100 260 70 Z" fill="#152cab" opacity="0.8" />
-            <path d="M380 170 C440 210 490 280 520 330 C480 265 430 205 380 170 Z" fill="#152cab" opacity="0.7" />
+            <!-- Organic Main Body - soft curved top, zero straight lines -->
+            <path d="M150 45 C 210 22, 275 32, 335 18 C 395 5, 460 12, 515 28 C 555 42, 575 70, 578 110 C 582 150, 565 190, 545 228 C 515 280, 480 330, 435 370 C 395 405, 350 408, 315 375 C 285 345, 275 300, 260 255 C 245 205, 210 160, 170 120 C 145 95, 125 65, 150 45 Z" fill="#152cab" />
+            <!-- Deep Cobalt Inner Shading -->
+            <path d="M230 40 C 290 25, 360 28, 420 18 C 470 10, 520 22, 555 45 C 572 65, 575 95, 565 128 C 550 170, 510 210, 465 250 C 420 290, 365 315, 325 295 C 300 278, 310 240, 325 205 C 340 170, 345 130, 310 100 C 275 75, 220 58, 230 40 Z" fill="#2563eb" opacity="0.45" />
+            <!-- Feathery Brush Bristles -->
+            <path d="M165 62 C 220 48, 280 55, 330 44 C 280 58, 225 64, 165 62 Z" fill="#152cab" opacity="0.75" />
+            <path d="M330 175 C 395 215, 445 265, 480 320 C 440 268, 385 220, 330 175 Z" fill="#152cab" opacity="0.65" />
+            <path d="M460 90 C 505 120, 535 160, 550 205 C 540 165, 510 130, 460 90 Z" fill="#2563eb" opacity="0.5" />
+            <!-- Paint Splatter Accents along stroke edge -->
+            <circle cx="560" cy="85" r="4" fill="#152cab" />
+            <circle cx="572" cy="135" r="3" fill="#152cab" />
+            <circle cx="535" cy="270" r="3.5" fill="#152cab" />
+            <circle cx="495" cy="350" r="2.5" fill="#152cab" />
         </svg>
 
         <!-- 2. Expressive Yellow Acrylic Scribble Sweep (Gaya Referensi) -->
@@ -58,10 +66,10 @@ $categories = get_terms([
             <path d="M5 80 L180 25" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-dasharray="15 10 40 8" opacity="0.5" />
         </svg>
 
-        <!-- 4. Goresan Kuas Aksen Sisi Kiri -->
+        <!-- 4. Goresan Kuas Aksen Sisi Kiri (Tapered Natural Ends) -->
         <svg class="art-stroke stroke-left-accent" viewBox="0 0 180 90" fill="none">
-            <path d="M0 25 C45 10 90 35 130 20 C100 40 50 45 0 35 Z" fill="#f7d801" opacity="0.7" />
-            <path d="M10 40 C50 25 90 48 135 32" stroke="#152cab" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="18 12 35 8" opacity="0.4" />
+            <path d="M12 40 C 45 22, 95 34, 140 20 C 165 12, 175 22, 172 30 C 160 42, 125 50, 85 52 C 45 54, 18 50, 12 40 Z" fill="#f7d801" opacity="0.75" />
+            <path d="M22 52 C 60 38, 105 52, 150 36" stroke="#152cab" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="18 12 30 8" opacity="0.35" />
         </svg>
 
         <!-- 5. Paint Splatters (Tetesan Cat Alami) -->

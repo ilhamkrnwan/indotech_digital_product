@@ -290,17 +290,17 @@ button {
 }
 
 .stroke-cobalt-blast {
-    top: -40px;
-    right: -60px;
-    width: 580px;
+    top: 5px;
+    right: -25px;
+    width: 560px;
     height: 420px;
     opacity: 0.95;
     filter: drop-shadow(0 15px 35px rgba(21, 44, 171, 0.12));
 }
 
 .stroke-yellow-scribble {
-    top: 30px;
-    right: 180px;
+    top: 25px;
+    right: 170px;
     width: 320px;
     height: 180px;
     opacity: 0.95;
@@ -316,7 +316,7 @@ button {
 
 .stroke-left-accent {
     top: 25px;
-    left: -30px;
+    left: -15px;
     width: 180px;
     height: 90px;
     opacity: 0.85;
@@ -992,8 +992,8 @@ button {
 .thankyou-stroke-splash,
 .category-stroke-splash {
     position: absolute;
-    top: -20px;
-    right: -20px;
+    top: 8px;
+    right: -15px;
     width: 420px;
     height: 280px;
     pointer-events: none;
@@ -1182,19 +1182,100 @@ button {
  * 11. Responsive
  * ----------------------------------------------------------- */
 @media (max-width: 860px) {
-    .hero-title {
-        font-size: 2.2rem;
+    .hero-section {
+        padding: 3rem 0 3.5rem;
     }
+    .hero-title {
+        font-size: 2.15rem;
+        line-height: 1.25;
+    }
+    .hero-desc {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    /* Mobile Hero Art Canvas: Positioned organically AT THE TOP ("di atas") without flat clipping */
     .stroke-cobalt-blast {
-        width: 320px;
-        right: -40px;
+        top: 6px;
+        right: -15px;
+        width: 210px;
+        max-width: 55vw;
+        height: auto;
+        opacity: 0.38;
+        filter: drop-shadow(0 8px 20px rgba(21, 44, 171, 0.08));
     }
     .stroke-yellow-scribble {
+        display: block;
+        top: 14px;
+        right: 35px;
+        width: 140px;
+        height: auto;
+        opacity: 0.85;
+    }
+    .stroke-left-accent {
+        top: 12px;
+        left: -12px;
+        width: 100px;
+        height: auto;
+        opacity: 0.65;
+    }
+    .splatter-pos-1 {
+        top: 45px;
+        right: 140px;
+        width: 55px;
+        height: 55px;
+        opacity: 0.6;
+    }
+    .splatter-pos-2 {
         display: none;
+    }
+    .stroke-dry-diagonal {
+        bottom: 15px;
+        right: 15px;
+        width: 160px;
+        opacity: 0.6;
     }
     .geo-shape {
         display: none;
     }
+    .geo-triangle-bold {
+        display: block;
+        top: 16px;
+        left: 12px;
+        width: 24px;
+        height: 24px;
+        opacity: 0.45;
+    }
+
+    /* Category, Checkout & Thank You Hero Canvas on Mobile */
+    .category-hero-section {
+        padding: 2.75rem 0 1.75rem !important;
+    }
+    .category-stroke-splash,
+    .checkout-stroke-splash,
+    .thankyou-stroke-splash {
+        top: 6px;
+        right: -10px;
+        width: 190px;
+        max-width: 50vw;
+        height: auto;
+        opacity: 0.45;
+    }
+    .category-geo-triangle,
+    .checkout-geo-triangle,
+    .thankyou-geo-triangle {
+        top: 18px;
+        left: 14px;
+        width: 22px;
+        height: 22px;
+        opacity: 0.45;
+    }
+    .category-geo-plus,
+    .checkout-geo-plus,
+    .thankyou-geo-plus {
+        display: none;
+    }
+
     .single-product-grid, .checkout-grid {
         grid-template-columns: 1fr;
     }
@@ -1207,5 +1288,25 @@ button {
     }
     .main-navigation {
         display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.85rem;
+    }
+    .stroke-cobalt-blast {
+        width: 175px;
+        top: 4px;
+        right: -10px;
+        opacity: 0.35;
+    }
+    .stroke-yellow-scribble {
+        width: 110px;
+        top: 10px;
+        right: 25px;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
     }
 }

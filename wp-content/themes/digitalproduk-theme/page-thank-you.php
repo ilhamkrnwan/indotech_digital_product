@@ -64,11 +64,11 @@ if ( ! empty( $order_id ) ) {
 <main class="site-main thank-you-page" style="background: var(--bg-canvas); min-height: 85vh; padding: 48px 0 80px; position: relative; overflow: hidden;">
     <!-- Abstract Brush & Wireframe Canvas for Download / Thank You Page -->
     <div class="thankyou-art-canvas" aria-hidden="true">
-        <!-- Top Right Celebratory Cobalt Splash -->
+        <!-- Top Right Celebratory Cobalt Splash (Organic Curved & Tapered) -->
         <svg class="thankyou-stroke-splash" viewBox="0 0 420 280" fill="none">
-            <path d="M100 0 C140 25 180 12 230 38 C280 65 300 110 350 125 C400 145 420 195 420 195 V0 H100 Z" fill="#152cab" opacity="0.85" />
-            <path d="M160 0 C200 20 250 18 290 50 C330 85 370 110 420 130 V0 H160 Z" fill="#2563eb" opacity="0.35" />
-            <path d="M200 18 C250 12 300 30 350 20 C380 15 400 28 410 24 C405 42 370 48 330 44 C270 40 220 52 190 38 Z" fill="#f7d801" />
+            <path d="M100 35 C 145 18, 195 26, 240 14 C 285 5, 335 12, 375 28 C 405 40, 418 65, 418 95 C 418 125, 400 155, 380 178 C 350 210, 310 235, 275 225 C 245 215, 230 185, 222 155 C 215 125, 218 95, 198 72 C 172 45, 130 46, 100 35 Z" fill="#152cab" opacity="0.85" />
+            <path d="M150 30 C 195 16, 250 22, 295 12 C 340 6, 375 18, 405 38 C 415 52, 415 75, 405 98 C 385 130, 350 155, 310 165 C 285 172, 265 155, 268 138 C 272 115, 288 92, 278 72 C 265 50, 215 45, 150 30 Z" fill="#2563eb" opacity="0.35" />
+            <path d="M200 35 C 250 24, 300 38, 350 26 C 380 18, 400 30, 410 26 C 405 44, 370 50, 330 46 C 270 42, 220 54, 190 40 Z" fill="#f7d801" />
             <circle cx="190" cy="75" r="4" fill="#152cab" />
             <circle cx="230" cy="120" r="3" fill="#152cab" />
             <circle cx="215" cy="55" r="2.5" fill="#f7d801" />

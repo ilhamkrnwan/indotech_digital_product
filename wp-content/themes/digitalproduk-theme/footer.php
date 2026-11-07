@@ -9,10 +9,10 @@
 
     <!-- Background Abstract Paint & Geometry Canvas -->
     <div class="footer-art-canvas" aria-hidden="true">
-        <!-- Corner Paint Splash in footer -->
+        <!-- Corner Paint Splash in footer (Organic Curved) -->
         <svg class="footer-stroke-splash" viewBox="0 0 320 220" fill="none">
-            <path d="M60 220 C100 180 160 190 220 150 C270 115 290 60 320 0 V220 H60 Z" fill="#152cab" opacity="0.08" />
-            <path d="M120 220 C160 195 210 200 250 170 C280 145 300 100 320 50 V220 H120 Z" fill="#f7d801" opacity="0.12" />
+            <path d="M70 200 C 110 170, 165 185, 220 145 C 265 110, 285 60, 305 18 C 315 45, 312 95, 295 140 C 275 185, 230 215, 175 212 C 125 210, 95 195, 70 200 Z" fill="#152cab" opacity="0.08" />
+            <path d="M125 200 C 165 180, 215 190, 250 160 C 280 135, 295 95, 308 55 C 312 80, 302 120, 280 155 C 255 190, 215 208, 170 205 C 145 204, 132 198, 125 200 Z" fill="#f7d801" opacity="0.12" />
             <circle cx="180" cy="140" r="4" fill="#152cab" opacity="0.18" />
             <circle cx="230" cy="110" r="3" fill="#f7d801" opacity="0.25" />
         </svg>

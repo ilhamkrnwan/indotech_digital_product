@@ -27,11 +27,11 @@ $categories = get_terms([
 <section class="section category-hero-section" style="padding: 3.5rem 0 2rem; background: #ffffff; border-bottom: 1px solid var(--border-main); position: relative; overflow: hidden;">
     <!-- Abstract Brush & Wireframe Canvas for Category Page -->
     <div class="category-art-canvas" aria-hidden="true">
-        <!-- Top Right Cobalt Splash -->
+        <!-- Top Right Cobalt Splash (Organic Curved & Tapered) -->
         <svg class="category-stroke-splash" viewBox="0 0 450 300" fill="none">
-            <path d="M120 0 C160 30 200 15 250 45 C300 75 320 120 370 140 C420 160 450 210 450 210 V0 H120 Z" fill="#152cab" opacity="0.9" />
-            <path d="M180 0 C220 25 280 20 320 60 C360 100 400 130 450 150 V0 H180 Z" fill="#2563eb" opacity="0.35" />
-            <path d="M220 20 C270 15 330 35 380 25 C410 18 430 32 440 28 C435 48 395 55 350 50 C290 45 240 60 210 45 C195 38 205 22 220 20 Z" fill="#f7d801" />
+            <path d="M120 35 C 160 18, 210 28, 255 16 C 300 6, 350 12, 395 28 C 430 42, 445 68, 448 95 C 450 125, 435 155, 415 180 C 385 215, 345 245, 305 235 C 270 225, 250 195, 240 165 C 230 135, 235 105, 215 80 C 190 52, 150 48, 120 35 Z" fill="#152cab" opacity="0.9" />
+            <path d="M170 32 C 215 18, 270 24, 315 14 C 360 8, 400 20, 435 40 C 445 55, 445 80, 435 105 C 415 140, 375 168, 335 180 C 305 188, 285 170, 288 150 C 292 125, 310 100, 300 78 C 285 55, 235 48, 170 32 Z" fill="#2563eb" opacity="0.35" />
+            <path d="M220 35 C 270 24, 330 38, 380 26 C 410 18, 430 32, 440 28 C 435 48, 395 55, 350 50 C 290 45, 240 60, 210 45 C 195 38, 205 28, 220 35 Z" fill="#f7d801" />
             <circle cx="210" cy="85" r="4.5" fill="#152cab" />
             <circle cx="185" cy="115" r="3" fill="#152cab" />
             <circle cx="255" cy="135" r="3.5" fill="#152cab" />

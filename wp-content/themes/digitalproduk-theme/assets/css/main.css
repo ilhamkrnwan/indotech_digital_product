@@ -294,8 +294,9 @@ button {
     right: -25px;
     width: 560px;
     height: 420px;
-    opacity: 0.95;
-    filter: drop-shadow(0 15px 35px rgba(21, 44, 171, 0.12));
+    opacity: 0.12;
+    filter: drop-shadow(0 15px 35px rgba(21, 44, 171, 0.04));
+    mix-blend-mode: multiply;
 }
 
 .stroke-yellow-scribble {
@@ -303,7 +304,8 @@ button {
     right: 170px;
     width: 320px;
     height: 180px;
-    opacity: 0.95;
+    opacity: 0.22;
+    mix-blend-mode: multiply;
 }
 
 .stroke-dry-diagonal {
@@ -311,7 +313,7 @@ button {
     right: 40px;
     width: 260px;
     height: 120px;
-    opacity: 0.85;
+    opacity: 0.18;
 }
 
 .stroke-left-accent {
@@ -319,13 +321,15 @@ button {
     left: -15px;
     width: 180px;
     height: 90px;
-    opacity: 0.85;
+    opacity: 0.18;
+    mix-blend-mode: multiply;
 }
 
 /* Splatter Clusters */
 .splatter-cluster {
     position: absolute;
     pointer-events: none;
+    opacity: 0.22;
 }
 .splatter-pos-1 { top: 180px; right: 460px; width: 90px; height: 90px; }
 .splatter-pos-2 { bottom: 50px; left: 340px; width: 80px; height: 80px; }
@@ -335,6 +339,7 @@ button {
     position: absolute;
     pointer-events: none;
     z-index: 2;
+    opacity: 0.25;
 }
 
 .geo-triangle-bold {
@@ -343,10 +348,10 @@ button {
     width: 44px;
     height: 44px;
     stroke: var(--brand-cobalt);
-    stroke-width: 2.5;
+    stroke-width: 2;
     fill: none;
     transform: rotate(-18deg);
-    filter: drop-shadow(0 2px 4px rgba(21, 44, 171, 0.15));
+    opacity: 0.22;
 }
 
 .geo-concentric-circle {
@@ -354,6 +359,7 @@ button {
     right: 520px;
     width: 58px;
     height: 58px;
+    opacity: 0.24;
 }
 
 .geo-square-tilted {
@@ -364,6 +370,7 @@ button {
     border: 2px solid var(--accent-yellow-warm);
     border-radius: 4px;
     transform: rotate(32deg);
+    opacity: 0.22;
 }
 
 .geo-plus-mark {
@@ -372,6 +379,7 @@ button {
     font-weight: 800;
     user-select: none;
     line-height: 1;
+    opacity: 0.20;
 }
 
 /* Hero Content & Typography */
@@ -997,7 +1005,8 @@ button {
     width: 420px;
     height: 280px;
     pointer-events: none;
-    filter: drop-shadow(0 10px 25px rgba(21, 44, 171, 0.08));
+    opacity: 0.12;
+    mix-blend-mode: multiply;
 }
 
 .checkout-geo-triangle,
@@ -1009,7 +1018,7 @@ button {
     width: 32px;
     height: 32px;
     transform: rotate(-15deg);
-    opacity: 0.75;
+    opacity: 0.22;
 }
 
 .checkout-geo-plus,
@@ -1021,6 +1030,7 @@ button {
     font-weight: 800;
     user-select: none;
     pointer-events: none;
+    opacity: 0.20;
 }
 
 .thank-you-box {
@@ -1194,15 +1204,15 @@ button {
         line-height: 1.6;
     }
 
-    /* Mobile Hero Art Canvas: Positioned organically AT THE TOP ("di atas") without flat clipping */
+    /* Mobile Hero Art Canvas: Subtly ambient background */
     .stroke-cobalt-blast {
         top: 6px;
         right: -15px;
         width: 210px;
         max-width: 55vw;
         height: auto;
-        opacity: 0.38;
-        filter: drop-shadow(0 8px 20px rgba(21, 44, 171, 0.08));
+        opacity: 0.12;
+        filter: none;
     }
     .stroke-yellow-scribble {
         display: block;
@@ -1210,21 +1220,21 @@ button {
         right: 35px;
         width: 140px;
         height: auto;
-        opacity: 0.85;
+        opacity: 0.20;
     }
     .stroke-left-accent {
         top: 12px;
         left: -12px;
         width: 100px;
         height: auto;
-        opacity: 0.65;
+        opacity: 0.16;
     }
     .splatter-pos-1 {
         top: 45px;
         right: 140px;
         width: 55px;
         height: 55px;
-        opacity: 0.6;
+        opacity: 0.18;
     }
     .splatter-pos-2 {
         display: none;
@@ -1233,7 +1243,7 @@ button {
         bottom: 15px;
         right: 15px;
         width: 160px;
-        opacity: 0.6;
+        opacity: 0.16;
     }
     .geo-shape {
         display: none;
@@ -1244,7 +1254,7 @@ button {
         left: 12px;
         width: 24px;
         height: 24px;
-        opacity: 0.45;
+        opacity: 0.22;
     }
 
     /* Category, Checkout & Thank You Hero Canvas on Mobile */
@@ -1259,7 +1269,7 @@ button {
         width: 190px;
         max-width: 50vw;
         height: auto;
-        opacity: 0.45;
+        opacity: 0.12;
     }
     .category-geo-triangle,
     .checkout-geo-triangle,
@@ -1268,7 +1278,7 @@ button {
         left: 14px;
         width: 22px;
         height: 22px;
-        opacity: 0.45;
+        opacity: 0.20;
     }
     .category-geo-plus,
     .checkout-geo-plus,
@@ -1299,12 +1309,13 @@ button {
         width: 175px;
         top: 4px;
         right: -10px;
-        opacity: 0.35;
+        opacity: 0.10;
     }
     .stroke-yellow-scribble {
         width: 110px;
         top: 10px;
         right: 25px;
+        opacity: 0.18;
     }
     .footer-grid {
         grid-template-columns: 1fr;

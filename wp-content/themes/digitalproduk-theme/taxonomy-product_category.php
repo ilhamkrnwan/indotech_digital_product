@@ -44,8 +44,8 @@ $categories = get_terms([
         </svg>
 
         <!-- Plus Marks -->
-        <div class="category-geo-plus" style="top: 70px; left: 60px; color: #152cab; opacity: 0.7;">+</div>
-        <div class="category-geo-plus" style="top: 130px; right: 480px; color: #f59e0b; opacity: 0.85;">+</div>
+        <div class="category-geo-plus" style="top: 70px; left: 60px; color: #152cab; opacity: 0.20;">+</div>
+        <div class="category-geo-plus" style="top: 130px; right: 480px; color: #f59e0b; opacity: 0.24;">+</div>
     </div>
 
     <div class="container text-center" style="position: relative; z-index: 10;">

@@ -80,8 +80,8 @@ if ( ! empty( $order_id ) ) {
         </svg>
 
         <!-- Plus Marks -->
-        <div class="thankyou-geo-plus" style="top: 60px; left: 45px; color: #152cab; opacity: 0.7;">+</div>
-        <div class="thankyou-geo-plus" style="bottom: 70px; right: 80px; color: #f59e0b; opacity: 0.85;">+</div>
+        <div class="thankyou-geo-plus" style="top: 60px; left: 45px; color: #152cab; opacity: 0.20;">+</div>
+        <div class="thankyou-geo-plus" style="bottom: 70px; right: 80px; color: #f59e0b; opacity: 0.24;">+</div>
     </div>
 
     <div class="container" style="max-width: 720px; margin: 0 auto; position: relative; z-index: 10;">

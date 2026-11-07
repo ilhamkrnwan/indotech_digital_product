@@ -104,9 +104,9 @@ $categories = get_terms([
 
         <div class="geo-shape geo-square-tilted"></div>
 
-        <div class="geo-shape geo-plus-mark" style="top: 110px; left: 16px; color: #152cab; opacity: 0.75;">+</div>
-        <div class="geo-shape geo-plus-mark" style="bottom: 35px; right: 280px; color: #f59e0b; opacity: 0.85;">+</div>
-        <div class="geo-shape geo-plus-mark" style="top: 25px; right: 540px; color: #64748b; opacity: 0.5;">+</div>
+        <div class="geo-shape geo-plus-mark" style="top: 110px; left: 16px; color: #152cab; opacity: 0.20;">+</div>
+        <div class="geo-shape geo-plus-mark" style="bottom: 35px; right: 280px; color: #f59e0b; opacity: 0.24;">+</div>
+        <div class="geo-shape geo-plus-mark" style="top: 25px; right: 540px; color: #64748b; opacity: 0.18;">+</div>
     </div>
 
     <div class="container">

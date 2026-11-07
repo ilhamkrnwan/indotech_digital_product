@@ -89,8 +89,8 @@ foreach ( $all_products as $p ) {
         </svg>
 
         <!-- Plus Marks -->
-        <div class="checkout-geo-plus" style="top: 80px; left: 40px; color: #152cab; opacity: 0.7;">+</div>
-        <div class="checkout-geo-plus" style="top: 140px; right: 460px; color: #f59e0b; opacity: 0.85;">+</div>
+        <div class="checkout-geo-plus" style="top: 80px; left: 40px; color: #152cab; opacity: 0.20;">+</div>
+        <div class="checkout-geo-plus" style="top: 140px; right: 460px; color: #f59e0b; opacity: 0.24;">+</div>
     </div>
 
     <div class="container" style="max-width: 1040px; position: relative; z-index: 10;">

@@ -116,7 +116,7 @@ while ( have_posts() ) :
                         </a>
 
                         <div style="text-align: center; margin-bottom: 1.25rem;">
-                            <a href="https://wa.me/6281234567890?text=<?php echo urlencode( 'Halo Indotech, saya ingin tanya produk: ' . get_the_title() ); ?>" target="_blank" rel="noopener" style="font-size: 0.825rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 0.4rem;">
+                            <a href="https://wa.me/6281234567890?text=<?php echo urlencode( 'Halo indotechnology, saya ingin tanya produk: ' . get_the_title() ); ?>" target="_blank" rel="noopener" style="font-size: 0.825rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 0.4rem;">
                                 <?php echo digitalproduk_get_icon( 'message-circle', '', 14 ); ?>
                                 <span>Tanya via WhatsApp</span>
                             </a>

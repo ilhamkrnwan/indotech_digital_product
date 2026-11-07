@@ -28,7 +28,7 @@
             <div class="footer-col brand-col">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-brand" style="margin-bottom: 0.75rem;">
                     <span class="brand-title footer-brand-title">
-                        Indotech
+                        <span class="brand-part-lead">indo</span><span class="brand-part-tech">technology</span><span class="brand-dot">.</span>
                         <span class="footer-brand-brush" aria-hidden="true"></span>
                     </span>
                 </a>
@@ -74,7 +74,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; <?php echo date( 'Y' ); ?> Indotech. All rights reserved.</p>
+            <p>&copy; <?php echo date( 'Y' ); ?> indotechnology. All rights reserved.</p>
         </div>
     </div>
 </footer>

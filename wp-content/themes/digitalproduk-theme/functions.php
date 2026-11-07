@@ -358,7 +358,7 @@ function digitalproduk_render_delivery_meta_box( $post ) {
                     <label for="digitalproduk_access_note">Catatan Tambahan untuk Pembeli (Opsional)</label>
                 </th>
                 <td>
-                    <textarea name="_access_note" id="digitalproduk_access_note" rows="3" class="large-text" placeholder="Contoh: Password ekstrak file zip: indotech2026 atau ekstrak menggunakan WinRAR / 7-Zip terbaru." style="padding: 8px 12px;"><?php echo esc_textarea( $access_note ); ?></textarea>
+                    <textarea name="_access_note" id="digitalproduk_access_note" rows="3" class="large-text" placeholder="Contoh: Password ekstrak file zip: indotechnology2026 atau ekstrak menggunakan WinRAR / 7-Zip terbaru." style="padding: 8px 12px;"><?php echo esc_textarea( $access_note ); ?></textarea>
                     <p class="description">Catatan ini akan tampil di Halaman Sukses dan di email pembeli.</p>
                 </td>
             </tr>

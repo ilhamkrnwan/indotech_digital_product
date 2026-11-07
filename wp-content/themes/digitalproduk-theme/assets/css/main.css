@@ -182,8 +182,29 @@ button {
 .brand-title {
     font-size: 1.25rem;
     font-weight: 800;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
     color: var(--text-primary);
+    display: inline-flex;
+    align-items: baseline;
+    line-height: 1;
+}
+
+.brand-part-lead {
+    color: var(--brand-cobalt);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.brand-part-tech {
+    color: var(--text-primary);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.brand-dot {
+    color: var(--accent-yellow);
+    font-weight: 900;
+    margin-left: 1px;
 }
 
 .nav-menu {
@@ -1302,6 +1323,9 @@ button {
 }
 
 @media (max-width: 480px) {
+    .brand-title {
+        font-size: 1.125rem;
+    }
     .hero-title {
         font-size: 1.85rem;
     }

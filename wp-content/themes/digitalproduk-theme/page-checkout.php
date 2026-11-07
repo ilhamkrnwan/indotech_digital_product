@@ -255,7 +255,7 @@ foreach ( $all_products as $p ) {
                         </a>
 
                         <div style="text-align: center; margin-top: 8px;">
-                            <a id="btnPageWhatsApp" href="https://wa.me/6281234567890?text=<?php echo urlencode( 'Halo Indotech, saya ingin pesan: ' . $prod_title ); ?>" 
+                            <a id="btnPageWhatsApp" href="https://wa.me/6281234567890?text=<?php echo urlencode( 'Halo indotechnology, saya ingin pesan: ' . $prod_title ); ?>" 
                                target="_blank" rel="noopener" style="font-size: 0.825rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 4px;">
                                 <?php echo digitalproduk_get_icon( 'message-circle', '', 14 ); ?>
                                 <span>Bantuan / Pesan Manual via WhatsApp</span>
@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (notice) notice.style.display = 'none';
 
                 const waPhone = '6281234567890';
-                const msg = encodeURIComponent(`Halo Indotech, saya ingin pesan:\nProduk: ${p.title}\nHarga: ${p.price_fmt}`);
+                const msg = encodeURIComponent(`Halo indotechnology, saya ingin pesan:\nProduk: ${p.title}\nHarga: ${p.price_fmt}`);
                 waBtn.href = `https://wa.me/${waPhone}?text=${msg}`;
             }
         });

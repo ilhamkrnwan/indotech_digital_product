@@ -11,7 +11,7 @@
 <header class="site-header">
     <div class="container header-container">
         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-brand">
-            <span class="brand-title">Indotech</span>
+            <span class="brand-title"><span class="brand-part-lead">indo</span><span class="brand-part-tech">technology</span><span class="brand-dot">.</span></span>
         </a>
 
         <?php

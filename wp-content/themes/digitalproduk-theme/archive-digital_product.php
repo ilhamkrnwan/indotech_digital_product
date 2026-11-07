@@ -22,10 +22,38 @@ $categories = get_terms([
 $search_query = isset( $_GET['s'] ) ? sanitize_text_field( $_GET['s'] ) : ( isset( $_GET['q'] ) ? sanitize_text_field( $_GET['q'] ) : '' );
 ?>
 
-<!-- Header Katalog -->
-<section class="section" style="padding: 2.5rem 0 1.5rem; background: var(--bg-canvas); border-bottom: 1px solid var(--border-main);">
-    <div class="container text-center">
-        <h1 class="hero-title" style="margin-bottom: 0.5rem; font-size: 2.25rem;">
+<!-- Header Katalog (Option B: Dynamic Brush Art & Wireframes) -->
+<section class="section category-hero-section" style="padding: 3.5rem 0 2rem; background: #ffffff; border-bottom: 1px solid var(--border-main); position: relative; overflow: hidden;">
+    <!-- Abstract Brush & Wireframe Canvas for Archive Page -->
+    <div class="category-art-canvas" aria-hidden="true">
+        <!-- Top Right Cobalt Splash -->
+        <svg class="category-stroke-splash" viewBox="0 0 450 300" fill="none">
+            <path d="M120 0 C160 30 200 15 250 45 C300 75 320 120 370 140 C420 160 450 210 450 210 V0 H120 Z" fill="#152cab" opacity="0.9" />
+            <path d="M180 0 C220 25 280 20 320 60 C360 100 400 130 450 150 V0 H180 Z" fill="#2563eb" opacity="0.35" />
+            <path d="M220 20 C270 15 330 35 380 25 C410 18 430 32 440 28 C435 48 395 55 350 50 C290 45 240 60 210 45 C195 38 205 22 220 20 Z" fill="#f7d801" />
+            <circle cx="210" cy="85" r="4.5" fill="#152cab" />
+            <circle cx="185" cy="115" r="3" fill="#152cab" />
+            <circle cx="255" cy="135" r="3.5" fill="#152cab" />
+            <circle cx="240" cy="65" r="3" fill="#f7d801" />
+        </svg>
+
+        <!-- Wireframe Triangle Left -->
+        <svg class="category-geo-triangle" viewBox="0 0 32 32" fill="none">
+            <polygon points="16,3 29,27 3,27" stroke="#152cab" stroke-width="2.5" />
+        </svg>
+
+        <!-- Plus Marks -->
+        <div class="category-geo-plus" style="top: 70px; left: 60px; color: #152cab; opacity: 0.7;">+</div>
+        <div class="category-geo-plus" style="top: 130px; right: 480px; color: #f59e0b; opacity: 0.85;">+</div>
+    </div>
+
+    <div class="container text-center" style="position: relative; z-index: 10;">
+        <div class="hero-badge-artisan" style="margin-bottom: 0.75rem;">
+            <div class="badge-brush-backing"></div>
+            <span class="badge-brush-text">&bull; VERIFIED ASSETS CATALOG</span>
+        </div>
+
+        <h1 class="hero-title" style="margin-bottom: 0.75rem; font-size: 2.75rem; font-weight: 900; letter-spacing: -0.03em;">
             Semua 
             <span class="brush-highlight-dynamic">
                 <span class="word-text">Produk.</span>
@@ -36,8 +64,8 @@ $search_query = isset( $_GET['s'] ) ? sanitize_text_field( $_GET['s'] ) : ( isse
                 </svg>
             </span>
         </h1>
-        <p class="hero-desc" style="margin: 0 auto 1.5rem; max-width: 550px; font-size: 0.95rem;">
-            Temukan source code, plugin WordPress, dan template desain siap pakai.
+        <p class="hero-desc" style="margin: 0 auto 1.5rem; max-width: 580px; font-size: 1rem;">
+            Temukan source code web apps, plugin WordPress, dan template desain siap pakai.
         </p>
 
         <!-- Search Bar -->
@@ -68,6 +96,12 @@ $search_query = isset( $_GET['s'] ) ? sanitize_text_field( $_GET['s'] ) : ( isse
 <!-- Grid Katalog Produk -->
 <section class="section">
     <div class="container">
+        <!-- Organic Paint Stroke Divider Line -->
+        <svg class="brush-divider" viewBox="0 0 1100 12" fill="none" preserveAspectRatio="none" aria-hidden="true" style="margin-bottom: 2.25rem;">
+            <path d="M0 6 C200 3 450 9 700 5 C900 2 1050 7 1100 5" stroke="#152cab" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="60 20 180 15 240 30" opacity="0.3" />
+            <path d="M120 7 C350 4 600 10 850 6" stroke="#f7d801" stroke-width="3" stroke-linecap="round" stroke-dasharray="100 25 150 20" opacity="0.75" />
+        </svg>
+
         <?php
         if ( ! empty( $search_query ) ) {
             echo '<p style="margin-bottom: 1.5rem; font-size: 0.95rem; color: var(--text-secondary);">Hasil pencarian untuk: "<strong>' . esc_html( $search_query ) . '</strong>"</p>';

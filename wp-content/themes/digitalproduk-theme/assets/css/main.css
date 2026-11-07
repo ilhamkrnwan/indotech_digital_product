@@ -975,9 +975,10 @@ button {
     overflow: hidden;
 }
 
-/* Checkout & Thank You Art Canvases */
+/* Checkout, Thank You & Category Art Canvases */
 .checkout-art-canvas,
-.thankyou-art-canvas {
+.thankyou-art-canvas,
+.category-art-canvas {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -988,7 +989,8 @@ button {
 }
 
 .checkout-stroke-splash,
-.thankyou-stroke-splash {
+.thankyou-stroke-splash,
+.category-stroke-splash {
     position: absolute;
     top: -20px;
     right: -20px;
@@ -999,7 +1001,8 @@ button {
 }
 
 .checkout-geo-triangle,
-.thankyou-geo-triangle {
+.thankyou-geo-triangle,
+.category-geo-triangle {
     position: absolute;
     top: 45px;
     left: max(20px, calc(50% - 500px));
@@ -1010,7 +1013,8 @@ button {
 }
 
 .checkout-geo-plus,
-.thankyou-geo-plus {
+.thankyou-geo-plus,
+.category-geo-plus {
     position: absolute;
     font-family: var(--font-mono);
     font-size: 1.35rem;

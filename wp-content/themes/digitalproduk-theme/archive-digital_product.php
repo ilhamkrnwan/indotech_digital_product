@@ -25,7 +25,17 @@ $search_query = isset( $_GET['s'] ) ? sanitize_text_field( $_GET['s'] ) : ( isse
 <!-- Header Katalog -->
 <section class="section" style="padding: 2.5rem 0 1.5rem; background: var(--bg-canvas); border-bottom: 1px solid var(--border-main);">
     <div class="container text-center">
-        <h1 class="hero-title" style="margin-bottom: 0.5rem; font-size: 2rem;">Semua Produk</h1>
+        <h1 class="hero-title" style="margin-bottom: 0.5rem; font-size: 2.25rem;">
+            Semua 
+            <span class="brush-highlight-dynamic">
+                <span class="word-text">Produk.</span>
+                <svg class="brush-svg-multi" viewBox="0 0 300 24" fill="none" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M4 16 C55 10 130 18 205 12 C250 8 285 13 296 10 C285 18 230 21 170 20 C100 19 45 21 8 18 C3 17 2 16 4 16 Z" fill="#f59e0b" opacity="0.85" />
+                    <path d="M14 10 C65 6 150 12 225 8 C270 5 292 9 298 7 C288 15 235 17 180 16 C120 15 55 17 18 14 C10 13 8 10 14 10 Z" fill="#f7d801" />
+                    <circle cx="295" cy="15" r="1.8" fill="#f59e0b" />
+                </svg>
+            </span>
+        </h1>
         <p class="hero-desc" style="margin: 0 auto 1.5rem; max-width: 550px; font-size: 0.95rem;">
             Temukan source code, plugin WordPress, dan template desain siap pakai.
         </p>

@@ -66,15 +66,58 @@ foreach ( $all_products as $p ) {
 }
 ?>
 
-<main class="site-main checkout-page-main" style="background: var(--bg-canvas); min-height: 85vh; padding: 32px 0 64px;">
-    <div class="container" style="max-width: 1040px;">
+<main class="site-main checkout-page-main" style="background: var(--bg-canvas); min-height: 85vh; padding: 32px 0 64px; position: relative; overflow: hidden;">
+    <!-- Abstract Brush & Wireframe Canvas for Checkout -->
+    <div class="checkout-art-canvas" aria-hidden="true">
+        <!-- Top Right Cobalt Splash -->
+        <svg class="checkout-stroke-splash" viewBox="0 0 450 300" fill="none">
+            <path d="M120 0 C160 30 200 15 250 45 C300 75 320 120 370 140 C420 160 450 210 450 210 V0 H120 Z" fill="#152cab" opacity="0.88" />
+            <path d="M180 0 C220 25 280 20 320 60 C360 100 400 130 450 150 V0 H180 Z" fill="#2563eb" opacity="0.35" />
+            <path d="M220 20 C270 15 330 35 380 25 C410 18 430 32 440 28 C435 48 395 55 350 50 C290 45 240 60 210 45 C195 38 205 22 220 20 Z" fill="#f7d801" />
+            <circle cx="210" cy="85" r="4.5" fill="#152cab" />
+            <circle cx="185" cy="115" r="3" fill="#152cab" />
+            <circle cx="255" cy="135" r="3.5" fill="#152cab" />
+            <circle cx="240" cy="65" r="3" fill="#f7d801" />
+        </svg>
 
-        <!-- Back Link -->
-        <div style="margin-bottom: 20px;">
-            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 6px;">
+        <!-- Left Wireframe Triangle -->
+        <svg class="checkout-geo-triangle" viewBox="0 0 32 32" fill="none">
+            <polygon points="16,3 29,27 3,27" stroke="#152cab" stroke-width="2.5" />
+        </svg>
+
+        <!-- Plus Marks -->
+        <div class="checkout-geo-plus" style="top: 80px; left: 40px; color: #152cab; opacity: 0.7;">+</div>
+        <div class="checkout-geo-plus" style="top: 140px; right: 460px; color: #f59e0b; opacity: 0.85;">+</div>
+    </div>
+
+    <div class="container" style="max-width: 1040px; position: relative; z-index: 10;">
+
+        <!-- Back Link & Header -->
+        <div style="margin-bottom: 24px;">
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 6px; margin-bottom: 1rem;">
                 <?php echo digitalproduk_get_icon( 'arrow-left', '', 14 ); ?>
                 <span>Kembali ke Katalog</span>
             </a>
+
+            <div class="hero-badge-artisan" style="margin-bottom: 0.75rem;">
+                <div class="badge-brush-backing"></div>
+                <span class="badge-brush-text">&bull; AMAN &amp; TERVERIFIKASI MIDTRANS</span>
+            </div>
+
+            <h1 class="checkout-main-title" style="font-size: 2.25rem; font-weight: 900; color: var(--text-primary); margin-bottom: 0.5rem; letter-spacing: -0.03em;">
+                Checkout 
+                <span class="brush-highlight-dynamic">
+                    <span class="word-text">Pembayaran.</span>
+                    <svg class="brush-svg-multi" viewBox="0 0 300 24" fill="none" preserveAspectRatio="none" aria-hidden="true">
+                        <path d="M4 16 C55 10 130 18 205 12 C250 8 285 13 296 10 C285 18 230 21 170 20 C100 19 45 21 8 18 C3 17 2 16 4 16 Z" fill="#f59e0b" opacity="0.85" />
+                        <path d="M14 10 C65 6 150 12 225 8 C270 5 292 9 298 7 C288 15 235 17 180 16 C120 15 55 17 18 14 C10 13 8 10 14 10 Z" fill="#f7d801" />
+                        <circle cx="295" cy="15" r="1.8" fill="#f59e0b" />
+                    </svg>
+                </span>
+            </h1>
+            <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0;">
+                Selesaikan pembayaran otomatis menggunakan QRIS atau Virtual Account bank pilihan Anda.
+            </p>
         </div>
 
         <div class="checkout-grid">
@@ -110,10 +153,16 @@ foreach ( $all_products as $p ) {
                             <h3 id="summaryProductTitle" style="font-size: 1rem; font-weight: 700; margin: 0 0 4px; color: var(--text-primary);">
                                 <?php echo esc_html( $prod_title ); ?>
                             </h3>
-                            <div style="display: flex; align-items: baseline; gap: 8px;">
-                                <span id="summaryProductSale" style="font-size: 1.2rem; font-weight: 800; color: var(--text-primary);">
-                                    <?php echo digitalproduk_price( $prod_sale_price ); ?>
-                                </span>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div class="price-brush-tag">
+                                    <svg class="price-brush-bg" viewBox="0 0 120 30" fill="none" preserveAspectRatio="none" aria-hidden="true">
+                                        <path d="M2 18 C25 10 65 20 110 14 C118 13 119 18 116 22 C90 26 50 25 10 24 C4 23 1 20 2 18 Z" fill="#f7d801" />
+                                        <path d="M8 12 C35 6 75 14 112 10" stroke="#fef08a" stroke-width="2" stroke-linecap="round" />
+                                    </svg>
+                                    <span id="summaryProductSale" class="price-val-bold" style="font-size: 1.15rem;">
+                                        <?php echo digitalproduk_price( $prod_sale_price ); ?>
+                                    </span>
+                                </div>
                                 <?php if ( $prod_price > $prod_sale_price ) : ?>
                                     <span id="summaryProductOrig" style="font-size: 0.825rem; text-decoration: line-through; color: var(--text-muted);">
                                         <?php echo digitalproduk_price( $prod_price ); ?>

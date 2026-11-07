@@ -971,16 +971,147 @@ button {
     padding: 1.25rem;
     margin: 1.5rem 0;
     text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Checkout & Thank You Art Canvases */
+.checkout-art-canvas,
+.thankyou-art-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.checkout-stroke-splash,
+.thankyou-stroke-splash {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 420px;
+    height: 280px;
+    pointer-events: none;
+    filter: drop-shadow(0 10px 25px rgba(21, 44, 171, 0.08));
+}
+
+.checkout-geo-triangle,
+.thankyou-geo-triangle {
+    position: absolute;
+    top: 45px;
+    left: max(20px, calc(50% - 500px));
+    width: 32px;
+    height: 32px;
+    transform: rotate(-15deg);
+    opacity: 0.75;
+}
+
+.checkout-geo-plus,
+.thankyou-geo-plus {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: 1.35rem;
+    font-weight: 800;
+    user-select: none;
+    pointer-events: none;
+}
+
+.thank-you-box {
+    position: relative;
+    z-index: 10;
+    background: #ffffff;
+    border: 1px solid var(--border-main);
+    border-radius: var(--radius-md);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-card);
 }
 
 /* -------------------------------------------------------------
- * 10. Footer
+ * 10. Footer (Option B: Abstract Paint & Brush Accents)
  * ----------------------------------------------------------- */
 .site-footer {
     background-color: #ffffff;
     border-top: 1px solid var(--border-main);
-    padding: 3rem 0 1.5rem;
+    padding: 3.5rem 0 1.5rem;
     margin-top: 3.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-brush-divider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 12px;
+    margin-bottom: 0;
+}
+
+.footer-art-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.footer-stroke-splash {
+    position: absolute;
+    bottom: -30px;
+    right: -20px;
+    width: 320px;
+    height: 220px;
+    pointer-events: none;
+}
+
+.footer-geo-triangle {
+    position: absolute;
+    top: 35px;
+    left: max(30px, calc(50% - 540px));
+    width: 32px;
+    height: 32px;
+    transform: rotate(15deg);
+    pointer-events: none;
+}
+
+.footer-geo-plus {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--accent-yellow-warm);
+    opacity: 0.4;
+    user-select: none;
+    pointer-events: none;
+}
+
+.footer-container {
+    position: relative;
+    z-index: 10;
+}
+
+.footer-brand-title {
+    position: relative;
+    display: inline-block;
+}
+
+.footer-brand-brush {
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 6px;
+    background: var(--accent-yellow);
+    border-radius: 2px;
+    transform: skewX(-12deg);
+    opacity: 0.75;
+    z-index: -1;
 }
 
 .footer-grid {

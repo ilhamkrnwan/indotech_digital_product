@@ -61,25 +61,62 @@ if ( ! empty( $order_id ) ) {
 }
 ?>
 
-<main class="site-main thank-you-page" style="background: var(--bg-canvas); min-height: 85vh; padding: 48px 0 80px;">
-    <div class="container" style="max-width: 720px; margin: 0 auto;">
+<main class="site-main thank-you-page" style="background: var(--bg-canvas); min-height: 85vh; padding: 48px 0 80px; position: relative; overflow: hidden;">
+    <!-- Abstract Brush & Wireframe Canvas for Download / Thank You Page -->
+    <div class="thankyou-art-canvas" aria-hidden="true">
+        <!-- Top Right Celebratory Cobalt Splash -->
+        <svg class="thankyou-stroke-splash" viewBox="0 0 420 280" fill="none">
+            <path d="M100 0 C140 25 180 12 230 38 C280 65 300 110 350 125 C400 145 420 195 420 195 V0 H100 Z" fill="#152cab" opacity="0.85" />
+            <path d="M160 0 C200 20 250 18 290 50 C330 85 370 110 420 130 V0 H160 Z" fill="#2563eb" opacity="0.35" />
+            <path d="M200 18 C250 12 300 30 350 20 C380 15 400 28 410 24 C405 42 370 48 330 44 C270 40 220 52 190 38 Z" fill="#f7d801" />
+            <circle cx="190" cy="75" r="4" fill="#152cab" />
+            <circle cx="230" cy="120" r="3" fill="#152cab" />
+            <circle cx="215" cy="55" r="2.5" fill="#f7d801" />
+        </svg>
+
+        <!-- Wireframe Triangle -->
+        <svg class="thankyou-geo-triangle" viewBox="0 0 32 32" fill="none">
+            <polygon points="16,3 29,27 3,27" stroke="#152cab" stroke-width="2.5" />
+        </svg>
+
+        <!-- Plus Marks -->
+        <div class="thankyou-geo-plus" style="top: 60px; left: 45px; color: #152cab; opacity: 0.7;">+</div>
+        <div class="thankyou-geo-plus" style="bottom: 70px; right: 80px; color: #f59e0b; opacity: 0.85;">+</div>
+    </div>
+
+    <div class="container" style="max-width: 720px; margin: 0 auto; position: relative; z-index: 10;">
 
         <?php if ( $order_found && $payment_status === 'success' ) : ?>
             <!-- STATUS 1: PEMBAYARAN SUKSES -->
-            <div class="thank-you-box">
+            <div class="thank-you-box" style="position: relative;">
                 <div class="thank-you-badge">
                     <?php echo digitalproduk_get_icon( 'check-circle-2', '', 32 ); ?>
                 </div>
 
-                <h1 style="font-size: 1.6rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">
-                    Pembayaran Berhasil
+                <h1 style="font-size: 1.85rem; font-weight: 900; color: var(--text-primary); margin-bottom: 8px; letter-spacing: -0.025em;">
+                    Pembayaran 
+                    <span class="brush-highlight-dynamic">
+                        <span class="word-text">Berhasil!</span>
+                        <svg class="brush-svg-multi" viewBox="0 0 300 24" fill="none" preserveAspectRatio="none" aria-hidden="true">
+                            <path d="M4 16 C55 10 130 18 205 12 C250 8 285 13 296 10 C285 18 230 21 170 20 C100 19 45 21 8 18 C3 17 2 16 4 16 Z" fill="#f59e0b" opacity="0.85" />
+                            <path d="M14 10 C65 6 150 12 225 8 C270 5 292 9 298 7 C288 15 235 17 180 16 C120 15 55 17 18 14 C10 13 8 10 14 10 Z" fill="#f7d801" />
+                            <circle cx="295" cy="15" r="1.8" fill="#f59e0b" />
+                        </svg>
+                    </span>
                 </h1>
-                <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0 auto 20px;">
-                    Terima kasih, <strong><?php echo esc_html( $customer_name ); ?></strong>. Order <strong>#<?php echo esc_html( $order_id ); ?></strong> telah terverifikasi.
+                <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0 auto 24px;">
+                    Terima kasih, <strong><?php echo esc_html( $customer_name ); ?></strong>. Order <strong>#<?php echo esc_html( $order_id ); ?></strong> telah terverifikasi otomatis.
                 </p>
 
                 <!-- DOWNLOAD ACTION CARD -->
-                <div class="download-action-card">
+                <div class="download-action-card" style="position: relative; overflow: hidden;">
+                    <!-- Mini Corner Paint Splash -->
+                    <svg class="thumb-paint-accent" viewBox="0 0 65 65" fill="none" aria-hidden="true">
+                        <path d="M10 0 C25 10 40 5 55 18 C62 25 65 45 65 45 V0 H10 Z" fill="#152cab" opacity="0.85" />
+                        <path d="M30 0 C45 8 55 12 65 15 V0 H30 Z" fill="#f7d801" />
+                        <circle cx="35" cy="28" r="2.5" fill="#152cab" />
+                    </svg>
+
                     <div style="display: flex; gap: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
                         <div style="display: flex; gap: 14px; align-items: center; flex: 1; min-width: 240px;">
                             <?php if ( ! empty( $cover_img ) ) : ?>
@@ -88,12 +125,23 @@ if ( ! empty( $order_id ) ) {
                                 </div>
                             <?php endif; ?>
                             <div>
-                                <h3 style="font-size: 1.05rem; font-weight: 700; margin: 0 0 2px; color: var(--text-primary);">
+                                <h3 style="font-size: 1.05rem; font-weight: 700; margin: 0 0 4px; color: var(--text-primary);">
                                     <?php echo esc_html( $product_title ); ?>
                                 </h3>
-                                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">
-                                    Format: <?php echo esc_html( $file_format ); ?> &bull; Total: <?php echo digitalproduk_price( $amount ); ?>
-                                </p>
+                                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                                    <span style="font-size: 0.8rem; color: var(--text-muted);">
+                                        Format: <strong><?php echo esc_html( $file_format ); ?></strong>
+                                    </span>
+                                    <div class="price-brush-tag">
+                                        <svg class="price-brush-bg" viewBox="0 0 120 30" fill="none" preserveAspectRatio="none" aria-hidden="true">
+                                            <path d="M2 18 C25 10 65 20 110 14 C118 13 119 18 116 22 C90 26 50 25 10 24 C4 23 1 20 2 18 Z" fill="#f7d801" />
+                                            <path d="M8 12 C35 6 75 14 112 10" stroke="#fef08a" stroke-width="2" stroke-linecap="round" />
+                                        </svg>
+                                        <span class="price-val-bold" style="font-size: 0.95rem;">
+                                            <?php echo digitalproduk_price( $amount ); ?>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -128,11 +176,19 @@ if ( ! empty( $order_id ) ) {
         <?php elseif ( $order_found && $payment_status === 'pending' ) : ?>
             <!-- STATUS 2: MENUNGGU PEMBAYARAN -->
             <div class="thank-you-box">
-                <h1 style="font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">
-                    Menunggu Pembayaran
+                <h1 style="font-size: 1.65rem; font-weight: 900; color: var(--text-primary); margin-bottom: 12px; letter-spacing: -0.025em;">
+                    Menunggu 
+                    <span class="brush-highlight-dynamic">
+                        <span class="word-text">Pembayaran.</span>
+                        <svg class="brush-svg-multi" viewBox="0 0 300 24" fill="none" preserveAspectRatio="none" aria-hidden="true">
+                            <path d="M4 16 C55 10 130 18 205 12 C250 8 285 13 296 10 C285 18 230 21 170 20 C100 19 45 21 8 18 C3 17 2 16 4 16 Z" fill="#f59e0b" opacity="0.85" />
+                            <path d="M14 10 C65 6 150 12 225 8 C270 5 292 9 298 7 C288 15 235 17 180 16 C120 15 55 17 18 14 C10 13 8 10 14 10 Z" fill="#f7d801" />
+                            <circle cx="295" cy="15" r="1.8" fill="#f59e0b" />
+                        </svg>
+                    </span>
                 </h1>
                 <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px;">
-                    Pesanan <strong>#<?php echo esc_html( $order_id ); ?></strong> sedang menunggu konfirmasi pembayaran.
+                    Pesanan <strong>#<?php echo esc_html( $order_id ); ?></strong> sedang menunggu konfirmasi pembayaran otomatis via Midtrans.
                 </p>
 
                 <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
@@ -147,11 +203,19 @@ if ( ! empty( $order_id ) ) {
 
         <?php else : ?>
             <div class="thank-you-box">
-                <h1 style="font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">
-                    Pesanan Tidak Ditemukan
+                <h1 style="font-size: 1.65rem; font-weight: 900; color: var(--text-primary); margin-bottom: 12px; letter-spacing: -0.025em;">
+                    Akses 
+                    <span class="brush-highlight-dynamic">
+                        <span class="word-text">Download Produk.</span>
+                        <svg class="brush-svg-multi" viewBox="0 0 300 24" fill="none" preserveAspectRatio="none" aria-hidden="true">
+                            <path d="M4 16 C55 10 130 18 205 12 C250 8 285 13 296 10 C285 18 230 21 170 20 C100 19 45 21 8 18 C3 17 2 16 4 16 Z" fill="#f59e0b" opacity="0.85" />
+                            <path d="M14 10 C65 6 150 12 225 8 C270 5 292 9 298 7 C288 15 235 17 180 16 C120 15 55 17 18 14 C10 13 8 10 14 10 Z" fill="#f7d801" />
+                            <circle cx="295" cy="15" r="1.8" fill="#f59e0b" />
+                        </svg>
+                    </span>
                 </h1>
                 <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px;">
-                    Silakan pilih produk terlebih dahulu melalui katalog kami.
+                    Silakan masukkan Order ID atau pilih produk terlebih dahulu melalui katalog kami.
                 </p>
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-primary btn-sm">
                     <span>Ke Katalog Produk</span>

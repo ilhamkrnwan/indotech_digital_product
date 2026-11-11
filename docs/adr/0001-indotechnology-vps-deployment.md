@@ -1,3 +1,4 @@
 # Deployment Indotech Digital Product ke indotechnology.co.id
 
 Website utama `indotechnology.co.id` yang sebelumnya menjalankan portal kemitraan investasi dialihkan secara penuh menjadi platform penjualan aset digital *Indotech Digital Product*. Sebelum proses penggantian, situs investasi lama telah di-snapshot lengkap (dump SQL dan arsip file `tar.gz`) ke `/home/indotechnology.co.id/backups_investasi_archive/` untuk menjaga integritas data historis. Deployment dilakukan berbasis Git di vhost OpenLiteSpeed dengan migrasi database MariaDB lokal, penulisan ulang URL via WP-CLI, dan penerapan restriksi permission CyberPanel (`indot7294:indot7294` serta `wp-config.php` 640 `indot7294:nobody`).
+

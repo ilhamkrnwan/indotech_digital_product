@@ -76,7 +76,7 @@ class DPM_Midtrans_Webhook {
         ]);
 
         if ( empty( $orders ) ) {
-            // Berikan status 200 agar Midtrans menganggap notifikasi diterima dan tidak melakukan retry loop
+            // Berikan status 200 agar Midtrans menganggap notifikasi diterima dan tidak melakukan retry loop tak berujung
             return new WP_REST_Response( [ 'status' => 'ok', 'message' => 'Order not found in database (acknowledged)' ], 200 );
         }
 

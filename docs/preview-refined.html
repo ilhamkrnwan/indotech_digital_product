@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indotechnology Polish - Anti-Slop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brand-navy: #0B1727;
+  --brand-blue: #0066FF;
+  --brand-cyan: #00D2FF;
+  --brand-lime: #10B981;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --bg-canvas: #f8fafc;
+  --bg-surface: #ffffff;
+  --border-main: #e2e8f0;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --gradient-tech: linear-gradient(90deg, #00d2ff 0%, #10b981 100%);
+  --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); color: var(--text-primary); background: var(--bg-canvas); line-height: 1.5; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* Header */
+.site-header {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-main);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.header-container { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.site-brand img { height: 34px; width: auto; display: block; }
+.nav-menu { display: flex; list-style: none; gap: 1.5rem; align-items: center; }
+.nav-menu a { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); text-decoration: none; }
+.nav-menu a:hover { color: var(--brand-blue); }
+.header-actions { display: flex; gap: 0.75rem; }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--brand-blue) 0%, #0052cc 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 102, 255, 0.25);
+}
+.btn-primary:hover {
+  box-shadow: 0 6px 20px rgba(0, 102, 255, 0.35);
+  transform: translateY(-1px);
+}
+.btn-secondary {
+  background: #ffffff;
+  color: var(--text-primary);
+  border-color: var(--border-main);
+}
+.btn-secondary:hover {
+  background: var(--bg-canvas);
+  border-color: #cbd5e1;
+}
+.btn-sm { padding: 0.45rem 0.9rem; font-size: 0.85rem; border-radius: var(--radius-sm); }
+.btn-lg { padding: 0.85rem 1.75rem; font-size: 0.95rem; border-radius: var(--radius-sm); }
+
+/* 1. Hero Section */
+.hero-section {
+  padding: 5.5rem 0 5rem;
+  background: #0B1727;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(0, 210, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+.hero-brand-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.brand-radial-glow {
+  position: absolute;
+  top: -120px;
+  right: 5%;
+  width: 650px;
+  height: 520px;
+  background: radial-gradient(ellipse at center, rgba(0, 102, 255, 0.22) 0%, rgba(0, 210, 255, 0.08) 50%, transparent 70%);
+}
+.brand-circuit-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 102, 255, 0.4) 20%, rgba(0, 210, 255, 0.8) 50%, rgba(16, 185, 129, 0.8) 80%, transparent 100%);
+}
+.hero-container {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 3.5rem;
+  position: relative;
+  z-index: 10;
+}
+.brand-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 210, 255, 0.25);
+  margin-bottom: 1.5rem;
+}
+.it-pixel-cluster {
+  display: inline-grid;
+  grid-template-columns: repeat(3, 5px);
+  grid-template-rows: repeat(2, 5px);
+  gap: 3px;
+}
+.it-px { border-radius: 1px; display: block; }
+.it-px-blue { background: #0066ff; }
+.it-px-cyan { background: #00d2ff; }
+.it-px-lime { background: #10b981; }
+.brand-eyebrow-text {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #e2e8f0;
+}
+.hero-title {
+  font-size: 2.85rem;
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+}
+.hero-title-gradient {
+  background: var(--gradient-tech);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+.hero-desc {
+  font-size: 1.05rem;
+  color: #94a3b8;
+  line-height: 1.65;
+  margin-bottom: 1.85rem;
+  max-width: 620px;
+}
+.hero-command-search {
+  display: flex;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1.5px solid rgba(0, 210, 255, 0.3);
+  border-radius: var(--radius-md);
+  padding: 4px 6px;
+  max-width: 520px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 102, 255, 0.15);
+  margin-bottom: 1.85rem;
+  transition: var(--transition);
+}
+.hero-command-search:focus-within {
+  border-color: #00d2ff;
+  box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 210, 255, 0.35);
+}
+.search-command-icon {
+  padding-left: 12px;
+  color: #38bdf8;
+  display: inline-flex;
+  align-items: center;
+}
+.hero-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0.65rem 0.85rem;
+  font-family: inherit;
+  font-size: 0.925rem;
+  color: #ffffff;
+  background: transparent;
+}
+.hero-search-input::placeholder { color: #64748b; }
+.kbd-hint {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin-left: 6px;
+  display: inline-block;
+}
+.hero-trust-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+}
+.trust-icon { color: var(--brand-lime); margin-right: 4px; font-weight: 700; }
+
+/* Right Column: Indotechnology Package Inspector */
+.hero-showcase-column {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+.indotech-inspector-panel {
+  width: 100%;
+  max-width: 480px;
+  background: #08111e;
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 102, 255, 0.12);
+  overflow: hidden;
+  transition: var(--transition);
+}
+.indotech-inspector-panel:hover {
+  border-color: rgba(0, 210, 255, 0.55);
+  box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 210, 255, 0.2);
+}
+.inspector-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.inspector-title-wrap { display: flex; align-items: center; gap: 8px; }
+.inspector-mono-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #38bdf8;
+  letter-spacing: 0.05em;
+}
+.inspector-badge-verified {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--brand-lime);
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.inspector-status-text {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #94a3b8;
+}
+.inspector-body { padding: 18px 20px 20px; }
+.inspector-pkg-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.pkg-category-pill {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #00d2ff;
+  letter-spacing: 0.05em;
+}
+.pkg-ver-pill {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+.inspector-pkg-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+.inspector-pkg-summary {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+.inspector-stack-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.stack-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+.chip-dot { width: 6px; height: 6px; border-radius: 1px; }
+.chip-blue { background: #0066ff; }
+.chip-cyan { background: #00d2ff; }
+.chip-lime { background: #10b981; }
+.chip-navy { background: #38bdf8; }
+.inspector-specs-box {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  display: grid;
+  gap: 6px;
+}
+.spec-row { display: flex; justify-content: space-between; font-size: 0.78rem; }
+.spec-label { color: #64748b; }
+.spec-val { color: #cbd5e1; font-weight: 600; font-family: var(--font-mono); font-size: 0.75rem; }
+.inspector-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.price-caption {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.06em;
+  display: block;
+}
+.price-amount {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+.price-strike {
+  font-size: 0.8rem;
+  color: #64748b;
+  text-decoration: line-through;
+  margin-left: 4px;
+  font-weight: 400;
+}
+
+/* 2. Checkout Section */
+.checkout-page-section { padding: 3.5rem 0 5rem; background: var(--bg-canvas); }
+.checkout-container { max-width: 1040px; margin: 0 auto; }
+.checkout-breadcrumb-bar { margin-bottom: 1.5rem; }
+.checkout-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  background: #ffffff;
+  border: 1px solid var(--border-main);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: var(--transition);
+}
+.checkout-back-link:hover { color: var(--brand-blue); border-color: var(--brand-blue); transform: translateX(-2px); }
+.checkout-header-block { margin-bottom: 2rem; }
+.checkout-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: #eff6ff;
+  border: 1px solid rgba(0, 102, 255, 0.2);
+  color: var(--brand-blue);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.75rem;
+}
+.checkout-main-title {
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: var(--brand-navy);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+}
+.checkout-subtitle { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5; margin: 0; }
+.checkout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem; align-items: start; }
+.checkout-card {
+  background: #ffffff;
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  box-shadow: 0 4px 16px rgba(11, 23, 39, 0.04);
+}
+.checkout-card h2 { font-size: 1.25rem; font-weight: 800; color: var(--brand-navy); letter-spacing: -0.02em; margin-bottom: 1rem; }
+.form-group { margin-bottom: 1.15rem; }
+.form-label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.4rem; }
+.form-input, .form-select {
+  width: 100%;
+  height: 44px;
+  padding: 0 0.85rem;
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  background: #ffffff;
+  transition: var(--transition);
+}
+.form-input:focus, .form-select:focus {
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.12);
+  outline: none;
+}
+.breakdown-box {
+  background: #f8fafc;
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+.breakdown-row { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 6px; }
+.breakdown-row.total {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--brand-navy);
+  border-top: 1px dashed var(--border-main);
+  padding-top: 8px;
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+.checkout-gateways-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  padding: 10px;
+  background: #f8fafc;
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-sm);
+}
+.badge-item {
+  font-size: 0.68rem;
+  padding: 2px 6px;
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+</style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="#" class="site-brand">
+        <img src="C:/laragon/www/digitalproduk/wp-content/themes/digitalproduk-theme/assets/images/logo-indotechnology.png" alt="Indotechnology" />
+      </a>
+      <ul class="nav-menu">
+        <li><a href="#">Beranda</a></li>
+        <li><a href="#">Semua Produk</a></li>
+        <li><a href="#">Kategori</a></li>
+        <li><a href="#">Cara Beli</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+      <div class="header-actions">
+        <a href="#checkout" class="btn btn-secondary btn-sm">Checkout</a>
+        <a href="#katalog" class="btn btn-primary btn-sm">Katalog Produk</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. Hero Section -->
+  <section class="hero-section">
+    <div class="hero-brand-backdrop">
+      <div class="brand-radial-glow"></div>
+      <div class="brand-circuit-line"></div>
+    </div>
+
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="brand-eyebrow">
+          <span class="it-pixel-cluster" aria-hidden="true">
+            <span class="it-px it-px-blue"></span>
+            <span class="it-px it-px-cyan"></span>
+            <span class="it-px it-px-lime"></span>
+            <span class="it-px it-px-blue"></span>
+            <span class="it-px it-px-lime"></span>
+            <span class="it-px it-px-cyan"></span>
+          </span>
+          <span class="brand-eyebrow-text">BUILD • INNOVATE • GROW</span>
+        </div>
+        <h1 class="hero-title">
+          Koleksi Source Code, Plugin, dan Template <span class="hero-title-gradient">Terverifikasi.</span>
+        </h1>
+        <p class="hero-desc">
+          Starter kit web app, plugin WordPress, dan template desain siap pakai untuk mempercepat pengerjaan proyek Anda. Sekali bayar, langsung unduh via Google Drive dengan lisensi komersial bebas royalti.
+        </p>
+        <div class="hero-command-search">
+          <span class="search-command-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </span>
+          <input type="text" placeholder="Cari: Laravel, Next.js, Figma, WordPress..." class="hero-search-input" />
+          <button class="btn btn-primary btn-sm">
+            <span>Cari</span>
+            <kbd class="kbd-hint">↵</kbd>
+          </button>
+        </div>
+        <div class="hero-trust-row">
+          <div><span class="trust-icon">✓</span> Download instan Google Drive</div>
+          <div><span class="trust-icon">✓</span> Lisensi komersial bebas</div>
+          <div><span class="trust-icon">✓</span> Otomatis Midtrans QRIS &amp; VA</div>
+        </div>
+      </div>
+
+      <!-- Right Column: Inspector Panel -->
+      <div class="hero-showcase-column">
+        <div class="indotech-inspector-panel">
+          <div class="inspector-header">
+            <div class="inspector-title-wrap">
+              <span class="inspector-mono-tag">INDOTECH // PKG-01</span>
+              <span class="inspector-badge-verified">[ VERIFIED BUILD ]</span>
+            </div>
+            <span class="inspector-status-text">DRIVE SYNC: ACTIVE</span>
+          </div>
+
+          <div class="inspector-body">
+            <div class="inspector-pkg-head">
+              <span class="pkg-category-pill">FULLSTACK STARTER KIT</span>
+              <span class="pkg-ver-pill">v2.4.0</span>
+            </div>
+
+            <h3 class="inspector-pkg-name">Fullstack SaaS &amp; Digital Storefront Kit</h3>
+            <p class="inspector-pkg-summary">
+              Arsitektur Next.js 15 App Router, backend API Laravel 11, integrasi webhook otomatis Midtrans, dan pengiriman file Google Drive.
+            </p>
+
+            <div class="inspector-stack-grid">
+              <span class="stack-chip"><span class="chip-dot chip-blue"></span>Next.js 15</span>
+              <span class="stack-chip"><span class="chip-dot chip-cyan"></span>Laravel 11</span>
+              <span class="stack-chip"><span class="chip-dot chip-lime"></span>Tailwind CSS</span>
+              <span class="stack-chip"><span class="chip-dot chip-navy"></span>PostgreSQL</span>
+            </div>
+
+            <div class="inspector-specs-box">
+              <div class="spec-row">
+                <span class="spec-label">Format Distribusi:</span>
+                <span class="spec-val">Source Code ZIP + Git Repo</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Metode Delivery:</span>
+                <span class="spec-val">Google Drive Instant Hook</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Cakupan Lisensi:</span>
+                <span class="spec-val">Komersial (Klien &amp; Pribadi)</span>
+              </div>
+            </div>
+
+            <div class="inspector-bottom">
+              <div class="inspector-price-block">
+                <span class="price-caption">HARGA RESMI</span>
+                <div class="price-amount">
+                  Rp 199.000 <span class="price-strike">Rp 349.000</span>
+                </div>
+              </div>
+              <a href="#katalog" class="btn btn-primary btn-sm">Beli Sekarang &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Checkout Section -->
+  <section id="checkout" class="checkout-page-section">
+    <div class="container checkout-container">
+      <div class="checkout-breadcrumb-bar">
+        <a href="#" class="checkout-back-link">
+          <span>&larr;</span>
+          <span>Kembali ke Katalog</span>
+        </a>
+      </div>
+
+      <div class="checkout-header-block">
+        <div class="checkout-badge-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+          <span>PEMBAYARAN RESMI • MIDTRANS SNAP AUTOMATION</span>
+        </div>
+        <h1 class="checkout-main-title">
+          Checkout <span class="hero-title-gradient">Pembayaran</span>
+        </h1>
+        <p class="checkout-subtitle">
+          Selesaikan pembayaran otomatis menggunakan QRIS atau Virtual Account bank pilihan Anda.
+        </p>
+      </div>
+
+      <div class="checkout-grid">
+        <!-- Left: Order Summary -->
+        <div class="checkout-card">
+          <h2>Ringkasan Pesanan</h2>
+          <div class="form-group">
+            <label class="form-label" style="display: flex; justify-content: space-between;">
+              <span>Pilih Produk Digital: <span style="color: #ef4444;">*</span></span>
+              <span style="font-size: 0.75rem; color: var(--brand-blue); font-weight: 600;">Wajib dipilih</span>
+            </label>
+            <select class="form-select">
+              <option value="1">Fullstack SaaS Starter Kit: Rp 199.000</option>
+            </select>
+          </div>
+
+          <div class="breakdown-box">
+            <div class="breakdown-row">
+              <span>Harga Produk:</span>
+              <span style="font-weight: 600; color: var(--text-primary);">Rp 199.000</span>
+            </div>
+            <div class="breakdown-row">
+              <span>Biaya Gateway Midtrans:</span>
+              <span style="font-weight: 600; color: var(--brand-lime);">Rp 0 (Gratis)</span>
+            </div>
+            <div class="breakdown-row total">
+              <span>Total Tagihan:</span>
+              <span style="color: var(--brand-blue); font-size: 1.1rem;">Rp 199.000</span>
+            </div>
+          </div>
+
+          <ul style="list-style: none; display: grid; gap: 8px; margin-bottom: 16px;">
+            <li style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-secondary);">
+              <span style="color: var(--brand-blue);">✓</span>
+              <span>Akses download via Google Drive</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-secondary);">
+              <span style="color: var(--brand-blue);">✓</span>
+              <span>Lisensi komersial (bebas untuk proyek klien)</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-secondary);">
+              <span style="color: var(--brand-blue);">✓</span>
+              <span>Update versi gratis</span>
+            </li>
+          </ul>
+
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">
+            Setelah pembayaran berhasil, link unduh langsung aktif di browser dan salinannya dikirim ke email Anda.
+          </p>
+        </div>
+
+        <!-- Right: Buyer Data -->
+        <div class="checkout-card">
+          <h2>Data Pembeli</h2>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+            File digital akan dikirim ke alamat email di bawah.
+          </p>
+          <form style="display: grid; gap: 12px;">
+            <div>
+              <label class="form-label">Nama Lengkap <span style="color: #ef4444;">*</span></label>
+              <input type="text" placeholder="Nama Anda" class="form-input" />
+            </div>
+            <div>
+              <label class="form-label">Alamat Email <span style="color: #ef4444;">*</span></label>
+              <input type="email" placeholder="email@domain.com" class="form-input" />
+            </div>
+            <div>
+              <label class="form-label">Nomor WhatsApp</label>
+              <input type="tel" placeholder="08xxxxxxxxxx" class="form-input" />
+            </div>
+            <button type="button" class="btn btn-primary btn-lg" style="margin-top: 6px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span>Lanjut ke Pembayaran Otomatis</span>
+            </button>
+
+            <div class="checkout-gateways-strip">
+              <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 600;">METODE PEMBAYARAN:</span>
+              <span class="badge-item">QRIS</span>
+              <span class="badge-item">BCA VA</span>
+              <span class="badge-item">Mandiri</span>
+              <span class="badge-item">BNI</span>
+              <span class="badge-item">BRI</span>
+            </div>
+
+            <div style="text-align: center; margin-top: 6px;">
+              <a href="#" style="font-size: 0.825rem; color: var(--text-muted); text-decoration: none;">💬 Bantuan / Pesan Manual via WhatsApp</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

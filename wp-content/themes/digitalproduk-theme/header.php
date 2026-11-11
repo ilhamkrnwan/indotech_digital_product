@@ -10,8 +10,13 @@
 
 <header class="site-header">
     <div class="container header-container">
-        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-brand">
-            <span class="brand-title"><span class="brand-part-lead">indo</span><span class="brand-part-tech">technology</span><span class="brand-dot">.</span></span>
+        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-brand" aria-label="Indotechnology Home">
+            <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo-indotechnology-2026.png' ); ?>"
+                 alt="Indotechnology - BUILD • INNOVATE • GROW"
+                 class="brand-logo-img"
+                 width="193"
+                 height="40"
+                 fetchpriority="high" />
         </a>
 
         <?php
@@ -21,6 +26,13 @@
         ]);
         ?>
 
+        <button class="menu-toggle" type="button" aria-controls="site-navigation" aria-expanded="false">
+            <span class="screen-reader-text"><?php esc_html_e( 'Buka menu utama', 'digitalproduk' ); ?></span>
+            <span class="menu-toggle-line" aria-hidden="true"></span>
+            <span class="menu-toggle-line" aria-hidden="true"></span>
+            <span class="menu-toggle-line" aria-hidden="true"></span>
+        </button>
+
         <nav class="main-navigation" id="site-navigation" aria-label="<?php esc_attr_e( 'Main Menu', 'digitalproduk' ); ?>">
             <ul class="nav-menu">
                 <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Beranda</a></li>
@@ -28,11 +40,11 @@
                 
                 <?php if ( ! empty( $nav_categories ) && ! is_wp_error( $nav_categories ) ) : ?>
                     <li class="nav-item-dropdown">
-                        <a href="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" class="nav-dropdown-trigger" aria-haspopup="true">
+                        <button type="button" class="nav-dropdown-trigger" aria-expanded="false" aria-controls="category-navigation">
                             <span>Kategori</span>
                             <span class="dropdown-caret"><?php echo digitalproduk_get_icon( 'chevron-down', 'caret-icon', 14 ); ?></span>
-                        </a>
-                        <div class="nav-dropdown-panel">
+                        </button>
+                        <div class="nav-dropdown-panel" id="category-navigation">
                             <div class="dropdown-cats-list">
                                 <?php foreach ( $nav_categories as $cat ) : ?>
                                     <a href="<?php echo esc_url( get_term_link( $cat ) ); ?>" class="dropdown-cat-item">

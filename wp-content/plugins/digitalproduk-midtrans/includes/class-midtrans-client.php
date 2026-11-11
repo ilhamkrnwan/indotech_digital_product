@@ -49,10 +49,53 @@ class DPM_Midtrans_Client {
             : 'https://app.sandbox.midtrans.com/snap/v1/transactions';
     }
 
+    public static function get_api_base_url() {
+        return self::is_production()
+            ? 'https://api.midtrans.com/v2'
+            : 'https://api.sandbox.midtrans.com/v2';
+    }
+
     public static function get_snap_js_url() {
         return self::is_production()
             ? 'https://app.midtrans.com/snap/snap.js'
             : 'https://app.sandbox.midtrans.com/snap/snap.js';
+    }
+
+    /**
+     * Server-to-Server GET Transaction Status API
+     * Memverifikasi status riil pembayaran langsung ke server Midtrans
+     */
+    public static function get_transaction_status( $order_id ) {
+        $server_key = self::get_server_key();
+        if ( empty( $server_key ) ) {
+            return new WP_Error( 'missing_key', 'Server Key belum dikonfigurasi.' );
+        }
+
+        $endpoint = self::get_api_base_url() . '/' . rawurlencode( $order_id ) . '/status';
+        $auth = base64_encode( $server_key . ':' );
+
+        $response = wp_remote_get( $endpoint, [
+            'headers' => [
+                'Accept'        => 'application/json',
+                'Authorization' => 'Basic ' . $auth,
+            ],
+            'timeout' => 20,
+        ]);
+
+        if ( is_wp_error( $response ) ) {
+            return $response;
+        }
+
+        $code = (int) wp_remote_retrieve_response_code( $response );
+        $body = wp_remote_retrieve_body( $response );
+        $data = json_decode( $body, true );
+
+        if ( $code === 200 && is_array( $data ) ) {
+            return $data;
+        }
+
+        $err_msg = $data['status_message'] ?? ( 'Gagal memverifikasi status dari Midtrans (HTTP ' . $code . ').' );
+        return new WP_Error( 'midtrans_status_error', $err_msg, $data );
     }
 
     /**

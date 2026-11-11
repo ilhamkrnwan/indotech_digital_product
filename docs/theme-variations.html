@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eksplorasi 3 Variasi Desain Indotechnology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: transparent;
+    color: #0f172a;
+    line-height: 1.5;
+    padding: 12px;
+  }
+
+  .tabs-nav {
+    display: flex;
+    gap: 8px;
+    background: #e2e8f0;
+    padding: 6px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+  .tab-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: #475569;
+    transition: all 0.2s ease;
+  }
+  .tab-btn.active {
+    background: #ffffff;
+    color: #0066ff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+
+  .variation-wrapper {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .variation-wrapper.active {
+    display: block;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .var-header-info {
+    margin-bottom: 16px;
+    padding: 14px 18px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .var-tag {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+
+  /* -------------------------------------------------------------
+   * VARIAN 1: Clean Enterprise Tech (Light Minimalist)
+   * ----------------------------------------------------------- */
+  .v1-surface {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    color: #0b1727;
+  }
+  .v1-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .v1-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-logo-img {
+    height: 32px;
+    object-fit: contain;
+  }
+  .v1-nav-links {
+    display: flex;
+    gap: 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+  }
+  .v1-nav-links a.active {
+    color: #0066ff;
+  }
+  .v1-hero {
+    padding: 36px 24px;
+    text-align: center;
+    position: relative;
+    background: radial-gradient(circle at 50% 0%, rgba(0, 102, 255, 0.05) 0%, transparent 60%);
+  }
+  .v1-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #0066ff;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .v1-badge .dot-lime {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+  }
+  .v1-hero h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #0b1727;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+  .v1-hero h1 span.tech-highlight {
+    color: #0066ff;
+  }
+  .v1-hero p {
+    font-size: 14px;
+    color: #475569;
+    max-width: 520px;
+    margin: 0 auto 20px;
+  }
+  .v1-btn-primary {
+    background: #0066ff;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 9px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 102, 255, 0.25);
+    transition: background 0.15s ease;
+  }
+  .v1-btn-primary:hover {
+    background: #0052cc;
+  }
+  .v1-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .v1-card-thumb {
+    height: 120px;
+    background: linear-gradient(135deg, #0b1727 0%, #1e3a8a 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .v1-card-thumb::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(16,185,129,0.4) 0%, transparent 70%);
+  }
+
+  /* -------------------------------------------------------------
+   * VARIAN 2: Modern Cyber Fusion (Dynamic Gradient & Contrast)
+   * ----------------------------------------------------------- */
+  .v2-surface {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 14px;
+    overflow: hidden;
+    color: #0b1727;
+  }
+  .v2-header {
+    background: #0b1727;
+    border-bottom: 1px solid #1e293b;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .v2-nav-links {
+    display: flex;
+    gap: 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #94a3b8;
+  }
+  .v2-nav-links a.active {
+    color: #38bdf8;
+  }
+  .v2-hero {
+    padding: 38px 24px;
+    text-align: center;
+    background: linear-gradient(135deg, #0b1727 0%, #0d213f 50%, #064e3b 100%);
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+  }
+  .v2-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .v2-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 9999px;
+    background: rgba(0, 210, 255, 0.12);
+    border: 1px solid rgba(0, 210, 255, 0.35);
+    color: #38bdf8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+  }
+  .v2-hero h1 {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+  .v2-hero h1 span.tech-gradient {
+    background: linear-gradient(90deg, #00d2ff 0%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .v2-hero p {
+    font-size: 14px;
+    color: #cbd5e1;
+    max-width: 520px;
+    margin: 0 auto 22px;
+  }
+  .v2-btn-primary {
+    background: linear-gradient(90deg, #0066ff 0%, #0284c7 100%);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px 22px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 102, 255, 0.35);
+  }
+  .v2-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 16px rgba(11, 23, 39, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* -------------------------------------------------------------
+   * VARIAN 3: Deep Cyber Terminal (Dark Tech OS)
+   * ----------------------------------------------------------- */
+  .v3-surface {
+    background: #070c14;
+    border: 1px solid #1e293b;
+    border-radius: 14px;
+    overflow: hidden;
+    color: #f1f5f9;
+  }
+  .v3-header {
+    background: #0a1120;
+    border-bottom: 1px solid #1e293b;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .v3-nav-links {
+    display: flex;
+    gap: 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #94a3b8;
+  }
+  .v3-nav-links a.active {
+    color: #10b981;
+  }
+  .v3-hero {
+    padding: 38px 24px;
+    text-align: center;
+    background: #070c14;
+    position: relative;
+    border-bottom: 1px solid #1e293b;
+  }
+  .v3-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    background: #064e3b33;
+    border: 1px solid #059669;
+    color: #34d399;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .v3-hero h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #f8fafc;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+  .v3-hero h1 span.lime-code {
+    color: #10b981;
+  }
+  .v3-hero p {
+    font-size: 14px;
+    color: #94a3b8;
+    max-width: 520px;
+    margin: 0 auto 22px;
+  }
+  .v3-btn-primary {
+    background: #10b981;
+    color: #070c14;
+    font-weight: 800;
+    font-size: 13px;
+    padding: 9px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.35);
+  }
+  .v3-card {
+    background: #0d1527;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Universal Shared Component Specs */
+  .grid-sample {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 20px;
+  }
+  @media (max-width: 600px) {
+    .grid-sample { grid-template-columns: 1fr; }
+  }
+  .badge-instant {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 9999px;
+    background: #ecfdf5;
+    color: #059669;
+    border: 1px solid #a7f3d0;
+  }
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6px;
+  }
+  .price-val {
+    font-size: 16px;
+    font-weight: 800;
+  }
+</style>
+</head>
+<body>
+
+<div class="tabs-nav">
+  <button class="tab-btn active" onclick="showVar(1)">1. Clean SaaS Precision (Light)</button>
+  <button class="tab-btn" onclick="showVar(2)">2. Cyber Fusion (Gradient Hero)</button>
+  <button class="tab-btn" onclick="showVar(3)">3. Deep Tech OS (Developer Dark)</button>
+</div>
+
+<!-- ==============================================================
+     VARIASI 1
+     ============================================================== -->
+<div id="var-1" class="variation-wrapper active">
+  <div class="var-header-info">
+    <div>
+      <strong style="color: #0b1727;">Variasi 1: Clean SaaS Precision</strong>
+      <div style="font-size: 12px; color: #64748b;">Dominasi Putih Slate, Teks Navy, Aksen Biru Elektrik & Badge Lime. Sangat kredibel & rapi.</div>
+    </div>
+    <span class="var-tag" style="background: #eff6ff; color: #0066ff;">Enterprise Ready</span>
+  </div>
+
+  <div class="v1-surface">
+    <!-- Header -->
+    <header class="v1-header">
+      <div class="v1-brand">
+        <img src="file:///C:/laragon/www/digitalproduk/wp-content/themes/digitalproduk-theme/assets/images/logo-indotechnology.png" alt="Indotechnology" class="brand-logo-img" />
+      </div>
+      <div class="v1-nav-links">
+        <a href="#" class="active">Beranda</a>
+        <a href="#">Semua Produk</a>
+        <a href="#">Cara Beli</a>
+        <a href="#">FAQ</a>
+      </div>
+      <button class="v1-btn-primary" style="padding: 6px 14px; font-size: 12px;">Checkout</button>
+    </header>
+
+    <!-- Hero -->
+    <div class="v1-hero">
+      <div class="v1-badge">
+        <span class="dot-lime"></span> VERIFIED SOURCE ASSETS &amp; TEMPLATES
+      </div>
+      <h1>Source Code &amp; Aset Digital <span class="tech-highlight">Siap Pakai</span></h1>
+      <p>Katalog starter web apps, plugin WordPress mandiri, dan template UI Figma dengan akses instan pasca verifikasi otomatis.</p>
+      <div style="display: flex; gap: 10px; justify-content: center;">
+        <button class="v1-btn-primary">Katalog Produk &rarr;</button>
+        <button style="background: #ffffff; border: 1px solid #cbd5e1; color: #0b1727; font-weight: 700; font-size: 13px; padding: 9px 18px; border-radius: 8px; cursor: pointer;">Cara Kerja</button>
+      </div>
+    </div>
+
+    <!-- Product Card Sample -->
+    <div class="grid-sample">
+      <div class="v1-card">
+        <div class="v1-card-thumb">
+          Next.js 15 Marketplace
+        </div>
+        <div style="display: flex; gap: 6px;">
+          <span style="font-size: 10px; font-weight: 700; background: #f1f5f9; color: #475569; padding: 2px 8px; border-radius: 4px;">SOURCE CODE</span>
+          <span class="badge-instant">&#10003; Download Instan</span>
+        </div>
+        <h3 style="font-size: 15px; font-weight: 700; color: #0b1727;">Fullstack Laravel &amp; Vue Starter</h3>
+        <p style="font-size: 12px; color: #64748b; line-height: 1.4;">Starter kit marketplace multi-vendor siap deploy dengan integrasi Midtrans otomatis.</p>
+        <div class="price-row">
+          <div>
+            <span style="text-decoration: line-through; font-size: 11px; color: #94a3b8;">Rp 349.000</span>
+            <div class="price-val" style="color: #0066ff;">Rp 199.000</div>
+          </div>
+          <button class="v1-btn-primary" style="padding: 7px 14px;">Beli Sekarang</button>
+        </div>
+      </div>
+
+      <div class="v1-card">
+        <div class="v1-card-thumb" style="background: linear-gradient(135deg, #064e3b 0%, #0066ff 100%);">
+          SaaS Dashboard UI Kit
+        </div>
+        <div style="display: flex; gap: 6px;">
+          <span style="font-size: 10px; font-weight: 700; background: #f1f5f9; color: #475569; padding: 2px 8px; border-radius: 4px;">FIGMA TOKENS</span>
+          <span class="badge-instant">&#10003; Download Instan</span>
+        </div>
+        <h3 style="font-size: 15px; font-weight: 700; color: #0b1727;">Pro SaaS Design System Figma</h3>
+        <p style="font-size: 12px; color: #64748b; line-height: 1.4;">Lebih dari 400+ komponen autolayout, dark mode support, dan variables.</p>
+        <div class="price-row">
+          <div>
+            <span style="text-decoration: line-through; font-size: 11px; color: #94a3b8;">Rp 299.000</span>
+            <div class="price-val" style="color: #0066ff;">Rp 149.000</div>
+          </div>
+          <button class="v1-btn-primary" style="padding: 7px 14px;">Beli Sekarang</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==============================================================
+     VARIASI 2
+     ============================================================== -->
+<div id="var-2" class="variation-wrapper">
+  <div class="var-header-info">
+    <div>
+      <strong style="color: #0066ff;">Variasi 2: Modern Cyber Fusion</strong>
+      <div style="font-size: 12px; color: #64748b;">Header & Hero Dark Navy futuristik bergradasi Cyan & Lime, kartu produk clean white ber-elevation modern.</div>
+    </div>
+    <span class="var-tag" style="background: #e0f2fe; color: #0284c7;">High Energy & Tech</span>
+  </div>
+
+  <div class="v2-surface">
+    <!-- Header -->
+    <header class="v2-header">
+      <div class="v1-brand">
+        <img src="file:///C:/laragon/www/digitalproduk/wp-content/themes/digitalproduk-theme/assets/images/logo-indotechnology.png" alt="Indotechnology" class="brand-logo-img" />
+      </div>
+      <div class="v2-nav-links">
+        <a href="#" class="active">Beranda</a>
+        <a href="#">Semua Produk</a>
+        <a href="#">Cara Beli</a>
+        <a href="#">FAQ</a>
+      </div>
+      <button class="v2-btn-primary" style="padding: 6px 14px; font-size: 12px;">Checkout</button>
+    </header>
+
+    <!-- Hero -->
+    <div class="v2-hero">
+      <div class="v2-badge">
+        BUILD &bull; INNOVATE &bull; GROW
+      </div>
+      <h1>Platform Digital Produk <span class="tech-gradient">Modern & Presisi</span></h1>
+      <p>Koleksi web app starter, plugin WordPress, dan template desain untuk mempercepat proyek Anda. Sekali bayar, langsung unduh via Google Drive.</p>
+      <div style="display: flex; gap: 10px; justify-content: center;">
+        <button class="v2-btn-primary">Jelajahi Katalog &rarr;</button>
+        <button style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #ffffff; font-weight: 700; font-size: 13px; padding: 10px 18px; border-radius: 8px; cursor: pointer;">Dokumentasi</button>
+      </div>
+    </div>
+
+    <!-- Product Card Sample -->
+    <div class="grid-sample" style="background: #f8fafc;">
+      <div class="v2-card">
+        <div class="v1-card-thumb" style="background: linear-gradient(135deg, #0b1727 0%, #0066ff 100%);">
+          Next.js 15 Marketplace
+        </div>
+        <div style="display: flex; gap: 6px;">
+          <span style="font-size: 10px; font-weight: 700; background: #e0f2fe; color: #0284c7; padding: 2px 8px; border-radius: 4px;">SOURCE CODE</span>
+          <span class="badge-instant" style="background: #ecfdf5; color: #059669;">&#10003; Download Instan</span>
+        </div>
+        <h3 style="font-size: 15px; font-weight: 700; color: #0b1727;">Fullstack Laravel &amp; Vue Starter</h3>
+        <p style="font-size: 12px; color: #64748b; line-height: 1.4;">Starter kit marketplace multi-vendor siap deploy dengan integrasi Midtrans otomatis.</p>
+        <div class="price-row">
+          <div>
+            <span style="text-decoration: line-through; font-size: 11px; color: #94a3b8;">Rp 349.000</span>
+            <div class="price-val" style="color: #0b1727;">Rp 199.000</div>
+          </div>
+          <button class="v2-btn-primary" style="padding: 7px 14px;">Beli Sekarang</button>
+        </div>
+      </div>
+
+      <div class="v2-card">
+        <div class="v1-card-thumb" style="background: linear-gradient(135deg, #0b1727 0%, #10b981 100%);">
+          SaaS Dashboard UI Kit
+        </div>
+        <div style="display: flex; gap: 6px;">
+          <span style="font-size: 10px; font-weight: 700; background: #e0f2fe; color: #0284c7; padding: 2px 8px; border-radius: 4px;">FIGMA TOKENS</span>
+          <span class="badge-instant">&#10003; Download Instan</span>
+        </div>
+        <h3 style="font-size: 15px; font-weight: 700; color: #0b1727;">Pro SaaS Design System Figma</h3>
+        <p style="font-size: 12px; color: #64748b; line-height: 1.4;">Lebih dari 400+ komponen autolayout, dark mode support, dan variables.</p>
+        <div class="price-row">
+          <div>
+            <span style="text-decoration: line-through; font-size: 11px; color: #94a3b8;">Rp 299.000</span>
+            <div class="price-val" style="color: #0b1727;">Rp 149.000</div>
+          </div>
+          <button class="v2-btn-primary" style="padding: 7px 14px;">Beli Sekarang</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==============================================================
+     VARIASI 3
+     ============================================================== -->
+<div id="var-3" class="variation-wrapper">
+  <div class="var-header-info" style="background: #0f172a; border-color: #1e293b; color: #f8fafc;">
+    <div>
+      <strong style="color: #10b981;">Variasi 3: Deep Tech OS</strong>
+      <div style="font-size: 12px; color: #94a3b8;">Full Dark Surface developer-centric, aksen Neon Cyber Cyan &amp; Growth Lime, monospace metadata.</div>
+    </div>
+    <span class="var-tag" style="background: #064e3b; color: #34d399;">Developer First</span>
+  </div>
+
+  <div class="v3-surface">
+    <!-- Header -->
+    <header class="v3-header">
+      <div class="v1-brand">
+        <img src="file:///C:/laragon/www/digitalproduk/wp-content/themes/digitalproduk-theme/assets/images/logo-indotechnology.png" alt="Indotechnology" class="brand-logo-img" />
+      </div>
+      <div class="v3-nav-links">
+        <a href="#" class="active">~/beranda</a>
+        <a href="#">~/katalog</a>
+        <a href="#">~/alur-bayar</a>
+        <a href="#">~/docs</a>
+      </div>
+      <button class="v3-btn-primary" style="padding: 6px 14px; font-size: 12px;">Checkout [0]</button>
+    </header>
+
+    <!-- Hero -->
+    <div class="v3-hero">
+      <div class="v3-badge">
+        $ indotechnology --mode=production
+      </div>
+      <h1>Source Code &amp; Templates for <span class="lime-code">Builders</span></h1>
+      <p>Aset engineering berkualitas tinggi. Lisensi komersial penuh, kode terstruktur rapi, siap pakai tanpa konfigurasi berbelit.</p>
+      <div style="display: flex; gap: 10px; justify-content: center;">
+        <button class="v3-btn-primary">Buka Katalog &rarr;</button>
+        <button style="background: #1e293b; color: #f8fafc; font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 9px 18px; border-radius: 6px; border: 1px solid #334155; cursor: pointer;">git clone assets</button>
+      </div>
+    </div>
+
+    <!-- Product Card Sample -->
+    <div class="grid-sample">
+      <div class="v3-card">
+        <div class="v1-card-thumb" style="background: #090e17; border: 1px solid #1e293b;">
+          <span style="font-family: 'JetBrains Mono', monospace; color: #38bdf8;">nextjs-marketplace.zip</span>
+        </div>
+        <div style="display: flex; gap: 6px;">
+          <span style="font-size: 10px; font-weight: 700; background: #1e293b; color: #38bdf8; padding: 2px 8px; border-radius: 4px; font-family: monospace;">TYPESCRIPT</span>
+          <span style="font-size: 10px; font-weight: 700; background: #064e3b44; color: #34d399; padding: 2px 8px; border-radius: 4px; border: 1px solid #059669;">[INSTANT-DRIVE]</span>
+        </div>
+        <h3 style="font-size: 15px; font-weight: 700; color: #f8fafc;">Fullstack Laravel &amp; Vue Starter</h3>
+        <p style="font-size: 12px; color: #94a3b8; line-height: 1.4;">Starter kit marketplace multi-vendor siap deploy dengan integrasi Midtrans otomatis.</p>
+        <div class="price-row">
+          <div>
+            <span style="text-decoration: line-through; font-size: 11px; color: #64748b;">Rp 349.000</span>
+            <div class="price-val" style="color: #34d399;">Rp 199.000</div>
+          </div>
+          <button class="v3-btn-primary" style="padding: 7px 14px;">Beli</button>
+        </div>
+      </div>
+
+      <div class="v3-card">
+        <div class="v1-card-thumb" style="background: #090e17; border: 1px solid #1e293b;">
+          <span style="font-family: 'JetBrains Mono', monospace; color: #a78bfa;">saas-figma-kit.fig</span>
+        </div>
+        <div style="display: flex; gap: 6px;">
+          <span style="font-size: 10px; font-weight: 700; background: #1e293b; color: #a78bfa; padding: 2px 8px; border-radius: 4px; font-family: monospace;">FIGMA-AUTO</span>
+          <span style="font-size: 10px; font-weight: 700; background: #064e3b44; color: #34d399; padding: 2px 8px; border-radius: 4px; border: 1px solid #059669;">[INSTANT-DRIVE]</span>
+        </div>
+        <h3 style="font-size: 15px; font-weight: 700; color: #f8fafc;">Pro SaaS Design System Figma</h3>
+        <p style="font-size: 12px; color: #94a3b8; line-height: 1.4;">Lebih dari 400+ komponen autolayout, dark mode support, dan variables.</p>
+        <div class="price-row">
+          <div>
+            <span style="text-decoration: line-through; font-size: 11px; color: #64748b;">Rp 299.000</span>
+            <div class="price-val" style="color: #34d399;">Rp 149.000</div>
+          </div>
+          <button class="v3-btn-primary" style="padding: 7px 14px;">Beli</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showVar(index) {
+    document.querySelectorAll('.variation-wrapper').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    
+    document.getElementById('var-' + index).classList.add('active');
+    document.querySelectorAll('.tab-btn')[index - 1].classList.add('active');
+  }
+</script>
+
+</body>
+</html>

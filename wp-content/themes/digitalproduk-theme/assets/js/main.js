@@ -3,23 +3,38 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. FAQ Accordion Toggle
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-        const questionBtn = item.querySelector('.faq-question');
-        if (questionBtn) {
-            questionBtn.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                // Close all other items
-                faqItems.forEach(i => i.classList.remove('active'));
-                if (!isActive) {
-                    item.classList.add('active');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navigation = document.querySelector('.main-navigation');
+
+    if (menuToggle && navigation) {
+        const closeNavigation = () => {
+            menuToggle.setAttribute('aria-expanded', 'false');
+            navigation.classList.remove('is-open');
+        };
+
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', String(!expanded));
+            navigation.classList.toggle('is-open', !expanded);
+        });
+
+        navigation.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 860) {
+                    closeNavigation();
                 }
             });
-        }
-    });
+        });
 
-    // 2. Category Filter
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && navigation.classList.contains('is-open')) {
+                closeNavigation();
+                menuToggle.focus();
+            }
+        });
+    }
+
+    // Category Filter
     const filterBtns = document.querySelectorAll('.filter-btn');
     const productCards = document.querySelectorAll('.product-card');
 
@@ -27,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+            filterBtns.forEach(b => b.setAttribute('aria-pressed', 'false'));
+            btn.setAttribute('aria-pressed', 'true');
 
             const filterValue = btn.getAttribute('data-filter');
 
@@ -73,16 +90,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. Navigation Category Dropdown Mobile / Tap Toggle
+    // 6. Navigation Category Dropdown
     const dropdownTrigger = document.querySelector('.nav-dropdown-trigger');
     const dropdownItem = document.querySelector('.nav-item-dropdown');
 
     if (dropdownTrigger && dropdownItem) {
-        dropdownTrigger.addEventListener('click', (e) => {
-            // If on touch device, toggle dropdown
-            if (window.innerWidth <= 992) {
-                e.preventDefault();
-                dropdownItem.classList.toggle('open');
+        const closeCategoryDropdown = () => {
+            dropdownItem.classList.remove('open');
+            dropdownTrigger.setAttribute('aria-expanded', 'false');
+        };
+
+        dropdownTrigger.addEventListener('click', () => {
+            const expanded = dropdownTrigger.getAttribute('aria-expanded') === 'true';
+            dropdownItem.classList.toggle('open', !expanded);
+            dropdownTrigger.setAttribute('aria-expanded', String(!expanded));
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!dropdownItem.contains(event.target)) {
+                closeCategoryDropdown();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeCategoryDropdown();
             }
         });
     }

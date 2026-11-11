@@ -31,12 +31,18 @@ add_action( 'after_setup_theme', 'digitalproduk_setup' );
  * Enqueue scripts and styles
  */
 function digitalproduk_scripts() {
+    $theme_dir     = get_template_directory();
+    $theme_uri     = get_template_directory_uri();
+    $stylesheet    = '/assets/css/main.css';
+    $script        = '/assets/js/main.js';
+    $stylesheet_ver = filemtime( $theme_dir . $stylesheet );
+    $script_ver     = filemtime( $theme_dir . $script );
+
     wp_enqueue_style( 'digitalproduk-fonts', 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap', [], null );
-    wp_enqueue_style( 'digitalproduk-main', get_template_directory_uri() . '/assets/css/main.css', [], time() );
+    wp_enqueue_style( 'digitalproduk-main', $theme_uri . $stylesheet, [], $stylesheet_ver );
     
-    // Lucide Icon Library (CDN)
-    wp_enqueue_script( 'lucide-icons', 'https://unpkg.com/lucide@latest/dist/umd/lucide.js', [], '0.344.0', true );
-    wp_enqueue_script( 'digitalproduk-main', get_template_directory_uri() . '/assets/js/main.js', [ 'lucide-icons' ], time(), true );
+    // Icons are rendered by digitalproduk_get_icon() as inline SVG, so no third-party icon runtime is required.
+    wp_enqueue_script( 'digitalproduk-main', $theme_uri . $script, [], $script_ver, true );
 }
 add_action( 'wp_enqueue_scripts', 'digitalproduk_scripts' );
 

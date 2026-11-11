@@ -69,56 +69,28 @@ foreach ( $all_products as $p ) {
 }
 ?>
 
-<main class="site-main checkout-page-main" style="background: var(--bg-canvas); min-height: 85vh; padding: 32px 0 64px; position: relative; overflow: hidden;">
-    <!-- Abstract Brush & Wireframe Canvas for Checkout -->
-    <div class="checkout-art-canvas" aria-hidden="true">
-        <!-- Top Right Cobalt Splash (Organic Curved & Tapered) -->
-        <svg class="checkout-stroke-splash" viewBox="0 0 450 300" fill="none">
-            <path d="M120 35 C 160 18, 210 28, 255 16 C 300 6, 350 12, 395 28 C 430 42, 445 68, 448 95 C 450 125, 435 155, 415 180 C 385 215, 345 245, 305 235 C 270 225, 250 195, 240 165 C 230 135, 235 105, 215 80 C 190 52, 150 48, 120 35 Z" fill="#152cab" opacity="0.88" />
-            <path d="M170 32 C 215 18, 270 24, 315 14 C 360 8, 400 20, 435 40 C 445 55, 445 80, 435 105 C 415 140, 375 168, 335 180 C 305 188, 285 170, 288 150 C 292 125, 310 100, 300 78 C 285 55, 235 48, 170 32 Z" fill="#2563eb" opacity="0.35" />
-            <path d="M220 35 C 270 24, 330 38, 380 26 C 410 18, 430 32, 440 28 C 435 48, 395 55, 350 50 C 290 45, 240 60, 210 45 C 195 38, 205 28, 220 35 Z" fill="#f7d801" />
-            <circle cx="210" cy="85" r="4.5" fill="#152cab" />
-            <circle cx="185" cy="115" r="3" fill="#152cab" />
-            <circle cx="255" cy="135" r="3.5" fill="#152cab" />
-            <circle cx="240" cy="65" r="3" fill="#f7d801" />
-        </svg>
+<main class="site-main checkout-page-main">
+    <div class="container checkout-container">
 
-        <!-- Left Wireframe Triangle -->
-        <svg class="checkout-geo-triangle" viewBox="0 0 32 32" fill="none">
-            <polygon points="16,3 29,27 3,27" stroke="#152cab" stroke-width="2.5" />
-        </svg>
-
-        <!-- Plus Marks -->
-        <div class="checkout-geo-plus" style="top: 80px; left: 40px; color: #152cab; opacity: 0.20;">+</div>
-        <div class="checkout-geo-plus" style="top: 140px; right: 460px; color: #f59e0b; opacity: 0.24;">+</div>
-    </div>
-
-    <div class="container" style="max-width: 1040px; position: relative; z-index: 10;">
-
-        <!-- Back Link & Header -->
-        <div style="margin-bottom: 24px;">
-            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 6px; margin-bottom: 1rem;">
+        <!-- Top Breadcrumb Navigation -->
+        <div class="checkout-breadcrumb-bar">
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="checkout-back-link">
                 <?php echo digitalproduk_get_icon( 'arrow-left', '', 14 ); ?>
                 <span>Kembali ke Katalog</span>
             </a>
+        </div>
 
-            <div class="hero-badge-artisan" style="margin-bottom: 0.75rem;">
-                <div class="badge-brush-backing"></div>
-                <span class="badge-brush-text">&bull; PEMBAYARAN AMAN &amp; INSTAN</span>
+        <!-- Checkout Header -->
+        <div class="checkout-header-block">
+            <div class="checkout-badge-pill">
+                <?php echo digitalproduk_get_icon( 'shield-check', '', 14 ); ?>
+                <span class="badge-text">PEMBAYARAN RESMI &bull; MIDTRANS SNAP AUTOMATION</span>
             </div>
 
-            <h1 class="checkout-main-title" style="font-size: 2.25rem; font-weight: 900; color: var(--text-primary); margin-bottom: 0.5rem; letter-spacing: -0.03em;">
-                Checkout 
-                <span class="brush-highlight-dynamic">
-                    <span class="word-text">Pembayaran.</span>
-                    <svg class="brush-svg-multi" viewBox="0 0 300 24" fill="none" preserveAspectRatio="none" aria-hidden="true">
-                        <path d="M4 16 C55 10 130 18 205 12 C250 8 285 13 296 10 C285 18 230 21 170 20 C100 19 45 21 8 18 C3 17 2 16 4 16 Z" fill="#f59e0b" opacity="0.85" />
-                        <path d="M14 10 C65 6 150 12 225 8 C270 5 292 9 298 7 C288 15 235 17 180 16 C120 15 55 17 18 14 C10 13 8 10 14 10 Z" fill="#f7d801" />
-                        <circle cx="295" cy="15" r="1.8" fill="#f59e0b" />
-                    </svg>
-                </span>
+            <h1 class="checkout-main-title">
+                Checkout <span class="hero-title-gradient">Pembayaran</span>
             </h1>
-            <p style="font-size: 0.95rem; color: var(--text-secondary); margin: 0;">
+            <p class="checkout-subtitle">
                 Selesaikan pembayaran otomatis menggunakan QRIS atau Virtual Account bank pilihan Anda.
             </p>
         </div>
@@ -137,7 +109,7 @@ foreach ( $all_products as $p ) {
                         <label for="checkoutProductSelector" class="form-label" style="display: flex; align-items: center; justify-content: space-between;">
                             <span>Pilih Produk Digital: <span style="color: #ef4444;">*</span></span>
                             <?php if ( ! $current_product ) : ?>
-                                <span style="font-size: 0.75rem; color: var(--brand-cobalt); font-weight: 600;">Wajib dipilih</span>
+                                <span style="font-size: 0.75rem; color: var(--brand-blue); font-weight: 600;">Wajib dipilih</span>
                             <?php endif; ?>
                         </label>
                         <select id="checkoutProductSelector" class="form-select" style="font-weight: 500;">
@@ -149,7 +121,7 @@ foreach ( $all_products as $p ) {
                                 $p_sale = get_post_meta( $p->ID, '_sale_price', true ) ?: get_post_meta( $p->ID, '_price', true );
                             ?>
                                 <option value="<?php echo esc_attr( $p->ID ); ?>" <?php selected( $is_sel ); ?>>
-                                    <?php echo esc_html( $p->post_title ); ?> — <?php echo digitalproduk_price( $p_sale ); ?>
+                                    <?php echo esc_html( $p->post_title ); ?>: <?php echo digitalproduk_price( $p_sale ); ?>
                                 </option>
                             <?php endforeach; ?>
                         </select>
@@ -157,7 +129,7 @@ foreach ( $all_products as $p ) {
 
                     <!-- Empty State Placeholder (Tampil jika belum ada produk dipilih) -->
                     <div id="productSummaryPlaceholder" style="<?php echo $current_product ? 'display: none;' : 'display: block;'; ?> background: var(--bg-canvas); border: 1.5px dashed var(--border-main); border-radius: var(--radius-sm); padding: 24px 16px; text-align: center; margin-bottom: 16px;">
-                        <div style="color: var(--brand-cobalt); margin-bottom: 8px; display: inline-flex;">
+                        <div style="color: var(--brand-blue); margin-bottom: 8px; display: inline-flex;">
                             <?php echo digitalproduk_get_icon( 'shopping-bag', '', 32 ); ?>
                         </div>
                         <h3 style="font-size: 0.975rem; font-weight: 700; color: var(--text-primary); margin: 0 0 4px;">
@@ -175,20 +147,30 @@ foreach ( $all_products as $p ) {
                             <h3 id="summaryProductTitle" style="font-size: 1rem; font-weight: 700; margin: 0 0 4px; color: var(--text-primary);">
                                 <?php echo esc_html( $prod_title ); ?>
                             </h3>
-                            <div style="display: flex; align-items: center; gap: 8px;">
-                                <div class="price-brush-tag">
-                                    <svg class="price-brush-bg" viewBox="0 0 120 30" fill="none" preserveAspectRatio="none" aria-hidden="true">
-                                        <path d="M2 18 C25 10 65 20 110 14 C118 13 119 18 116 22 C90 26 50 25 10 24 C4 23 1 20 2 18 Z" fill="#f7d801" />
-                                        <path d="M8 12 C35 6 75 14 112 10" stroke="#fef08a" stroke-width="2" stroke-linecap="round" />
-                                    </svg>
-                                    <span id="summaryProductSale" class="price-val-bold" style="font-size: 1.15rem;">
-                                        <?php echo $current_product ? digitalproduk_price( $prod_sale_price ) : ''; ?>
-                                    </span>
-                                </div>
+                            <div style="display: flex; align-items: baseline; gap: 8px;">
+                                <span id="summaryProductSale" class="price-val-bold" style="font-size: 1.25rem; color: var(--brand-navy);">
+                                    <?php echo $current_product ? digitalproduk_price( $prod_sale_price ) : ''; ?>
+                                </span>
                                 <span id="summaryProductOrig" style="<?php echo ( $current_product && $prod_price > $prod_sale_price ) ? 'display: inline;' : 'display: none;'; ?> font-size: 0.825rem; text-decoration: line-through; color: var(--text-muted);">
                                     <?php echo ( $current_product && $prod_price > $prod_sale_price ) ? digitalproduk_price( $prod_price ) : ''; ?>
                                 </span>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Transparent Price Breakdown Box -->
+                    <div id="summaryPriceBreakdown" style="<?php echo $current_product ? 'display: block;' : 'display: none;'; ?> background: #f8fafc; border: 1px solid var(--border-main); border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 16px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 6px;">
+                            <span>Harga Produk:</span>
+                            <span id="breakdownSubtotal" style="font-weight: 600; color: var(--text-primary);"><?php echo $current_product ? digitalproduk_price( $prod_sale_price ) : 'Rp 0'; ?></span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 8px;">
+                            <span>Biaya Gateway Midtrans:</span>
+                            <span style="font-weight: 600; color: var(--brand-lime);">Rp 0 (Gratis)</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.95rem; font-weight: 800; color: var(--brand-navy); border-top: 1px dashed var(--border-main); padding-top: 8px;">
+                            <span>Total Tagihan:</span>
+                            <span id="breakdownTotal" style="color: var(--brand-blue); font-size: 1.1rem;"><?php echo $current_product ? digitalproduk_price( $prod_sale_price ) : 'Rp 0'; ?></span>
                         </div>
                     </div>
 
@@ -246,9 +228,19 @@ foreach ( $all_products as $p ) {
                         <div id="pageCheckoutNotice" style="display: none; padding: 10px; border-radius: var(--radius-sm); font-size: 0.85rem; margin-top: 4px;"></div>
 
                         <!-- Tombol Bayar -->
-                        <button type="submit" id="btnPagePay" class="btn btn-primary btn-lg btn-block" style="margin-top: 6px;">
-                            <span>Bayar Sekarang</span>
+                        <button type="submit" id="btnPagePay" class="btn btn-primary btn-lg btn-block" style="margin-top: 6px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <?php echo digitalproduk_get_icon( 'lock', '', 16 ); ?>
+                            <span>Lanjut ke Pembayaran Otomatis</span>
                         </button>
+
+                        <div class="checkout-gateways-strip" style="display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 12px; padding: 10px; background: #f8fafc; border: 1px solid var(--border-main); border-radius: var(--radius-sm);">
+                            <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 600;">METODE PEMBAYARAN:</span>
+                            <span class="badge-item" style="font-size: 0.68rem; padding: 2px 6px; background: #fff; border: 1px solid #cbd5e1; border-radius: 4px; font-weight: 700;">QRIS</span>
+                            <span class="badge-item" style="font-size: 0.68rem; padding: 2px 6px; background: #fff; border: 1px solid #cbd5e1; border-radius: 4px; font-weight: 700;">BCA VA</span>
+                            <span class="badge-item" style="font-size: 0.68rem; padding: 2px 6px; background: #fff; border: 1px solid #cbd5e1; border-radius: 4px; font-weight: 700;">Mandiri</span>
+                            <span class="badge-item" style="font-size: 0.68rem; padding: 2px 6px; background: #fff; border: 1px solid #cbd5e1; border-radius: 4px; font-weight: 700;">BNI</span>
+                            <span class="badge-item" style="font-size: 0.68rem; padding: 2px 6px; background: #fff; border: 1px solid #cbd5e1; border-radius: 4px; font-weight: 700;">BRI</span>
+                        </div>
 
                         <a id="btnFallbackRedirect" href="#" target="_blank" class="btn btn-primary btn-block" style="display: none; text-align: center;">
                             Buka Pembayaran &rarr;
@@ -256,7 +248,7 @@ foreach ( $all_products as $p ) {
 
                         <div style="text-align: center; margin-top: 8px;">
                             <a id="btnPageWhatsApp" href="https://wa.me/6281234567890?text=<?php echo urlencode( 'Halo indotechnology, saya ingin pesan: ' . $prod_title ); ?>" 
-                               target="_blank" rel="noopener" style="font-size: 0.825rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 4px;">
+                                target="_blank" rel="noopener" style="font-size: 0.825rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 4px;">
                                 <?php echo digitalproduk_get_icon( 'message-circle', '', 14 ); ?>
                                 <span>Bantuan / Pesan Manual via WhatsApp</span>
                             </a>
@@ -284,6 +276,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const placeholderEl = document.getElementById('productSummaryPlaceholder');
     const cardEl = document.getElementById('productSummaryCard');
     const featuresEl = document.getElementById('summaryProductFeatures');
+    const breakdownBox = document.getElementById('summaryPriceBreakdown');
+    const breakdownSub = document.getElementById('breakdownSubtotal');
+    const breakdownTot = document.getElementById('breakdownTotal');
 
     if (selector) {
         selector.addEventListener('change', function() {
@@ -293,6 +288,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 hiddenId.value = p.id;
                 titleEl.textContent = p.title;
                 saleEl.textContent = p.price_fmt;
+
+                if (breakdownSub) breakdownSub.textContent = p.price_fmt;
+                if (breakdownTot) breakdownTot.textContent = p.price_fmt;
+                if (breakdownBox) breakdownBox.style.display = 'block';
 
                 if (origEl) {
                     if (p.orig_fmt) {
@@ -310,14 +309,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Update features list
                 if (featuresEl) {
                     if (p.features && p.features.length > 0) {
-                        featuresEl.innerHTML = p.features.map(function(feat) {
-                            return '<li style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-secondary);">' +
-                                '<span style="color: var(--brand-cobalt); display: inline-flex;">' +
-                                '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' +
-                                '</span>' +
-                                '<span>' + feat + '</span>' +
-                                '</li>';
-                        }).join('');
+                        featuresEl.replaceChildren();
+                        p.features.forEach(function(feat) {
+                            const item = document.createElement('li');
+                            const iconWrap = document.createElement('span');
+                            const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                            const path = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+                            const label = document.createElement('span');
+
+                            item.style.cssText = 'display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-secondary);';
+                            iconWrap.style.cssText = 'color: var(--brand-cobalt); display: inline-flex;';
+                            icon.setAttribute('width', '14');
+                            icon.setAttribute('height', '14');
+                            icon.setAttribute('viewBox', '0 0 24 24');
+                            icon.setAttribute('fill', 'none');
+                            icon.setAttribute('stroke', 'currentColor');
+                            icon.setAttribute('stroke-width', '2');
+                            icon.setAttribute('stroke-linecap', 'round');
+                            icon.setAttribute('stroke-linejoin', 'round');
+                            icon.setAttribute('aria-hidden', 'true');
+                            path.setAttribute('points', '20 6 9 17 4 12');
+                            label.textContent = feat;
+
+                            icon.appendChild(path);
+                            iconWrap.appendChild(icon);
+                            item.append(iconWrap, label);
+                            featuresEl.appendChild(item);
+                        });
                         featuresEl.style.display = 'grid';
                     } else {
                         featuresEl.style.display = 'none';
@@ -409,6 +427,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const snapToken = res.data.snap_token;
                 const redirectUrl = res.data.redirect;
                 const createdOrderId = res.data.order_id;
+                const downloadToken = res.data.download_token || '';
 
                 if (typeof window.snap !== 'undefined') {
                     window.snap.pay(snapToken, {
@@ -416,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             notice.style.display = 'block';
                             notice.style.background = '#f0fdf4';
                             notice.style.color = '#15803d';
-                            notice.textContent = 'Pembayaran berhasil! Mengalihkan ke halaman download...';
+                            notice.textContent = 'Pembayaran terdeteksi! Memverifikasi status ke gateway...';
                             btnPay.disabled = true;
 
                             try {
@@ -424,6 +443,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 confirmData.append('action', 'dpm_confirm_payment');
                                 confirmData.append('nonce', dpm_vars.nonce);
                                 confirmData.append('order_id', createdOrderId);
+                                confirmData.append('token', downloadToken);
 
                                 const confRes = await fetch(dpm_vars.ajax_url, {
                                     method: 'POST',
@@ -439,15 +459,17 @@ document.addEventListener('DOMContentLoaded', function() {
                                 console.error('Konfirmasi error:', e);
                             }
 
-                            window.location.href = '<?php echo esc_url( home_url( '/thank-you/' ) ); ?>?order_id=' + encodeURIComponent(createdOrderId);
+                            window.location.href = '<?php echo esc_url( home_url( '/thank-you/' ) ); ?>?order_id=' + encodeURIComponent(createdOrderId) + '&token=' + encodeURIComponent(downloadToken);
                         },
                         onPending: function(result) {
                             notice.style.display = 'block';
                             notice.style.background = '#fffbeb';
                             notice.style.color = '#b45309';
-                            notice.textContent = 'Menunggu pembayaran. Silakan selesaikan tagihan Anda.';
-                            btnPay.disabled = false;
-                            btnPay.innerHTML = '<span>Cek Status Tagihan</span>';
+                            notice.textContent = 'Menunggu pembayaran. Mengalihkan ke ringkasan pesanan...';
+                            btnPay.disabled = true;
+                            setTimeout(() => {
+                                window.location.href = '<?php echo esc_url( home_url( '/thank-you/' ) ); ?>?order_id=' + encodeURIComponent(createdOrderId) + '&token=' + encodeURIComponent(downloadToken);
+                            }, 1200);
                         },
                         onError: function(result) {
                             notice.style.display = 'block';

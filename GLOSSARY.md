@@ -32,6 +32,14 @@ _Avoid_: Callback URL, return URL
 Proses rekonsiliasi yang memverifikasi bahwa nilai mata uang yang dibayarkan pelanggan di gateway sama persis dengan harga produk di database.
 _Avoid_: Price matching, amount check
 
+**Download Token**:
+String acak kriptografis 32-karakter berentropi tinggi yang diterbitkan saat pesanan dibuat untuk mengotorisasi akses unduh dan mencegah serangan IDOR.
+_Avoid_: Order secret, file key
+
+**Server-to-Server Verification**:
+Panggilan API langsung dari backend server ke endpoint resmi Midtrans (`/v2/{order_id}/status`) dengan Server Key rahasia guna memastikan keabsahan status transaksi tanpa memercayai sinyal browser.
+_Avoid_: Client check, frontend callback verification
+
 ### Infrastructure & Deployment
 
 **VHost Target**:
@@ -41,3 +49,4 @@ _Avoid_: Web root, public dir
 **Investasi Archive**:
 Cadangan snapshot file dan dump database lengkap dari situs investasi lama yang diarsipkan di luar direktori publik server.
 _Avoid_: Legacy backup, zip lama
+

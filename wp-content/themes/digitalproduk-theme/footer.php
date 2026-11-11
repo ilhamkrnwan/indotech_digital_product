@@ -15,24 +15,18 @@
                          loading="lazy" />
                 </a>
                 <p class="footer-desc">
-                    Source code web apps, plugin WordPress, dan template desain siap pakai. Akses download langsung aktif setelah pembayaran terverifikasi otomatis.
+                    Katalog source code, plugin WordPress, template Figma, dan workspace Notion untuk proyek yang sedang Anda kerjakan.
                 </p>
             </div>
 
             <div class="footer-col">
-                <h4 class="footer-heading">Navigasi</h4>
+                <h4 class="footer-heading">Jelajahi</h4>
                 <ul class="footer-links">
                     <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Beranda</a></li>
                     <li><a href="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>">Semua Produk</a></li>
                     <li><a href="<?php echo esc_url( home_url( '/#cara-kerja' ) ); ?>">Cara Beli</a></li>
                     <li><a href="<?php echo esc_url( home_url( '/#faq' ) ); ?>">FAQ</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/checkout/' ) ); ?>">Checkout</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4 class="footer-heading">Kategori</h4>
-                <ul class="footer-links">
+                    <li class="footer-link-label">Kategori</li>
                     <li><a href="<?php echo esc_url( home_url( '/kategori-produk/source-code/' ) ); ?>">Source Code</a></li>
                     <li><a href="<?php echo esc_url( home_url( '/kategori-produk/ui-ux-figma/' ) ); ?>">UI/UX &amp; Figma</a></li>
                     <li><a href="<?php echo esc_url( home_url( '/kategori-produk/template-notion/' ) ); ?>">Notion Template</a></li>

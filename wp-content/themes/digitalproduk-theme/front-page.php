@@ -26,52 +26,56 @@ $categories = get_terms([
 ]);
 ?>
 
-<!-- 1. Hero Section (Modern Cyber Fusion) -->
-<section class="hero-section">
-    <!-- Brand Ambient Gradient Canvas -->
-    <div class="hero-brand-backdrop" aria-hidden="true">
-        <div class="brand-radial-glow"></div>
-        <div class="brand-circuit-line"></div>
-    </div>
+<!-- 1. Hero Section -->
+<div class="hero-parallax-stage">
+    <section class="hero-section">
+        <?php get_template_part( 'template-parts/nebula-field' ); ?>
+        <div class="hero-particles" aria-hidden="true">
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+            <span class="hero-particle"></span>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Temukan aset yang <span class="hero-title-gradient">masuk akal</span> untuk proyek Anda.
+                </h1>
+                <p class="hero-desc">
+                    Source code web app, plugin WordPress, template Figma, dan workspace Notion. Buka detail produknya, cek isi yang Anda butuhkan, lalu lanjutkan pembelian.
+                </p>
 
-    <div class="container hero-container">
-        <div class="hero-content">
-            <h1 class="hero-title">
-                Koleksi Source Code, Plugin, dan Template <span class="hero-title-gradient">Terverifikasi.</span>
-            </h1>
-            <p class="hero-desc">
-                Starter kit web app, plugin WordPress, dan template desain siap pakai untuk mempercepat pengerjaan proyek Anda. Sekali bayar, langsung unduh via Google Drive dengan lisensi komersial bebas royalti.
-            </p>
+                <form action="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" method="get" class="hero-command-search" role="search">
+                    <span class="search-command-icon" aria-hidden="true">
+                        <?php echo digitalproduk_get_icon( 'search', '', 18 ); ?>
+                    </span>
+                    <input type="text" name="s" placeholder="Cari produk atau teknologi" class="hero-search-input" aria-label="Cari produk digital" />
+                    <button type="submit" class="btn btn-primary hero-search-btn">
+                        <span>Cari katalog</span>
+                    </button>
+                </form>
 
-            <!-- Store Command Search Bar -->
-            <form action="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" method="get" class="hero-command-search" role="search">
-                <span class="search-command-icon" aria-hidden="true">
-                    <?php echo digitalproduk_get_icon( 'search', '', 18 ); ?>
-                </span>
-                <input type="text" name="s" placeholder="Cari: Laravel, Next.js, Figma, WordPress..." class="hero-search-input" aria-label="Cari produk digital" />
-                <button type="submit" class="btn btn-primary hero-search-btn">
-                    <span>Cari</span>
-                    <kbd class="kbd-hint">&#8629;</kbd>
-                </button>
-            </form>
-
-            <div class="hero-trust-row">
-                <div class="trust-item"><span class="trust-icon">&#10003;</span> Download instan Google Drive</div>
-                <div class="trust-item"><span class="trust-icon">&#10003;</span> Lisensi komersial bebas</div>
-                <div class="trust-item"><span class="trust-icon">&#10003;</span> Otomatis Midtrans QRIS &amp; VA</div>
+                <div class="hero-scope" aria-label="Jenis produk">
+                    <span>Source code</span>
+                    <span>Plugin WordPress</span>
+                    <span>Figma &amp; Notion</span>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 
 <!-- 2. Katalog Section -->
 <section id="katalog" class="section">
     <div class="container">
-        <div class="section-tech-bar" aria-hidden="true"></div>
-        <div class="section-header" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+        <div class="section-header catalog-header motion-reveal">
             <div>
                 <h2 class="section-title">Katalog Produk</h2>
-                <p class="section-desc">Pilih produk sesuai kebutuhan proyek Anda.</p>
+                <p class="section-desc">Gunakan filter untuk mempersempit pilihan berdasarkan jenis aset.</p>
             </div>
 
             <!-- Category Filters -->
@@ -108,31 +112,31 @@ $categories = get_terms([
     </div>
 </section>
 
-<!-- 3. Cara Pembelian (Clean Workflow) -->
-<section id="cara-kerja" class="section" style="background: #ffffff; border-top: 1px solid var(--border-main); border-bottom: 1px solid var(--border-main);">
+<!-- 3. Cara Pembelian -->
+<section id="cara-kerja" class="section purchase-path-section">
     <div class="container">
-        <div class="section-header" style="margin-bottom: 2rem;">
-            <h2 class="section-title">Cara Pembelian</h2>
-            <p class="section-desc">Proses otomatis tanpa menunggu konfirmasi manual.</p>
+        <div class="section-header purchase-path-header">
+            <h2 class="section-title">Dari katalog sampai file</h2>
+            <p class="section-desc">Tiga tahap yang dilewati sebelum Anda mulai memakai asetnya.</p>
         </div>
 
         <div class="steps-flow">
-            <div class="step-card">
-                <span style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: var(--brand-cobalt); margin-bottom: 0.5rem; display: block;">01</span>
+            <div class="step-card step-card-select motion-reveal">
+                <span class="step-index">01</span>
                 <h3>Pilih Produk</h3>
-                <p>Pilih source code atau template yang Anda butuhkan, lalu klik Beli.</p>
+                <p>Buka detail produk dan periksa format file sebelum membeli.</p>
             </div>
             <span class="step-flow-arrow" aria-hidden="true"><?php echo digitalproduk_get_icon( 'arrow-right', '', 22 ); ?></span>
-            <div class="step-card">
-                <span style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: var(--brand-cobalt); margin-bottom: 0.5rem; display: block;">02</span>
+            <div class="step-card step-card-pay motion-reveal">
+                <span class="step-index">02</span>
                 <h3>Bayar Otomatis</h3>
-                <p>Scan QRIS atau transfer lewat Virtual Account. Pembayaran dicek otomatis dalam beberapa detik.</p>
+                <p>Pilih QRIS atau Virtual Account di halaman pembayaran.</p>
             </div>
             <span class="step-flow-arrow" aria-hidden="true"><?php echo digitalproduk_get_icon( 'arrow-right', '', 22 ); ?></span>
-            <div class="step-card">
-                <span style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: var(--brand-cobalt); margin-bottom: 0.5rem; display: block;">03</span>
+            <div class="step-card step-card-download motion-reveal">
+                <span class="step-index">03</span>
                 <h3>Unduh File</h3>
-                <p>Tautan Google Drive langsung terbuka di layar dan dikirim ke email Anda.</p>
+                <p>Setelah pembayaran dikonfirmasi, halaman pesanan menampilkan tautan file.</p>
             </div>
         </div>
     </div>
@@ -141,28 +145,42 @@ $categories = get_terms([
 <!-- 4. FAQ Section -->
 <section id="faq" class="section">
     <div class="container">
-        <div class="section-header" style="margin-bottom: 2rem;">
-            <h2 class="section-title">Pertanyaan Umum</h2>
-            <p class="section-desc">Hal-hal yang sering ditanyakan seputar pembelian dan file.</p>
+        <div class="section-header faq-header motion-reveal">
+            <h2 class="section-title">Sebelum membeli</h2>
+            <p class="section-desc">Jawaban ringkas tentang file, lisensi, dan metode bayar.</p>
         </div>
 
         <div class="faq-list">
-            <details class="faq-item">
-                <summary>Bagaimana cara mengunduh file setelah bayar? <?php echo digitalproduk_get_icon( 'chevron-down', 'faq-caret', 20 ); ?></summary>
-                <p>Setelah pembayaran terkonfirmasi, halaman akan langsung menampilkan tombol download Google Drive. Link juga dikirim ke email Anda.</p>
+            <details class="faq-item motion-reveal">
+                <summary>Di mana saya menemukan file setelah pembayaran? <?php echo digitalproduk_get_icon( 'chevron-down', 'faq-caret', 20 ); ?></summary>
+                <p>Setelah pembayaran terkonfirmasi, halaman pesanan menampilkan tombol untuk membuka tautan unduhan.</p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item motion-reveal">
                 <summary>Boleh dipakai untuk proyek klien? <?php echo digitalproduk_get_icon( 'chevron-down', 'faq-caret', 20 ); ?></summary>
                 <p>Boleh. Anda bebas menggunakannya untuk proyek pesanan klien tanpa biaya royalti tambahan.</p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item motion-reveal">
                 <summary>Metode pembayaran apa saja yang tersedia? <?php echo digitalproduk_get_icon( 'chevron-down', 'faq-caret', 20 ); ?></summary>
                 <p>Mendukung QRIS (GoPay, OVO, ShopeePay, BCA) dan Virtual Account (BCA, Mandiri, BNI, BRI).</p>
             </details>
-            <details class="faq-item">
-                <summary>Apakah ada update file? <?php echo digitalproduk_get_icon( 'chevron-down', 'faq-caret', 20 ); ?></summary>
-                <p>Jika ada perbaikan bug atau pembaruan versi, file pada folder Google Drive akan diperbarui tanpa pungutan biaya lagi.</p>
+            <details class="faq-item motion-reveal">
+                <summary>Apakah file bisa mendapat pembaruan? <?php echo digitalproduk_get_icon( 'chevron-down', 'faq-caret', 20 ); ?></summary>
+                <p>Jika pembaruan disediakan untuk produk tersebut, versi terbaru tersedia pada tautan file yang sama.</p>
             </details>
+        </div>
+    </div>
+</section>
+
+<!-- 5. Compact Catalog CTA -->
+<section class="compact-cta-section motion-reveal">
+    <div class="container">
+        <div class="compact-cta-shell">
+            <?php get_template_part( 'template-parts/nebula-field' ); ?>
+            <div>
+                <h2>Butuh aset yang berbeda?</h2>
+                <p>Lihat seluruh katalog dan pilih sesuai kebutuhan proyek Anda.</p>
+            </div>
+            <a href="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" class="btn btn-primary btn-lg">Buka semua produk</a>
         </div>
     </div>
 </section>

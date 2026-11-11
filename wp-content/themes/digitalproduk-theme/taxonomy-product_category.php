@@ -23,39 +23,35 @@ $categories = get_terms([
 ]);
 ?>
 
-<!-- Category Header Banner (Modern Cyber) -->
-<section class="section category-hero-section" style="padding: 3.75rem 0 2.25rem; background: var(--gradient-hero); color: #ffffff; border-bottom: 1px solid rgba(0, 210, 255, 0.25); position: relative; overflow: hidden;">
-    <div class="tech-grid-matrix" aria-hidden="true"></div>
-    <div class="cyber-glow-blob blob-cyan" style="top: -60px; right: 5%; width: 300px; height: 300px;" aria-hidden="true"></div>
+<!-- Category Header -->
+<section class="catalog-page-hero">
+    <?php get_template_part( 'template-parts/nebula-field' ); ?>
+    <div class="catalog-hero-particles" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
 
-    <div class="container text-center" style="position: relative; z-index: 10;">
-        <div style="margin-bottom: 1.25rem;">
-            <a href="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.25); color: #ffffff;">
+    <div class="container catalog-page-hero-content">
+        <div class="catalog-page-hero-back-wrap">
+            <a href="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" class="btn btn-secondary btn-sm catalog-page-hero-back">
                 <?php echo digitalproduk_get_icon( 'arrow-left', 'back-arrow', 14 ); ?>
                 <span>Kembali ke Semua Produk</span>
             </a>
         </div>
 
-        <div class="hero-badge-tech" style="margin-bottom: 0.85rem;">
-            <span class="badge-dot-live"></span>
-            <span class="badge-text">KATEGORI TERVERIFIKASI</span>
-        </div>
-
-        <h1 class="hero-title" style="margin-bottom: 0.75rem; font-size: 2.75rem; font-weight: 900; letter-spacing: -0.03em; color: #ffffff;">
+        <h1 class="catalog-page-hero-title">
             <span class="hero-title-gradient"><?php echo esc_html( $cat_name ); ?></span>
         </h1>
         <?php if ( ! empty( $cat_desc ) ) : ?>
-            <p class="hero-desc" style="margin: 0 auto 1.5rem; max-width: 580px; font-size: 1rem; color: #94a3b8;">
+            <p class="catalog-page-hero-desc">
                 <?php echo esc_html( $cat_desc ); ?>
             </p>
         <?php else : ?>
-            <p class="hero-desc" style="margin: 0 auto 1.5rem; max-width: 580px; font-size: 1rem; color: #94a3b8;">
-                Koleksi <?php echo esc_html( strtolower( $cat_name ) ); ?> pilihan siap pakai dengan lisensi komersial dan download instan.
+            <p class="catalog-page-hero-desc">
+                Produk <?php echo esc_html( strtolower( $cat_name ) ); ?> yang tersedia saat ini.
             </p>
         <?php endif; ?>
 
-        <!-- Category Nav Switcher -->
-        <div class="category-filter-list" style="justify-content: center; margin-top: 1rem;">
+        <div class="category-filter-list catalog-page-filters">
             <a href="<?php echo esc_url( get_post_type_archive_link( 'digital_product' ) ); ?>" class="filter-btn">
                 Semua
             </a>
@@ -64,7 +60,7 @@ $categories = get_terms([
                     <a href="<?php echo esc_url( get_term_link( $cat ) ); ?>" 
                        class="filter-btn <?php echo $cat->term_id === $current_cat->term_id ? 'active' : ''; ?>">
                         <span><?php echo esc_html( $cat->name ); ?></span>
-                        <span style="font-size: 0.75rem; color: var(--text-muted);">(<?php echo esc_html( $cat->count ); ?>)</span>
+                        <span class="catalog-category-count">(<?php echo esc_html( $cat->count ); ?>)</span>
                     </a>
                 <?php endforeach; ?>
             <?php endif; ?>
@@ -75,8 +71,6 @@ $categories = get_terms([
 <!-- Products In Category -->
 <section class="section">
     <div class="container">
-        <div class="section-tech-bar" aria-hidden="true"></div>
-
         <?php if ( have_posts() ) : ?>
             <div class="products-grid">
                 <?php

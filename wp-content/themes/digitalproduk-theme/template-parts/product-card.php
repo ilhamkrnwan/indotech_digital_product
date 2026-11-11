@@ -27,6 +27,8 @@ $cover_img = digitalproduk_get_product_cover( get_the_ID() );
                 <img src="<?php echo esc_url( $cover_img ); ?>" 
                      alt="<?php the_title_attribute(); ?>" 
                      class="product-thumb-img" 
+                     width="1600"
+                     height="1000"
                      loading="lazy" />
             <?php else : ?>
                 <div class="product-thumb-placeholder">

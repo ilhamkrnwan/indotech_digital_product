@@ -28,9 +28,12 @@
 
         <button class="menu-toggle" type="button" aria-controls="site-navigation" aria-expanded="false">
             <span class="screen-reader-text"><?php esc_html_e( 'Buka menu utama', 'digitalproduk' ); ?></span>
-            <span class="menu-toggle-line" aria-hidden="true"></span>
-            <span class="menu-toggle-line" aria-hidden="true"></span>
-            <span class="menu-toggle-line" aria-hidden="true"></span>
+            <span class="menu-toggle-icon" aria-hidden="true">
+                <span class="menu-toggle-line"></span>
+                <span class="menu-toggle-line"></span>
+                <span class="menu-toggle-line"></span>
+            </span>
+            <span class="menu-toggle-label" aria-hidden="true">Menu</span>
         </button>
 
         <nav class="main-navigation" id="site-navigation" aria-label="<?php esc_attr_e( 'Main Menu', 'digitalproduk' ); ?>">

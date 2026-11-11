@@ -118,4 +118,57 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const motionTargets = document.querySelectorAll('.motion-reveal, .product-card');
+
+    if (!reducedMotion && motionTargets.length) {
+        document.body.classList.add('motion-ready');
+        motionTargets.forEach((target) => target.classList.add('motion-reveal'));
+
+        if ('IntersectionObserver' in window) {
+            const motionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                });
+            }, { threshold: 0.14 });
+
+            motionTargets.forEach((target) => motionObserver.observe(target));
+        } else {
+            motionTargets.forEach((target) => target.classList.add('is-visible'));
+        }
+    } else {
+        motionTargets.forEach((target) => target.classList.add('is-visible'));
+    }
+
+    const heroStage = document.querySelector('.hero-parallax-stage');
+    const heroSection = document.querySelector('.hero-section');
+    const heroContainer = document.querySelector('.hero-container');
+
+    if (!reducedMotion && heroStage && heroSection && heroContainer) {
+        let animationFrame;
+
+        const updateHeroParallax = () => {
+            animationFrame = undefined;
+            const stageBounds = heroStage.getBoundingClientRect();
+            const travel = Math.max(heroStage.offsetHeight - heroSection.offsetHeight, 1);
+            const progress = Math.min(Math.max(-stageBounds.top / travel, 0), 1);
+
+            heroSection.style.setProperty('--hero-parallax-y', `${progress * -64}px`);
+            heroSection.style.setProperty('--hero-nebula-scale', `${1 + progress * 0.075}`);
+            heroContainer.style.setProperty('--hero-content-parallax-y', `${progress * 34}px`);
+        };
+
+        const requestParallaxUpdate = () => {
+            if (!animationFrame) {
+                animationFrame = window.requestAnimationFrame(updateHeroParallax);
+            }
+        };
+
+        updateHeroParallax();
+        window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+        window.addEventListener('resize', requestParallaxUpdate);
+    }
 });
